@@ -1,13 +1,13 @@
 // QQPlay window need to be inited first
 if (false) {
-    BK.Script.loadlib('GameRes://libs/qqplay-adapter.js');
+    BK.Script.loadlib('111GameRes://libs/qqplay-adapter.js');
 }
 
 window.boot = function () {
     var settings = window._CCSettings;
     window._CCSettings = undefined;
 
-    if ( !settings.debug ) {
+    if (!settings.debug) {
         var uuids = settings.uuids;
 
         var rawAssets = settings.rawAssets;
@@ -59,7 +59,7 @@ window.boot = function () {
         }
     }
 
-    function setLoadingDisplay () {
+    function setLoadingDisplay() {
         // Loading splash scene
         var splash = document.getElementById('splash');
         var progressBar = splash.querySelector('.progress-bar span');
@@ -91,8 +91,7 @@ window.boot = function () {
             if (cc.sys.isMobile) {
                 if (settings.orientation === 'landscape') {
                     cc.view.setOrientation(cc.macro.ORIENTATION_LANDSCAPE);
-                }
-                else if (settings.orientation === 'portrait') {
+                } else if (settings.orientation === 'portrait') {
                     cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
                 }
                 cc.view.enableAutoFullScreen([
@@ -136,20 +135,18 @@ window.boot = function () {
 
     if (false) {
         BK.Script.loadlib();
-    }
-    else {
+    } else {
         var bundledScript = settings.debug ? 'src/project.dev.js' : 'src/project.8fde6.js';
         if (jsList) {
             jsList = jsList.map(function (x) {
                 return 'src/' + x;
             });
             jsList.push(bundledScript);
-        }
-        else {
+        } else {
             jsList = [bundledScript];
         }
     }
-    
+
     var option = {
         id: 'GameCanvas',
         scenes: settings.scenes,
@@ -194,17 +191,15 @@ if (false) {
     qqPlayDownloader.REMOTE_SERVER_ROOT = "";
     var prevPipe = cc.loader.md5Pipe || cc.loader.assetLoader;
     cc.loader.insertPipeAfter(prevPipe, qqPlayDownloader);
-    
+
     window.boot();
-}
-else if (window.jsb) {
+} else if (window.jsb) {
     var isRuntime = (typeof loadRuntime === 'function');
     if (isRuntime) {
         require('src/settings.6f228.js');
         require('src/cocos2d-runtime.js');
         require('jsb-adapter/engine/index.js');
-    }
-    else {
+    } else {
         require('src/settings.6f228.js');
         require('src/cocos2d-jsb.js');
         require('jsb-adapter/jsb-engine.js');
