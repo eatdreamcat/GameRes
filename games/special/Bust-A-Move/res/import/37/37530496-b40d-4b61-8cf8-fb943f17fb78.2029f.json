@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "boom_burst",
+    "texture": "73AVjYV7hHf6xgRlYMQOP2",
+    "rect": [
+      2,
+      2,
+      498,
+      760
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      502,
+      764
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

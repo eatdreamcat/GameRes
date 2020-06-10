@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hource",
+    "texture": "fcrR3Duq1AkIvvsY1dac1E",
+    "rect": [
+      2,
+      3,
+      372,
+      379
+    ],
+    "offset": [
+      0,
+      -0.5
+    ],
+    "originalSize": [
+      376,
+      384
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

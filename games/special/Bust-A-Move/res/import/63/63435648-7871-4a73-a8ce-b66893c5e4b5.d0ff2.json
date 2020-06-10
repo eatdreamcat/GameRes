@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "notime",
+    "texture": "8af2RofyFCtbaTNxESlDG1",
+    "rect": [
+      0,
+      0,
+      252,
+      266
+    ],
+    "offset": [
+      -1,
+      1
+    ],
+    "originalSize": [
+      254,
+      268
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
