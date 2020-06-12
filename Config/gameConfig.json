@@ -3,7 +3,6 @@
     "normalPath": "games/normal/",
     "specialPath": "games/special/",
     "Url": "https://vicat.wang/GameRes/",
-    "games": ["SolitaireWin", "SolitaireWin-Easy", "SolitaireWin-ad", "21-Cash-ad", "21-Cash", "21-Cash-Easy", "SpiderRush", "DaubCash", "BubbleGold", "Bust-A-Move", "FruitPunch", "FruitPunch-ad", "FishJump"],
     "normalGames": [
         "Bust-A-Move",
         "Bust-A-Move-CheckN",
