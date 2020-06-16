@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "pause示意图",
+    "texture": "6cLgzrNoVJh5m8PuguNMd7",
+    "rect": [
+      0,
+      0,
+      1464,
+      2400
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1464,
+      2400
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
