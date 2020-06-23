@@ -1,0 +1,153 @@
+
+jitianlongma.png
+size: 2048,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l_01
+  rotate: true
+  xy: 2, 22
+  size: 75, 156
+  orig: 75, 156
+  offset: 0, 0
+  index: -1
+arm_l_02
+  rotate: true
+  xy: 1947, 179
+  size: 75, 88
+  orig: 75, 88
+  offset: 0, 0
+  index: -1
+arm_r_01
+  rotate: true
+  xy: 1243, 189
+  size: 65, 154
+  orig: 65, 154
+  offset: 0, 0
+  index: -1
+arm_r_02
+  rotate: false
+  xy: 1243, 132
+  size: 85, 55
+  orig: 85, 55
+  offset: 0, 0
+  index: -1
+belt
+  rotate: false
+  xy: 350, 2
+  size: 184, 107
+  orig: 184, 107
+  offset: 0, 0
+  index: -1
+body_01
+  rotate: false
+  xy: 2, 99
+  size: 176, 155
+  orig: 176, 155
+  offset: 0, 0
+  index: -1
+body_02
+  rotate: false
+  xy: 705, 149
+  size: 140, 105
+  orig: 140, 105
+  offset: 0, 0
+  index: -1
+chain
+  rotate: false
+  xy: 1119, 133
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: -1
+hair_01
+  rotate: true
+  xy: 1645, 197
+  size: 57, 114
+  orig: 57, 114
+  offset: 0, 0
+  index: -1
+hair_02
+  rotate: false
+  xy: 669, 102
+  size: 27, 44
+  orig: 27, 44
+  offset: 0, 0
+  index: -1
+hand_l
+  rotate: true
+  xy: 1761, 166
+  size: 88, 93
+  orig: 88, 93
+  offset: 0, 0
+  index: -1
+hand_r
+  rotate: true
+  xy: 1856, 177
+  size: 77, 89
+  orig: 77, 89
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 847, 156
+  size: 98, 134
+  orig: 98, 134
+  offset: 0, 0
+  index: -1
+hit
+  rotate: true
+  xy: 983, 156
+  size: 98, 134
+  orig: 98, 134
+  offset: 0, 0
+  index: -1
+leg_l_01
+  rotate: true
+  xy: 350, 111
+  size: 143, 171
+  orig: 143, 171
+  offset: 0, 0
+  index: -1
+leg_l_02
+  rotate: true
+  xy: 180, 104
+  size: 150, 168
+  orig: 150, 168
+  offset: 0, 0
+  index: -1
+leg_r_01
+  rotate: false
+  xy: 536, 2
+  size: 131, 144
+  orig: 131, 144
+  offset: 0, 0
+  index: -1
+leg_r_02
+  rotate: true
+  xy: 523, 148
+  size: 106, 180
+  orig: 106, 180
+  offset: 0, 0
+  index: -1
+shoe_l
+  rotate: false
+  xy: 1330, 103
+  size: 64, 84
+  orig: 64, 84
+  offset: 0, 0
+  index: -1
+shoe_r
+  rotate: false
+  xy: 1399, 186
+  size: 121, 68
+  orig: 121, 68
+  offset: 0, 0
+  index: -1
+shoe_r2
+  rotate: false
+  xy: 1522, 186
+  size: 121, 68
+  orig: 121, 68
+  offset: 0, 0
+  index: -1

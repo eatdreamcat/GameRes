@@ -1,0 +1,153 @@
+
+maikeer.png
+size: 2048,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l_01
+  rotate: true
+  xy: 140, 18
+  size: 85, 163
+  orig: 85, 163
+  offset: 0, 0
+  index: -1
+arm_l_02
+  rotate: true
+  xy: 1304, 2
+  size: 124, 129
+  orig: 124, 129
+  offset: 0, 0
+  index: -1
+arm_r_01
+  rotate: false
+  xy: 1846, 129
+  size: 142, 125
+  orig: 142, 125
+  offset: 0, 0
+  index: -1
+arm_r_02
+  rotate: false
+  xy: 305, 17
+  size: 136, 136
+  orig: 136, 136
+  offset: 0, 0
+  index: -1
+belt
+  rotate: false
+  xy: 1304, 128
+  size: 173, 126
+  orig: 173, 126
+  offset: 0, 0
+  index: -1
+body_01
+  rotate: false
+  xy: 928, 106
+  size: 193, 148
+  orig: 193, 148
+  offset: 0, 0
+  index: -1
+body_02
+  rotate: true
+  xy: 538, 74
+  size: 180, 194
+  orig: 180, 194
+  offset: 0, 0
+  index: -1
+clothes_l_01
+  rotate: true
+  xy: 285, 155
+  size: 99, 251
+  orig: 99, 251
+  offset: 0, 0
+  index: -1
+clothes_l_02
+  rotate: true
+  xy: 1843, 48
+  size: 79, 128
+  orig: 79, 128
+  offset: 0, 0
+  index: -1
+clothes_r_01
+  rotate: true
+  xy: 2, 105
+  size: 149, 281
+  orig: 149, 281
+  offset: 0, 0
+  index: -1
+clothes_r_02
+  rotate: true
+  xy: 1631, 52
+  size: 86, 134
+  orig: 86, 134
+  offset: 0, 0
+  index: -1
+hand_l
+  rotate: true
+  xy: 443, 64
+  size: 89, 93
+  orig: 89, 93
+  offset: 0, 0
+  index: -1
+hand_r
+  rotate: false
+  xy: 928, 10
+  size: 96, 94
+  orig: 96, 94
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 2, 2
+  size: 101, 136
+  orig: 101, 136
+  offset: 0, 0
+  index: -1
+leg_l_01
+  rotate: true
+  xy: 1123, 104
+  size: 150, 179
+  orig: 150, 179
+  offset: 0, 0
+  index: -1
+leg_l_02
+  rotate: true
+  xy: 1673, 140
+  size: 114, 171
+  orig: 114, 171
+  offset: 0, 0
+  index: -1
+leg_r_01
+  rotate: true
+  xy: 734, 93
+  size: 161, 192
+  orig: 161, 192
+  offset: 0, 0
+  index: -1
+leg_r_02
+  rotate: true
+  xy: 1479, 149
+  size: 105, 192
+  orig: 105, 192
+  offset: 0, 0
+  index: -1
+shoe_l
+  rotate: false
+  xy: 1479, 70
+  size: 150, 77
+  orig: 150, 77
+  offset: 0, 0
+  index: -1
+shoe_r
+  rotate: true
+  xy: 1767, 45
+  size: 93, 74
+  orig: 93, 74
+  offset: 0, 0
+  index: -1
+zhangyan
+  rotate: false
+  xy: 1990, 235
+  size: 47, 19
+  orig: 47, 19
+  offset: 0, 0
+  index: -1
