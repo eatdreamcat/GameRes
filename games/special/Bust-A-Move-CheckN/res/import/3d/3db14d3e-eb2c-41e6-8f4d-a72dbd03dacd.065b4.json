@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "get_equip",
+    "texture": "4efIuTMepBFb0JIbPp+Rlm",
+    "rect": [
+      0,
+      0,
+      313,
+      416
+    ],
+    "offset": [
+      -1,
+      1
+    ],
+    "originalSize": [
+      315,
+      418
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

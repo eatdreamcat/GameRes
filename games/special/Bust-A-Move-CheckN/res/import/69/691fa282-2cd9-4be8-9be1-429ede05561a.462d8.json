@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "chips_success",
+    "texture": "feQy2e7MpIUK6ItxJIlmJJ",
+    "rect": [
+      0,
+      0,
+      774,
+      954
+    ],
+    "offset": [
+      0,
+      1
+    ],
+    "originalSize": [
+      774,
+      956
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
