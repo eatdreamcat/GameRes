@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "drop",
+    "texture": "ed+ftq4IFItYDDIhZgH5cB",
+    "rect": [
+      0,
+      0,
+      981,
+      474
+    ],
+    "offset": [
+      -1.5,
+      1
+    ],
+    "originalSize": [
+      984,
+      476
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
