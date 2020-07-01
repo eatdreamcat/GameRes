@@ -4,9 +4,11 @@
     "specialPath": "games/special/",
     "Url": "https://vicat.wang/GameRes/",
     "normalGames": [
-        "Bust-A-Move",
-        "Bust-A-Move-CheckN",
         "DaubCash",
+        "Bust-A-Move-CheckN",
+        "Bust-A-Move",
+
+
         "BubbleGold",
         "SolitaireWin",
         "SolitaireWin-Easy",
@@ -23,9 +25,10 @@
         "FishJump"
     ],
     "specialGames": [
+        "DaubCash",
         "Bust-A-Move-CheckN",
         "Bust-A-Move",
-        "DaubCash",
+
         "BubbleGold",
         "SolitaireWin",
         "SolitaireWin-Easy",
@@ -37,6 +40,6 @@
         "FruitPunch-ad",
         "FishJump"
     ],
-    "new": ["Bust-A-Move-CheckN"]
+    "new": ["DaubCash", "Bust-A-Move-CheckN"]
 
 }
