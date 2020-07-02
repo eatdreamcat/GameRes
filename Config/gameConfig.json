@@ -2,13 +2,11 @@
     "gamePath": "games/",
     "normalPath": "games/normal/",
     "specialPath": "games/special/",
-    "Url": "https://vicat.wang/GameRes/",
+    "Url": "http://123.56.12.185/GameRes/",
     "normalGames": [
         "DaubCash",
         "Bust-A-Move-CheckN",
         "Bust-A-Move",
-
-
         "BubbleGold",
         "SolitaireWin",
         "SolitaireWin-Easy",
@@ -28,7 +26,6 @@
         "DaubCash",
         "Bust-A-Move-CheckN",
         "Bust-A-Move",
-
         "BubbleGold",
         "SolitaireWin",
         "SolitaireWin-Easy",
