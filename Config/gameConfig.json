@@ -2,7 +2,7 @@
     "gamePath": "games/",
     "normalPath": "games/normal/",
     "specialPath": "games/special/",
-    "Url": "http://123.56.12.185/GameRes/",
+    "Url": "https://bigfish.host/GameRes/",
     "normalGames": [
         "DaubCash",
         "Bust-A-Move-CheckN",
