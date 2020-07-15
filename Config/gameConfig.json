@@ -37,6 +37,9 @@
         "FruitPunch-ad",
         "FishJump"
     ],
+    "nativeGames": [
+        "DaubCash"
+    ],
     "new": ["DaubCash", "Bust-A-Move-CheckN"]
 
 }
