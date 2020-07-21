@@ -4,6 +4,7 @@
     "specialPath": "games/special/",
     "Url": "https://vicat.wang/GameRes/",
     "normalGames": [
+        "DominoCash",
         "DaubCash",
         "Bust-A-Move-CheckN",
         "SolitaireWin",
@@ -43,6 +44,8 @@
     "nativeGames": [
         "DaubCash"
     ],
-    "new": []
+    "new": [
+        "DominoCash"
+    ]
 
 }
