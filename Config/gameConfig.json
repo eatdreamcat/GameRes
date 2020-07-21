@@ -6,31 +6,39 @@
     "normalGames": [
         "DaubCash",
         "Bust-A-Move-CheckN",
-        "Bust-A-Move",
-        "BubbleGold",
         "SolitaireWin",
         "21-Cash",
         "SpiderRush",
-        "CubeMatrix",
         "FruitPunch",
+
+        "FishJump",
+        "Bust-A-Move",
+        "BubbleGold",
+
+        "CubeMatrix",
+
         "PunchToTheMoon",
-        "MonsterBall",
-        "FishJump"
+        "MonsterBall"
+
     ],
     "specialGames": [
         "DaubCash",
         "Bust-A-Move-CheckN",
-        "Bust-A-Move",
-        "BubbleGold",
+
         "SolitaireWin",
+        "21-Cash",
+        "SpiderRush",
+        "FishJump",
         "SolitaireWin-Easy",
         "SolitaireWin-ad",
         "21-Cash-ad",
-        "21-Cash",
+        "Bust-A-Move",
+        "BubbleGold",
+
         "21-Cash-Easy",
-        "SpiderRush",
-        "FruitPunch-ad",
-        "FishJump"
+
+        "FruitPunch-ad"
+
     ],
     "nativeGames": [
         "DaubCash"
