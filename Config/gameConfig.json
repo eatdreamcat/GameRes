@@ -9,15 +9,10 @@
         "Bust-A-Move",
         "BubbleGold",
         "SolitaireWin",
-        "SolitaireWin-Easy",
-        "SolitaireWin-ad",
-        "21-Cash-ad",
         "21-Cash",
-        "21-Cash-Easy",
         "SpiderRush",
         "CubeMatrix",
         "FruitPunch",
-        "FruitPunch-ad",
         "PunchToTheMoon",
         "MonsterBall",
         "FishJump"
@@ -40,6 +35,6 @@
     "nativeGames": [
         "DaubCash"
     ],
-    "new": ["DaubCash", "Bust-A-Move-CheckN"]
+    "new": []
 
 }
