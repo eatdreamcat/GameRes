@@ -1,6 +1,6 @@
 let initCelerX = function () {
     console.log("-- init celerx --");
-    window['CELER_X'] = false;
+    window.CELER_X = false;
     var bridge = {
   default: this,
   call: function (b, a, c) {
