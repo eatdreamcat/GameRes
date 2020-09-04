@@ -518,7 +518,7 @@ window.boot = function () {
     if (false) {
         BK.Script.loadlib();
     } else {
-        var bundledScript = settings.debug ? 'src/project.763c7.js' : 'src/project.763c7.js';
+        var bundledScript = settings.debug ? 'src/project.a8e5a.js' : 'src/project.a8e5a.js';
         if (jsList) {
             jsList = jsList.map(function (x) {
                 return 'src/' + x;
