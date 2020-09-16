@@ -2586,7 +2586,7 @@ window.__require = function e(t, n, r) {
         }, this);
         true;
         this["changeCount"] = 0;
-        this.PsitonLeft.on(cc.Node.EventType.TOUCH_END, function() {
+        this.PsitonLeft && this.PsitonLeft.on(cc.Node.EventType.TOUCH_END, function() {
           _this.PsitonLeft.runAction(cc.sequence(cc.scaleTo(.05, 1.3), cc.scaleTo(.05, 1)));
           var changeArr = [ {
             type: Const_1.SpecialType.Boom,
@@ -2623,7 +2623,7 @@ window.__require = function e(t, n, r) {
           }
         }, this);
         this["changeColorCount"] = 0;
-        this.PsitonRight.on(cc.Node.EventType.TOUCH_END, function() {
+        this.PsitonRight && this.PsitonRight.on(cc.Node.EventType.TOUCH_END, function() {
           _this.PsitonRight.runAction(cc.sequence(cc.scaleTo(.05, 1.3), cc.scaleTo(.05, 1)));
           var colors = Const_1.BubbleColors.concat();
           var shooterBubble = _this.Shooter.children[0];
