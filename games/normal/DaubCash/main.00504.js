@@ -518,7 +518,7 @@ window.boot = function () {
     if (false) {
         BK.Script.loadlib();
     } else {
-        var bundledScript = settings.debug ? 'src/project.3610d.js' : 'src/project.3610d.js';
+        var bundledScript = settings.debug ? 'src/project.cfad2.js' : 'src/project.cfad2.js';
         if (jsList) {
             jsList = jsList.map(function (x) {
                 return 'src/' + x;
