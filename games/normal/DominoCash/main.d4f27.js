@@ -1,6 +1,6 @@
 let initCelerX = function () {
     console.log("-- init celerx --");
-    window.CELER_X = false;
+    window.CELER_X = false;window.SPINE_VERSION = 3.8
     var bridge = {
   default: this,
   call: function (b, a, c) {
@@ -518,7 +518,7 @@ window.boot = function () {
     if (false) {
         BK.Script.loadlib();
     } else {
-        var bundledScript = settings.debug ? 'src/project.cc6f3.js' : 'src/project.cc6f3.js';
+        var bundledScript = settings.debug ? 'src/project.95188.js' : 'src/project.95188.js';
         if (jsList) {
             jsList = jsList.map(function (x) {
                 return 'src/' + x;
