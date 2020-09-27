@@ -1,6 +1,6 @@
 let initCelerX = function () {
     console.log("-- init celerx --");
-    window.CELER_X = false;
+    window.CELER_X = false;window.SPINE_VERSION = 3.6
     var bridge = {
   default: this,
   call: function (b, a, c) {
@@ -488,7 +488,7 @@ window.boot = function () {
             // more tasks simultaneously may cause performance draw back on some android system / browsers.
             // You can adjust the number based on your own test result, you have to set it before any loading process to take effect.
             if (cc.sys.isBrowser && cc.sys.os === cc.sys.OS_ANDROID) {
-                cc.macro.DOWNLOAD_MAX_CONCURRENT = 2;
+                cc.macro.DOWNLOAD_MAX_CONCURRENT = 32;
             }
         }
 
@@ -518,7 +518,7 @@ window.boot = function () {
     if (false) {
         BK.Script.loadlib();
     } else {
-        var bundledScript = settings.debug ? 'src/project.57982.js' : 'src/project.57982.js';
+        var bundledScript = settings.debug ? 'src/project.2ed4d.js' : 'src/project.2ed4d.js';
         if (jsList) {
             jsList = jsList.map(function (x) {
                 return 'src/' + x;
