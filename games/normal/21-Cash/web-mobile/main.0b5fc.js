@@ -1,6 +1,6 @@
 let initCelerX = function () {
     console.log("-- init celerx --");
-    window.CELER_X = false;window.SPINE_VERSION = 3.6
+    window.CELER_X = false;window.SPINE_VERSION = 3.8
     var bridge = {
   default: this,
   call: function (b, a, c) {
