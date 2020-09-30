@@ -4,6 +4,7 @@
     "specialPath": "games/special/",
     "Url": "https://vicat.wang/GameRes/",
     "normalGames": [
+        "PyramidWin",
         "DominoCash",
         "DaubCash",
         "Bust-A-Move-CheckN",
@@ -46,7 +47,7 @@
         "DaubCash"
     ],
     "new": [
-        "DominoCash"
+        "PyramidWin"
     ]
 
 }
