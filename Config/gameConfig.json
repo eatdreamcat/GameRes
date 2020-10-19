@@ -24,6 +24,7 @@
 
     ],
     "specialGames": [
+         "PyramidWin",
         "DominoCash",
         "DaubCash",
         "Bust-A-Move-CheckN",
