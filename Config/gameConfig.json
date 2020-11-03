@@ -1,54 +1,49 @@
 {
-    "gamePath": "games/",
-    "normalPath": "games/normal/",
-    "specialPath": "games/special/",
-    "Url": "https://vicat.wang/GameRes/",
-    "normalGames": [
-        "PyramidWin",
-        "DominoCash",
-        "DaubCash",
-        "Bust-A-Move-CheckN",
-        "SolitaireWin",
-        "21-Cash",
-        "SpiderRush",
-        "FruitPunch",
+  "gamePath": "games/",
+  "normalPath": "games/normal/",
+  "specialPath": "games/special/",
+  "Url": "https://vicat.wang/GameRes/",
+  "normalGames": [
+    "MergeGem",
+    "PyramidWin",
+    "DominoCash",
+    "DaubCash",
+    "Bust-A-Move-CheckN",
+    "SolitaireWin",
+    "21-Cash",
+    "SpiderRush",
+    "FruitPunch",
 
-        "FishJump",
-        "Bust-A-Move",
-        "BubbleGold",
+    "FishJump",
+    "Bust-A-Move",
+    "BubbleGold",
 
-        "CubeMatrix",
+    "CubeMatrix",
 
-        "PunchToTheMoon",
-        "MonsterBall"
+    "PunchToTheMoon",
+    "MonsterBall"
+  ],
+  "specialGames": [
+    "MergeGem",
+    "PyramidWin",
+    "DominoCash",
+    "DaubCash",
+    "Bust-A-Move-CheckN",
 
-    ],
-    "specialGames": [
-         "PyramidWin",
-        "DominoCash",
-        "DaubCash",
-        "Bust-A-Move-CheckN",
+    "SolitaireWin",
+    "21-Cash",
+    "SpiderRush",
+    "FishJump",
+    "SolitaireWin-Easy",
+    "SolitaireWin-ad",
+    "21-Cash-ad",
+    "Bust-A-Move",
+    "BubbleGold",
 
-        "SolitaireWin",
-        "21-Cash",
-        "SpiderRush",
-        "FishJump",
-        "SolitaireWin-Easy",
-        "SolitaireWin-ad",
-        "21-Cash-ad",
-        "Bust-A-Move",
-        "BubbleGold",
+    "21-Cash-Easy",
 
-        "21-Cash-Easy",
-
-        "FruitPunch-ad"
-
-    ],
-    "nativeGames": [
-        "DaubCash"
-    ],
-    "new": [
-        "PyramidWin"
-    ]
-
+    "FruitPunch-ad"
+  ],
+  "nativeGames": ["DaubCash"],
+  "new": ["MergeGem"]
 }
