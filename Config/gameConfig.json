@@ -4,6 +4,7 @@
   "specialPath": "games/special/",
   "Url": "https://vicat.wang/GameRes/",
   "normalGames": [
+    "SortSortWin",
     "MergeGem",
     "PyramidWin",
     "DominoCash",
@@ -24,6 +25,7 @@
     "MonsterBall"
   ],
   "specialGames": [
+    "SortSortWin",
     "MergeGem",
     "PyramidWin",
     "DominoCash",
@@ -45,5 +47,5 @@
     "FruitPunch-ad"
   ],
   "nativeGames": ["DaubCash"],
-  "new": ["MergeGem"]
+  "new": ["SortSortWin", "MergeGem"]
 }
