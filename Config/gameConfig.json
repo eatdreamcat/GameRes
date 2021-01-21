@@ -4,6 +4,7 @@
   "specialPath": "games/special/",
   "Url": "https://vicat.wang/GameRes/",
   "normalGames": [
+    "SolitaireWin-Refactor",
     "OneChessWin",
     "SortSortWin",
     "MergeGem",
@@ -49,5 +50,5 @@
     "FruitPunch-ad"
   ],
   "nativeGames": ["DaubCash"],
-  "new": ["OneChessWin", "SortSortWin"]
+  "new": ["SolitaireWin-Refactor", "OneChessWin", "SortSortWin"]
 }
