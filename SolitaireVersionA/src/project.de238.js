@@ -1486,7 +1486,7 @@ window.__require = (function e(t, o, n) {
                   ));
             }),
             (t.prototype.celerStart = function () {
-              console.log(" onStart call!, start call get match.");
+              console.log(" onStart call!, start call get match1111.");
               var e = CELER_X
                 ? celerSDK.getMatch()
                 : {
