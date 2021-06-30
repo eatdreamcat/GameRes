@@ -4,6 +4,7 @@
   "specialPath": "games/special/",
   "Url": "https://vicat.wang/GameRes/",
   "normalGames": [
+    "PickPick",
     "EliminationWin",
     "SolitaireWin-Refactor",
     "OneChessWin",
@@ -28,6 +29,7 @@
     "MonsterBall"
   ],
   "specialGames": [
+    "PickPick",
     "OneChessWin",
     "SortSortWin",
     "MergeGem",
@@ -51,5 +53,5 @@
     "FruitPunch-ad"
   ],
   "nativeGames": ["DaubCash"],
-  "new": ["EliminationWin"]
+  "new": ["PickPick"]
 }
