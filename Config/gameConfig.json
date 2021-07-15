@@ -3,7 +3,7 @@
   "normalPath": "games/normal/",
   "specialPath": "games/special/",
   "Url": "https://vicat.wang/GameRes/",
-  "LocalUrl": "http://192.168.10.111/",
+  "LocalUrl": "http://192.168.10.111:2020/",
   "normalGames": [
     "PickPick",
     "EliminationWin",
