@@ -4,6 +4,7 @@
   "specialPath": "games/special/",
   "Url": "https://vicat.wang/GameRes/",
   "LocalUrl": "http://192.168.10.111:2020/",
+  "releaseUrl": "http://192.168.10.111:6565/",
   "normalGames": [
     "PickPick",
     "EliminationWin",
