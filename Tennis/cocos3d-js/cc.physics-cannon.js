@@ -1,4 +1,4 @@
-System.register(['./deprecated-8ebd570c.js', './deprecated-a0f8be1a.js', './index-2148aab9.js', './SubContextView-456e3ed1.js', './component-event-handler-f732bf4f.js', './index-325bf510.js', './terrain-asset-6ae2f4c5.js', './util-8598c436.js', './_commonjsHelpers-f5a33273.js'], function () {
+System.register(['./deprecated-8ebd570c.js', './deprecated-a0f8be1a.js', './index-2148aab9.js', './SubContextView-456e3ed1.js', './component-event-handler-f732bf4f.js', './index-325bf510.js', './terrain-asset-6ae2f4c5.js', './util-8598c436.js', './commonjsHelpers-f5a33273.js'], function () {
     'use strict';
     var _createClass, Vec3, _classCallCheck, Quat, _inherits, _possibleConstructorReturn, _getPrototypeOf, _get, replaceProperty, TransformBit, PhysicsSystem, ERigidBodyType, EAxisDirection, SimplexCollider, select, getWrap, setWrap, maxComponent, createCommonjsModule, commonjsRequire;
     return {
