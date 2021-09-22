@@ -725,130 +725,1102 @@ System.register("chunks:///Common/Cocos.js", ["cc", "./Random.js"], function (_e
   };
 });
 
-System.register("chunks:///GamePlay/GameRule.js", ["cc"], function (_export, _context) {
+System.register("chunks:///Command/Notification.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc"], function (_export, _context) {
   "use strict";
 
-  var cclegacy, Theme, ScoreType, HoleBonus;
-
-  function RandomTheme() {
-    return null;
-  }
-
-  function GetTotalTime() {
-    return CC_DEBUG ? 60 * 3 : 60 * 3;
-  }
-  /** 免费暂停次数 */
-
-
-  function GetFreePauseCount() {
-    return 3;
-  }
-
-  function GetScoreByType(scoreType) {
-    var count = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-    var score = 0;
-
-    switch (scoreType) {
-      case ScoreType.PauseCost:
-        score = 100;
-        break;
-
-      case ScoreType.Pocket:
-        score = count;
-        break;
-
-      case ScoreType.Rebound:
-        score = 75;
-        break;
-
-      case ScoreType.Multip:
-        if (count <= 1) score = 0;else {
-          score = 50 + 50 * (count - 1);
-        }
-        break;
-
-      case ScoreType.Link:
-        score = 75;
-        break;
-
-      case ScoreType.HeartBonus:
-        score = 20 * count;
-        break;
-
-      case ScoreType.NoBust:
-        score = 100;
-        break;
-
-      default:
-        break;
-    }
-
-    return score * GetScoreRatio();
-  }
-
-  function GetScoreRatio() {
-    return 1;
-  }
-
-  function EasyMode() {
-    return true;
-  }
-
-  function GetTotalHeartCount() {
-    return CC_DEBUG ? 40 : 4;
-  }
-
-  function StreakBonusLimit() {
-    return CC_DEBUG ? 1 : 3;
-  }
-
-  _export({
-    EasyMode: EasyMode,
-    GetFreePauseCount: GetFreePauseCount,
-    GetScoreByType: GetScoreByType,
-    GetScoreRatio: GetScoreRatio,
-    GetTotalHeartCount: GetTotalHeartCount,
-    GetTotalTime: GetTotalTime,
-    RandomTheme: RandomTheme,
-    StreakBonusLimit: StreakBonusLimit,
-    Theme: void 0,
-    ScoreType: void 0,
-    HoleBonus: void 0
-  });
+  var _createClass, _classCallCheck, cclegacy, Notification;
 
   return {
-    setters: [function (_cc) {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+    }, function (_cc) {
       cclegacy = _cc.cclegacy;
     }],
     execute: function () {
-      cclegacy._RF.push({}, "9007elfmZdNrKffJiRadvPn", "GameRule", undefined);
+      cclegacy._RF.push({}, "f5488zT53NDy7p1Vf9k8sT8", "Notification", undefined);
 
-      /** 得分类型 */
-      (function (Theme) {
-        Theme[Theme["Green"] = 0] = "Green";
-        Theme[Theme["Blue"] = 1] = "Blue";
-        Theme[Theme["Red"] = 2] = "Red";
-        Theme[Theme["Purple"] = 3] = "Purple";
-      })(Theme || _export("Theme", Theme = {}));
+      _export("Notification", Notification = /*#__PURE__*/function () {
+        function Notification() {
+          _classCallCheck(this, Notification);
 
-      (function (ScoreType) {
-        ScoreType[ScoreType["PauseCost"] = 0] = "PauseCost";
-        ScoreType[ScoreType["Pocket"] = 1] = "Pocket";
-        ScoreType[ScoreType["Rebound"] = 2] = "Rebound";
-        ScoreType[ScoreType["Multip"] = 3] = "Multip";
-        ScoreType[ScoreType["Link"] = 4] = "Link";
-        ScoreType[ScoreType["HeartBonus"] = 5] = "HeartBonus";
-        ScoreType[ScoreType["NoBust"] = 6] = "NoBust";
-      })(ScoreType || _export("ScoreType", ScoreType = {}));
+          this.notification = {};
+        }
 
-      (function (HoleBonus) {
-        HoleBonus[HoleBonus["x2"] = 2] = "x2";
-        HoleBonus[HoleBonus["x3"] = 3] = "x3";
-        HoleBonus[HoleBonus["x4"] = 4] = "x4";
-        HoleBonus[HoleBonus["x6"] = 6] = "x6";
-        HoleBonus[HoleBonus["x8"] = 8] = "x8";
-        HoleBonus[HoleBonus["x10"] = 10] = "x10";
-      })(HoleBonus || _export("HoleBonus", HoleBonus = {}));
+        _createClass(Notification, [{
+          key: "register",
+          value: function register(notificationName, command) {
+            if (this.notification[notificationName]) {
+              console.error(notificationName, " is already exist.");
+            }
+
+            this.notification[notificationName] = new command();
+          }
+        }, {
+          key: "sendNotification",
+          value: function sendNotification(notificationName, body) {
+            if (this.notification[notificationName]) {
+              this.notification[notificationName].excute(body);
+              this.notification[notificationName] = null;
+            }
+          }
+        }]);
+
+        return Notification;
+      }());
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///Manager/StepManager.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc"], function (_export, _context) {
+  "use strict";
+
+  var _createClass, _classCallCheck, _createForOfIteratorHelper, cclegacy, StepManager;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "40cb5NQZgtIJI0r/H26O+5G", "StepManager", undefined);
+
+      _export("StepManager", StepManager = /*#__PURE__*/function () {
+        function StepManager() {
+          _classCallCheck(this, StepManager);
+
+          this.totalStep = [];
+          this.curStep = [];
+          this.loadTime = {};
+        }
+
+        _createClass(StepManager, [{
+          key: "register",
+          value: function register(complete, totalSteps) {
+            this.completeCallback = complete;
+            this.totalStep = totalSteps;
+
+            var _iterator = _createForOfIteratorHelper(totalSteps),
+                _step;
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var key = _step.value;
+                this.loadTime[key] = Date.now();
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+          }
+        }, {
+          key: "start",
+          value: function start(step) {
+            this.loadTime[step] = Date.now();
+          }
+        }, {
+          key: "nextStep",
+          value: function nextStep(step) {
+            if (this.totalStep.indexOf(step) < 0) {
+              console.error(" 没有这一步：", step);
+              return;
+            }
+
+            if (this.curStep.indexOf(step) >= 0) {
+              console.warn(" 步骤已完成：", step);
+              return;
+            }
+
+            this.curStep.push(step);
+            this.curStep.sort(function (a, b) {
+              return a > b ? -1 : 1;
+            });
+            this.totalStep.sort(function (a, b) {
+              return a > b ? -1 : 1;
+            });
+            var now = this.curStep.join("-");
+            var total = this.totalStep.join("-");
+            var costTime = Date.now() - this.loadTime[step];
+            console.log(" cur step:", step, ", cost time:", costTime, " ms");
+
+            if (now == total) {
+              console.log(" step done");
+              this.totalStep.length = 0;
+              this.completeCallback();
+              this.completeCallback = null;
+            }
+          }
+        }]);
+
+        return StepManager;
+      }());
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///Command/SimpleCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc"], function (_export, _context) {
+  "use strict";
+
+  var _createClass, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, BaseCommand, SimpleCommand;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "583e4ZqIPZIP4QkHW8PKIta", "SimpleCommand", undefined);
+
+      _export("BaseCommand", BaseCommand = /*#__PURE__*/function () {
+        function BaseCommand() {
+          _classCallCheck(this, BaseCommand);
+        }
+
+        _createClass(BaseCommand, [{
+          key: "excute",
+          value: function excute(body) {}
+        }]);
+
+        return BaseCommand;
+      }());
+
+      _export("SimpleCommand", SimpleCommand = /*#__PURE__*/function (_BaseCommand) {
+        _inherits(SimpleCommand, _BaseCommand);
+
+        function SimpleCommand() {
+          _classCallCheck(this, SimpleCommand);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(SimpleCommand).apply(this, arguments));
+        }
+
+        return SimpleCommand;
+      }(BaseCommand));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///Command/MacroCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "./SimpleCommand.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createForOfIteratorHelper, cclegacy, BaseCommand, MacroCommand;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+    }, function (_SimpleCommandJs) {
+      BaseCommand = _SimpleCommandJs.BaseCommand;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "a464cRqnHZJFqe/UY6Xh9WQ", "MacroCommand", undefined);
+
+      _export("MacroCommand", MacroCommand = /*#__PURE__*/function (_BaseCommand) {
+        _inherits(MacroCommand, _BaseCommand);
+
+        function MacroCommand() {
+          var _this;
+
+          _classCallCheck(this, MacroCommand);
+
+          _this = _possibleConstructorReturn(this, _getPrototypeOf(MacroCommand).call(this));
+          _this.commands = [];
+
+          _this.initializeMacroCommand();
+
+          return _this;
+        }
+
+        _createClass(MacroCommand, [{
+          key: "initializeMacroCommand",
+          value: function initializeMacroCommand() {}
+        }, {
+          key: "addSubCommond",
+          value: function addSubCommond(command) {
+            this.commands.push(new command());
+          }
+        }, {
+          key: "excute",
+          value: function excute(body) {
+            var _iterator = _createForOfIteratorHelper(this.commands),
+                _step;
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var subCommand = _step.value;
+                subCommand.excute(body);
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+
+            this.commands.length = 0;
+          }
+        }]);
+
+        return MacroCommand;
+      }(BaseCommand));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///GameLoad/LoadAudioCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Command/SimpleCommand.js", "./InitialFacade.js", "../Manager/AudioManager.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, SimpleCommand, InitialFacade, STEP, AudioController, LoadAudioCommand;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+    }, function (_CommandSimpleCommandJs) {
+      SimpleCommand = _CommandSimpleCommandJs.SimpleCommand;
+    }, function (_InitialFacadeJs) {
+      InitialFacade = _InitialFacadeJs.InitialFacade;
+      STEP = _InitialFacadeJs.STEP;
+    }, function (_ManagerAudioManagerJs) {
+      AudioController = _ManagerAudioManagerJs.AudioController;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "06a548MnE5Dz4dpDON+EArR", "LoadAudioCommand", undefined);
+
+      _export("LoadAudioCommand", LoadAudioCommand = /*#__PURE__*/function (_SimpleCommand) {
+        _inherits(LoadAudioCommand, _SimpleCommand);
+
+        function LoadAudioCommand() {
+          _classCallCheck(this, LoadAudioCommand);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(LoadAudioCommand).apply(this, arguments));
+        }
+
+        _createClass(LoadAudioCommand, [{
+          key: "excute",
+          value: function excute() {
+            InitialFacade.inst.startStep(STEP.Audio);
+            AudioController.inst.init(function () {
+              InitialFacade.inst.step(STEP.Audio);
+            });
+          }
+        }]);
+
+        return LoadAudioCommand;
+      }(SimpleCommand));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///TableManager.js", ["./_virtual/_rollupPluginBabelHelpers.js", "cc"], function (_export, _context) {
+  "use strict";
+
+  var _createClass, _classCallCheck, _createForOfIteratorHelper, cclegacy, loader, TableManager;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+      loader = _cc.loader;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "3152d8IVxNJ0bZnGxcI+7M6", "TableManager", undefined);
+
+      _export("TableManager", TableManager = /*#__PURE__*/function () {
+        _createClass(TableManager, null, [{
+          key: "inst",
+          get: function get() {
+            return this.ins ? this.ins : this.ins = new TableManager();
+          }
+        }]);
+
+        function TableManager() {
+          _classCallCheck(this, TableManager);
+
+          this.load = TableManager.JSON_URL && TableManager.JSON_URL != "" ? loader.load.bind(loader) : loader.loadRes.bind(loader);
+          this.fileFormat = TableManager.JSON_URL && TableManager.JSON_URL != "" ? ".json?time=" + Date.now() : "";
+          this.total = 0;
+          this.complete = 0;
+          this.Balls = {};
+          this.En = {};
+          this.Level = {};
+          this.Physical = {};
+        }
+
+        _createClass(TableManager, [{
+          key: "startLoad",
+
+          /** 
+          *
+          * @param url json 路径
+          * @param complete
+          * @param progress
+          */
+          value: function startLoad(url, complete, progress) {
+            this.completeCallback = complete;
+            this.progressCallback = progress;
+            var self = this;
+            console.log("Base URL:", TableManager.JSON_URL);
+            this.load(TableManager.JSON_URL + url.trim().split('/').join('') + '/file_list' + this.fileFormat, function (err, JsonAsset) {
+              if (err) {
+                console.error(err.errorMessage);
+              } else {
+                var jsonArray = JsonAsset.constructor["name"] == "Array" ? JsonAsset : JsonAsset.json;
+                this.total = jsonArray.length;
+
+                var _iterator = _createForOfIteratorHelper(jsonArray),
+                    _step;
+
+                try {
+                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                    var jsonFile = _step.value;
+                    self.loadJson(url.trim().split('/').join('') + '/' + jsonFile.replace('.json', ''));
+                  }
+                } catch (err) {
+                  _iterator.e(err);
+                } finally {
+                  _iterator.f();
+                }
+              }
+            }.bind(this));
+          }
+        }, {
+          key: "loadJson",
+          value: function loadJson(url) {
+            console.log('start load:' + url);
+            var self = this;
+            var tableName = url.split("/")[1];
+            tableName = tableName.charAt(0).toUpperCase() + tableName.slice(1, tableName.length);
+            this.load(TableManager.JSON_URL + url + this.fileFormat, function (err, JsonAsset) {
+              if (err) {
+                console.error(err.errorMessage);
+              } else {
+                var jsonArray = JsonAsset.constructor["name"] == "Array" ? JsonAsset : JsonAsset.json;
+
+                var _iterator2 = _createForOfIteratorHelper(jsonArray),
+                    _step2;
+
+                try {
+                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                    var json = _step2.value;
+                    self[tableName][json['ID']] = json;
+                  }
+                } catch (err) {
+                  _iterator2.e(err);
+                } finally {
+                  _iterator2.f();
+                }
+
+                self.completeLoad();
+              }
+            }.bind(this));
+          }
+        }, {
+          key: "completeLoad",
+          value: function completeLoad() {
+            this.complete++;
+
+            if (this.progressCallback) {
+              this.progressCallback(this.complete / this.total);
+            }
+
+            if (this.complete >= this.total) {
+              if (this.completeCallback) this.completeCallback();
+            }
+          }
+        }, {
+          key: "getBalls",
+          value: function getBalls(key) {
+            if (this.Balls[key]) {
+              return this.Balls[key];
+            } else {
+              console.error('Balls 不存key：' + key);
+              return null;
+            }
+          }
+        }, {
+          key: "getAll_Balls_Data",
+          value: function getAll_Balls_Data() {
+            return this.Balls;
+          }
+        }, {
+          key: "getEn",
+          value: function getEn(key) {
+            if (this.En[key]) {
+              return this.En[key];
+            } else {
+              console.error('En 不存key：' + key);
+              return null;
+            }
+          }
+        }, {
+          key: "getAll_En_Data",
+          value: function getAll_En_Data() {
+            return this.En;
+          }
+        }, {
+          key: "getLevel",
+          value: function getLevel(key) {
+            if (this.Level[key]) {
+              return this.Level[key];
+            } else {
+              console.error('Level 不存key：' + key);
+              return null;
+            }
+          }
+        }, {
+          key: "getAll_Level_Data",
+          value: function getAll_Level_Data() {
+            return this.Level;
+          }
+        }, {
+          key: "getPhysical",
+          value: function getPhysical(key) {
+            if (this.Physical[key]) {
+              return this.Physical[key];
+            } else {
+              console.error('Physical 不存key：' + key);
+              return null;
+            }
+          }
+        }, {
+          key: "getAll_Physical_Data",
+          value: function getAll_Physical_Data() {
+            return this.Physical;
+          }
+        }]);
+
+        return TableManager;
+      }());
+
+      TableManager.JSON_URL = "";
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///GameLoad/LoadJsonCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Command/SimpleCommand.js", "../TableManager.js", "./InitialFacade.js", "../Common/SDK/CelerSDK.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, SimpleCommand, TableManager, InitialFacade, STEP, CelerSDK, LoadJsonCommand;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+    }, function (_CommandSimpleCommandJs) {
+      SimpleCommand = _CommandSimpleCommandJs.SimpleCommand;
+    }, function (_TableManagerJs) {
+      TableManager = _TableManagerJs.TableManager;
+    }, function (_InitialFacadeJs) {
+      InitialFacade = _InitialFacadeJs.InitialFacade;
+      STEP = _InitialFacadeJs.STEP;
+    }, function (_CommonSDKCelerSDKJs) {
+      CelerSDK = _CommonSDKCelerSDKJs.CelerSDK;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "7be3eOvZ9dEQKofxmmp4yPe", "LoadJsonCommand", undefined);
+
+      _export("LoadJsonCommand", LoadJsonCommand = /*#__PURE__*/function (_SimpleCommand) {
+        _inherits(LoadJsonCommand, _SimpleCommand);
+
+        function LoadJsonCommand() {
+          _classCallCheck(this, LoadJsonCommand);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(LoadJsonCommand).apply(this, arguments));
+        }
+
+        _createClass(LoadJsonCommand, [{
+          key: "excute",
+          value: function excute() {
+            InitialFacade.inst.startStep(STEP.Json);
+            TableManager.inst.startLoad("/json", function () {
+              InitialFacade.inst.step(STEP.Json);
+
+              if (InitialFacade.CelerFirst) {
+                CelerSDK.inst.defineLan();
+              }
+            });
+          }
+        }]);
+
+        return LoadJsonCommand;
+      }(SimpleCommand));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///Factory/MaterialFactory.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Common/HashMap.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, loader, Material, SingleTon, HashMap, MaterialFactory;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+      loader = _cc.loader;
+      Material = _cc.Material;
+    }, function (_CommonToSingleTonJs) {
+      SingleTon = _CommonToSingleTonJs.SingleTon;
+    }, function (_CommonHashMapJs) {
+      HashMap = _CommonHashMapJs.HashMap;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "8f81bDlvIFAo79lBq3LDIyI", "MaterialFactory", undefined);
+
+      _export("MaterialFactory", MaterialFactory = /*#__PURE__*/function (_SingleTon) {
+        _inherits(MaterialFactory, _SingleTon);
+
+        function MaterialFactory() {
+          var _getPrototypeOf2;
+
+          var _this;
+
+          _classCallCheck(this, MaterialFactory);
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(MaterialFactory)).call.apply(_getPrototypeOf2, [this].concat(args)));
+          _this.materials = new HashMap();
+          return _this;
+        }
+
+        _createClass(MaterialFactory, [{
+          key: "init",
+          value: function init(callback) {
+            var _this2 = this;
+
+            loader.loadResDir("/materials/ball/", Material, function (err, materials, urls) {
+              if (err) {
+                console.error("load material failed:", err);
+              } else {
+                for (var i = 0; i < materials.length; i++) {
+                  var strArr = urls[i].split("/");
+
+                  _this2.materials.add(strArr[strArr.length - 1], materials[i]);
+                }
+
+                callback();
+              }
+            });
+          }
+        }, {
+          key: "getMaterial",
+          value: function getMaterial(name) {
+            return this.materials.get(name);
+          }
+        }]);
+
+        return MaterialFactory;
+      }(SingleTon()));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///GameLoad/LoadMaterialCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Command/SimpleCommand.js", "../Factory/MaterialFactory.js", "./InitialFacade.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, SimpleCommand, MaterialFactory, InitialFacade, STEP, LoadMaterialCommand;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+    }, function (_CommandSimpleCommandJs) {
+      SimpleCommand = _CommandSimpleCommandJs.SimpleCommand;
+    }, function (_FactoryMaterialFactoryJs) {
+      MaterialFactory = _FactoryMaterialFactoryJs.MaterialFactory;
+    }, function (_InitialFacadeJs) {
+      InitialFacade = _InitialFacadeJs.InitialFacade;
+      STEP = _InitialFacadeJs.STEP;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "9472fLnHtNPYoICW4TEWwMA", "LoadMaterialCommand", undefined);
+
+      _export("LoadMaterialCommand", LoadMaterialCommand = /*#__PURE__*/function (_SimpleCommand) {
+        _inherits(LoadMaterialCommand, _SimpleCommand);
+
+        function LoadMaterialCommand() {
+          _classCallCheck(this, LoadMaterialCommand);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(LoadMaterialCommand).apply(this, arguments));
+        }
+
+        _createClass(LoadMaterialCommand, [{
+          key: "excute",
+          value: function excute() {
+            InitialFacade.inst.startStep(STEP.Material);
+            MaterialFactory.inst.init(function () {
+              InitialFacade.inst.step(STEP.Material);
+            });
+          }
+        }]);
+
+        return LoadMaterialCommand;
+      }(SimpleCommand));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///Factory/PrefabFactory.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Common/HashMap.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createForOfIteratorHelper, cclegacy, loader, Prefab, instantiate, Component, SingleTon, HashMap, ObjPool, PrefabFactory;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+      loader = _cc.loader;
+      Prefab = _cc.Prefab;
+      instantiate = _cc.instantiate;
+      Component = _cc.Component;
+    }, function (_CommonToSingleTonJs) {
+      SingleTon = _CommonToSingleTonJs.SingleTon;
+    }, function (_CommonHashMapJs) {
+      HashMap = _CommonHashMapJs.HashMap;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "8271774ET9NtLUyI6ZWf4eK", "PrefabFactory", undefined);
+
+      ObjPool = /*#__PURE__*/function () {
+        function ObjPool(template, initSize, completeHandle) {
+          _classCallCheck(this, ObjPool);
+
+          this._pool = [];
+          this.totalSize = 0;
+          this.initTime = [];
+          this.completeHandler = completeHandle;
+          this.template = template;
+          this.totalSize = initSize;
+          this.hashKey = "ObjPool:" + this.template.name + " - " + this.totalSize;
+          this.initPool(initSize);
+        }
+
+        _createClass(ObjPool, [{
+          key: "initPool",
+          value: function initPool(size) {
+            var _this = this;
+
+            var immediately = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+            if (immediately) {
+              for (var i = 0; i < size; ++i) {
+                this.initTime.push(Date.now());
+                var newNode = instantiate(this.template);
+                this.put(newNode);
+              }
+            } else {
+              for (var _i = 0; _i < size; ++_i) {
+                this.initTime.push(Date.now());
+                setTimeout(function () {
+                  var newNode = instantiate(_this.template);
+
+                  _this.put(newNode);
+                }, _i);
+              }
+            }
+          }
+        }, {
+          key: "size",
+          value: function size() {
+            return this._pool.length;
+          }
+        }, {
+          key: "clear",
+          value: function clear() {
+            var count = this._pool.length;
+
+            for (var i = 0; i < count; ++i) {
+              this._pool[i].destroy && this._pool[i].destroy();
+            }
+
+            this._pool.length = 0;
+          }
+        }, {
+          key: "put",
+          value: function put(obj) {
+            if (obj && this._pool.indexOf(obj) === -1) {
+              // Remove from parent, but don't cleanup
+              obj.removeFromParent(false); //obj.setParent(null);
+              // Invoke pool handler
+
+              var handlers = obj.getComponents(Component);
+
+              var _iterator = _createForOfIteratorHelper(handlers),
+                  _step;
+
+              try {
+                for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                  var handler = _step.value;
+
+                  if (handler && handler.unuse) {
+                    handler.unuse.apply(handler);
+                  }
+                }
+              } catch (err) {
+                _iterator.e(err);
+              } finally {
+                _iterator.f();
+              }
+
+              this._pool.push(obj);
+
+              if (this.completeHandler) {
+                // if (!CELER_X) {
+                //   console.log(
+                //     " pool:",
+                //     this.template.name,
+                //     ", now:",
+                //     this._pool.length,
+                //     ", total:",
+                //     this.totalSize,
+                //     ", cost:",
+                //     (Date.now() - this.initTime[this._pool.length - 1]).toFixed(2) +
+                //       "ms"
+                //   );
+                // }
+                if (this.totalSize <= this._pool.length) {
+                  this.completeHandler();
+                  this.completeHandler = null;
+                }
+              }
+            }
+          }
+        }, {
+          key: "get",
+          value: function get() {
+            for (var _len = arguments.length, _ = new Array(_len), _key = 0; _key < _len; _key++) {
+              _[_key] = arguments[_key];
+            }
+
+            var last = this._pool.length - 1;
+
+            if (last < 0) {
+              this.initPool(1, true);
+            }
+
+            last = this._pool.length - 1; // Pop the last object in pool
+
+            var obj = this._pool[last];
+            this._pool.length = last; // Invoke pool handler
+
+            var handlers = obj.getComponents(Component);
+
+            var _iterator2 = _createForOfIteratorHelper(handlers),
+                _step2;
+
+            try {
+              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                var handler = _step2.value;
+
+                if (handler && handler.reuse) {
+                  handler.reuse.apply(handler, arguments);
+                }
+              }
+            } catch (err) {
+              _iterator2.e(err);
+            } finally {
+              _iterator2.f();
+            }
+
+            return obj;
+          }
+        }]);
+
+        return ObjPool;
+      }();
+
+      _export("PrefabFactory", PrefabFactory = /*#__PURE__*/function (_SingleTon) {
+        _inherits(PrefabFactory, _SingleTon);
+
+        function PrefabFactory() {
+          var _getPrototypeOf2;
+
+          var _this2;
+
+          _classCallCheck(this, PrefabFactory);
+
+          for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            args[_key2] = arguments[_key2];
+          }
+
+          _this2 = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PrefabFactory)).call.apply(_getPrototypeOf2, [this].concat(args)));
+          _this2.count = 0;
+          _this2.totalCount = 0;
+          _this2.objPool = new HashMap();
+          _this2.startTime = 0;
+          return _this2;
+        }
+
+        _createClass(PrefabFactory, [{
+          key: "init",
+          value: function init(callback, progress) {
+            var _this3 = this;
+
+            this.doneCallback = callback;
+            this.progressCallback = progress;
+            this.startTime = Date.now();
+            loader.loadResDir("prefabs/", Prefab, function (err, res, urls) {
+              if (err) {
+                console.error(" Game Factory init failed:", err);
+              } else {
+                _this3.totalCount = res.length;
+
+                var _loop = function _loop(i) {
+                  var prefab = res[i];
+                  var nameSplit = prefab.data.name.split(".");
+                  var name = nameSplit[0];
+                  var count = nameSplit[1] ? parseInt(nameSplit[1]) : 30;
+                  console.log(" init pool:", name, ", count:", count);
+                  setTimeout(function () {
+                    var objPool = new ObjPool(prefab, count, _this3.addCount.bind(_this3));
+
+                    _this3.objPool.add(name, objPool);
+                  }, i * 5);
+                };
+
+                for (var i = 0; i < res.length; i++) {
+                  _loop(i);
+                }
+              }
+            });
+          }
+        }, {
+          key: "addObject",
+          value: function addObject(name, url, count) {
+            var _this4 = this;
+
+            return new Promise(function (solve, reject) {
+              loader.loadRes(url, Prefab, function (err, prefab) {
+                if (err) {
+                  reject(err);
+                } else {
+                  var objPool = new ObjPool(prefab, count, function () {
+                    solve(name);
+                  });
+
+                  _this4.objPool.add(name, objPool);
+                }
+              });
+            });
+          }
+        }, {
+          key: "addCount",
+          value: function addCount() {
+            this.count++;
+
+            if (this.progressCallback) {
+              this.progressCallback(this.count / this.totalCount);
+            }
+
+            if (this.count >= this.totalCount) {
+              console.log(" factory cost time:", (Date.now() - this.startTime).toFixed(2) + "ms");
+
+              if (this.doneCallback) {
+                this.doneCallback();
+                this.doneCallback = null;
+              }
+            }
+          }
+        }, {
+          key: "getObj",
+          value: function getObj(name) {
+            if (this.objPool.has(name)) {
+              var _this$objPool$get;
+
+              for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+                args[_key3 - 1] = arguments[_key3];
+              }
+
+              return (_this$objPool$get = this.objPool.get(name)).get.apply(_this$objPool$get, args);
+            } else {
+              console.error(" objPool dosen't exists this obj:", name);
+              return null;
+            }
+          }
+        }, {
+          key: "putObj",
+          value: function putObj(name, node) {
+            if (this.objPool.has(name)) {
+              return this.objPool.get(name).put(node);
+            } else {
+              console.error(" objPool dosen't exists this obj:", name);
+            }
+          }
+        }]);
+
+        return PrefabFactory;
+      }(SingleTon()));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///GameLoad/LoadPrefabCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Command/SimpleCommand.js", "../Factory/PrefabFactory.js", "./InitialFacade.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, SimpleCommand, PrefabFactory, InitialFacade, STEP, LoadPrefabCommand;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+    }, function (_CommandSimpleCommandJs) {
+      SimpleCommand = _CommandSimpleCommandJs.SimpleCommand;
+    }, function (_FactoryPrefabFactoryJs) {
+      PrefabFactory = _FactoryPrefabFactoryJs.PrefabFactory;
+    }, function (_InitialFacadeJs) {
+      InitialFacade = _InitialFacadeJs.InitialFacade;
+      STEP = _InitialFacadeJs.STEP;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "613ecCCWNlL6bPxnJN/UPo6", "LoadPrefabCommand", undefined);
+
+      _export("LoadPrefabCommand", LoadPrefabCommand = /*#__PURE__*/function (_SimpleCommand) {
+        _inherits(LoadPrefabCommand, _SimpleCommand);
+
+        function LoadPrefabCommand() {
+          _classCallCheck(this, LoadPrefabCommand);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(LoadPrefabCommand).apply(this, arguments));
+        }
+
+        _createClass(LoadPrefabCommand, [{
+          key: "excute",
+          value: function excute() {
+            InitialFacade.inst.startStep(STEP.Prefab);
+            PrefabFactory.inst.init(function () {
+              InitialFacade.inst.step(STEP.Prefab);
+            });
+          }
+        }]);
+
+        return LoadPrefabCommand;
+      }(SimpleCommand));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///GameLoad/InitialCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Command/MacroCommand.js", "./LoadAudioCommand.js", "./LoadJsonCommand.js", "./LoadMaterialCommand.js", "./LoadPrefabCommand.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, MacroCommand, LoadAudioCommand, LoadJsonCommand, LoadMaterialCommand, LoadPrefabCommand, InitialCommand;
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+    }, function (_CommandMacroCommandJs) {
+      MacroCommand = _CommandMacroCommandJs.MacroCommand;
+    }, function (_LoadAudioCommandJs) {
+      LoadAudioCommand = _LoadAudioCommandJs.LoadAudioCommand;
+    }, function (_LoadJsonCommandJs) {
+      LoadJsonCommand = _LoadJsonCommandJs.LoadJsonCommand;
+    }, function (_LoadMaterialCommandJs) {
+      LoadMaterialCommand = _LoadMaterialCommandJs.LoadMaterialCommand;
+    }, function (_LoadPrefabCommandJs) {
+      LoadPrefabCommand = _LoadPrefabCommandJs.LoadPrefabCommand;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "6a508zSDOVLS6ttpTnMOX/h", "InitialCommand", undefined);
+
+      _export("InitialCommand", InitialCommand = /*#__PURE__*/function (_MacroCommand) {
+        _inherits(InitialCommand, _MacroCommand);
+
+        function InitialCommand() {
+          _classCallCheck(this, InitialCommand);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(InitialCommand).apply(this, arguments));
+        }
+
+        _createClass(InitialCommand, [{
+          key: "initializeMacroCommand",
+          value: function initializeMacroCommand() {
+            this.addSubCommond(LoadJsonCommand);
+            this.addSubCommond(LoadAudioCommand);
+            this.addSubCommond(LoadPrefabCommand);
+            this.addSubCommond(LoadMaterialCommand);
+          }
+        }]);
+
+        return InitialCommand;
+      }(MacroCommand));
 
       cclegacy._RF.pop();
     }
@@ -1572,6 +2544,136 @@ System.register("chunks:///Ad/FlyCnicornAd.js", ["../_virtual/_rollupPluginBabel
   };
 });
 
+System.register("chunks:///GamePlay/GameRule.js", ["cc"], function (_export, _context) {
+  "use strict";
+
+  var cclegacy, Theme, ScoreType, HoleBonus;
+
+  function RandomTheme() {
+    return null;
+  }
+
+  function GetTotalTime() {
+    return CC_DEBUG ? 60 * 3 : 60 * 3;
+  }
+  /** 免费暂停次数 */
+
+
+  function GetFreePauseCount() {
+    return 3;
+  }
+
+  function GetScoreByType(scoreType) {
+    var count = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+    var score = 0;
+
+    switch (scoreType) {
+      case ScoreType.PauseCost:
+        score = 100;
+        break;
+
+      case ScoreType.Pocket:
+        score = count;
+        break;
+
+      case ScoreType.Rebound:
+        score = 75;
+        break;
+
+      case ScoreType.Multip:
+        if (count <= 1) score = 0;else {
+          score = 50 + 50 * (count - 1);
+        }
+        break;
+
+      case ScoreType.Link:
+        score = 75;
+        break;
+
+      case ScoreType.HeartBonus:
+        score = 20 * count;
+        break;
+
+      case ScoreType.NoBust:
+        score = 100;
+        break;
+
+      default:
+        break;
+    }
+
+    return score * GetScoreRatio();
+  }
+
+  function GetScoreRatio() {
+    return 1;
+  }
+
+  function EasyMode() {
+    return true;
+  }
+
+  function GetTotalHeartCount() {
+    return CC_DEBUG ? 40 : 4;
+  }
+
+  function StreakBonusLimit() {
+    return CC_DEBUG ? 1 : 3;
+  }
+
+  _export({
+    EasyMode: EasyMode,
+    GetFreePauseCount: GetFreePauseCount,
+    GetScoreByType: GetScoreByType,
+    GetScoreRatio: GetScoreRatio,
+    GetTotalHeartCount: GetTotalHeartCount,
+    GetTotalTime: GetTotalTime,
+    RandomTheme: RandomTheme,
+    StreakBonusLimit: StreakBonusLimit,
+    Theme: void 0,
+    ScoreType: void 0,
+    HoleBonus: void 0
+  });
+
+  return {
+    setters: [function (_cc) {
+      cclegacy = _cc.cclegacy;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "9007elfmZdNrKffJiRadvPn", "GameRule", undefined);
+
+      /** 得分类型 */
+      (function (Theme) {
+        Theme[Theme["Green"] = 0] = "Green";
+        Theme[Theme["Blue"] = 1] = "Blue";
+        Theme[Theme["Red"] = 2] = "Red";
+        Theme[Theme["Purple"] = 3] = "Purple";
+      })(Theme || _export("Theme", Theme = {}));
+
+      (function (ScoreType) {
+        ScoreType[ScoreType["PauseCost"] = 0] = "PauseCost";
+        ScoreType[ScoreType["Pocket"] = 1] = "Pocket";
+        ScoreType[ScoreType["Rebound"] = 2] = "Rebound";
+        ScoreType[ScoreType["Multip"] = 3] = "Multip";
+        ScoreType[ScoreType["Link"] = 4] = "Link";
+        ScoreType[ScoreType["HeartBonus"] = 5] = "HeartBonus";
+        ScoreType[ScoreType["NoBust"] = 6] = "NoBust";
+      })(ScoreType || _export("ScoreType", ScoreType = {}));
+
+      (function (HoleBonus) {
+        HoleBonus[HoleBonus["x2"] = 2] = "x2";
+        HoleBonus[HoleBonus["x3"] = 3] = "x3";
+        HoleBonus[HoleBonus["x4"] = 4] = "x4";
+        HoleBonus[HoleBonus["x6"] = 6] = "x6";
+        HoleBonus[HoleBonus["x8"] = 8] = "x8";
+        HoleBonus[HoleBonus["x10"] = 10] = "x10";
+      })(HoleBonus || _export("HoleBonus", HoleBonus = {}));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
 System.register("chunks:///GamePlay/Model/Level.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/Cocos.js", "../GameRule.js"], function (_export, _context) {
   "use strict";
 
@@ -1628,10 +2730,211 @@ System.register("chunks:///GamePlay/Model/Level.js", ["../../_virtual/_rollupPlu
   };
 });
 
-System.register("chunks:///Model/PlayModel.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Common/Random.js", "../GamePlay/GameRule.js", "../Signal/Signal.js", "../Ad/FlyCnicornAd.js", "../GamePlay/Model/Level.js", "../Manager/GameStateController.js", "../GamePlay/GameLogic.js"], function (_export, _context) {
+System.register("chunks:///Manager/GameStateController.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Signal/Signal.js", "../Model/PlayModel.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, math, SingleTon, Random, GetFreePauseCount, GetScoreByType, ScoreType, Theme, GetTotalTime, StartCountSignal, UpdateTimeNumber, TimeAnimationStateChanged, ShowFlyCnicornSignal, EndNowSignal, PlayerScoreChanged, GameStartSignal, WildButtonReadySignal, GamePrepareSignal, GameThemeInit, FlyCnicornAd, Level, GameStateController, RoundEndType, GameLogic, PlayModel;
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createForOfIteratorHelper, cclegacy, SingleTon, GameOverSignal, GamePauseSignal, PlayModel, RoundEndType, GameStateController;
+
+  _export("RoundEndType", void 0);
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+    }, function (_CommonToSingleTonJs) {
+      SingleTon = _CommonToSingleTonJs.SingleTon;
+    }, function (_SignalSignalJs) {
+      GameOverSignal = _SignalSignalJs.GameOverSignal;
+      GamePauseSignal = _SignalSignalJs.GamePauseSignal;
+    }, function (_ModelPlayModelJs) {
+      PlayModel = _ModelPlayModelJs.PlayModel;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "c5f7dc2VdRPBLcN+cZI4lsB", "GameStateController", undefined);
+
+      (function (RoundEndType) {
+        RoundEndType[RoundEndType["Complete"] = 0] = "Complete";
+        RoundEndType[RoundEndType["Over"] = 1] = "Over";
+        RoundEndType[RoundEndType["TimeUp"] = 2] = "TimeUp";
+        RoundEndType[RoundEndType["OutOfMove"] = 3] = "OutOfMove";
+      })(RoundEndType || _export("RoundEndType", RoundEndType = {}));
+
+      _export("GameStateController", GameStateController = /*#__PURE__*/function (_SingleTon) {
+        _inherits(GameStateController, _SingleTon);
+
+        function GameStateController() {
+          var _getPrototypeOf2;
+
+          var _this;
+
+          _classCallCheck(this, GameStateController);
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(GameStateController)).call.apply(_getPrototypeOf2, [this].concat(args)));
+          _this.interactivePauseCount = 0;
+          _this.pauseCount = 0;
+          _this.roundstart = false;
+          _this.isReady = false;
+          _this.isOver = false;
+          _this.currentRound = 0;
+          _this.onResumeCallbacks = [];
+          return _this;
+        }
+
+        _createClass(GameStateController, [{
+          key: "start",
+          value: function start() {
+            this.pauseCount = 0;
+            this.interactivePauseCount = 0;
+          }
+        }, {
+          key: "canStart",
+          value: function canStart() {
+            return this.isReady;
+          }
+        }, {
+          key: "roundStart",
+          value: function roundStart() {
+            if (this.isOver) return;
+            console.log(" round start:", ++this.currentRound);
+            this.roundstart = true;
+          }
+        }, {
+          key: "roundEnd",
+          value: function roundEnd(type) {
+            console.log("round end :", RoundEndType[type]);
+            this.roundstart = false;
+            this.isOver = true;
+            GameOverSignal.inst.dispatch(type);
+          }
+        }, {
+          key: "isRoundStart",
+          value: function isRoundStart() {
+            return this.roundstart;
+          }
+        }, {
+          key: "pauseInteractive",
+          value: function pauseInteractive() {
+            this.interactivePauseCount++;
+          }
+        }, {
+          key: "pause",
+          value: function pause() {
+            var isFree = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+            if (this.isPause() == false) {
+              this.onResumeCallbacks.length = 0;
+              GamePauseSignal.inst.dispatch();
+
+              if (!isFree) {
+                this.onResumeCallbacks.push(function () {
+                  PlayModel.inst.addPauseCount();
+                });
+              }
+            }
+
+            this.pauseCount++;
+          }
+        }, {
+          key: "testEndComplete",
+          value: function testEndComplete() {
+            this.roundEnd(RoundEndType.Complete);
+          }
+        }, {
+          key: "testEndTimeUp",
+          value: function testEndTimeUp() {
+            PlayModel.inst.addGameTime(-1000000000000);
+          }
+        }, {
+          key: "clearResumeCallback",
+          value: function clearResumeCallback() {
+            this.onResumeCallbacks.length = 0;
+          }
+        }, {
+          key: "resume",
+          value: function resume() {
+            this.pauseCount--;
+            console.assert(this.pauseCount >= 0, " pause count smaller than 0!!!");
+            this.pauseCount = Math.max(this.pauseCount, 0);
+
+            if (this.pauseCount <= 0) {
+              var _iterator = _createForOfIteratorHelper(this.onResumeCallbacks),
+                  _step;
+
+              try {
+                for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                  var callback = _step.value;
+                  callback();
+                }
+              } catch (err) {
+                _iterator.e(err);
+              } finally {
+                _iterator.f();
+              }
+
+              this.onResumeCallbacks.length = 0;
+            }
+          }
+        }, {
+          key: "resumeInteractive",
+          value: function resumeInteractive() {
+            this.interactivePauseCount--;
+            console.assert(this.interactivePauseCount >= 0, " pause count smaller than 0!!!");
+            this.interactivePauseCount = Math.max(this.interactivePauseCount, 0);
+          }
+        }, {
+          key: "isPause",
+          value: function isPause() {
+            return this.pauseCount > 0;
+          }
+        }, {
+          key: "isInteractivePause",
+          value: function isInteractivePause() {
+            return this.interactivePauseCount > 0;
+          }
+        }, {
+          key: "addResumeCallback",
+          value: function addResumeCallback(callback) {
+            if (!this.onResumeCallbacks) this.onResumeCallbacks = [];
+            this.onResumeCallbacks.push(callback);
+          }
+        }, {
+          key: "isGameOver",
+          value: function isGameOver() {
+            return this.isOver;
+          }
+          /** 是否可以交互 */
+
+        }, {
+          key: "canInteractive",
+          value: function canInteractive() {
+            return !(GameStateController.inst.isPause() || GameStateController.inst.isGameOver() || !GameStateController.inst.isRoundStart() || GameStateController.inst.isInteractivePause());
+          }
+        }]);
+
+        return GameStateController;
+      }(SingleTon()));
+
+      !CELER_X && (window["GameState"] = GameStateController.inst);
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///Model/PlayModel.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Common/Random.js", "../Signal/Signal.js", "../Ad/FlyCnicornAd.js", "../GamePlay/GameRule.js", "../GamePlay/Model/Level.js", "../Manager/GameStateController.js", "../GamePlay/GameLogic.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, math, SingleTon, Random, StartCountSignal, UpdateTimeNumber, TimeAnimationStateChanged, ShowFlyCnicornSignal, EndNowSignal, PlayerScoreChanged, GameStartSignal, WildButtonReadySignal, GamePrepareSignal, GameThemeInit, FlyCnicornAd, GetFreePauseCount, GetScoreByType, ScoreType, Theme, GetTotalTime, Level, GameStateController, RoundEndType, GameLogic, PlayModel;
 
   return {
     setters: [function (_virtual_rollupPluginBabelHelpersJs) {
@@ -1647,12 +2950,6 @@ System.register("chunks:///Model/PlayModel.js", ["../_virtual/_rollupPluginBabel
       SingleTon = _CommonToSingleTonJs.SingleTon;
     }, function (_CommonRandomJs) {
       Random = _CommonRandomJs.Random;
-    }, function (_GamePlayGameRuleJs) {
-      GetFreePauseCount = _GamePlayGameRuleJs.GetFreePauseCount;
-      GetScoreByType = _GamePlayGameRuleJs.GetScoreByType;
-      ScoreType = _GamePlayGameRuleJs.ScoreType;
-      Theme = _GamePlayGameRuleJs.Theme;
-      GetTotalTime = _GamePlayGameRuleJs.GetTotalTime;
     }, function (_SignalSignalJs) {
       StartCountSignal = _SignalSignalJs.StartCountSignal;
       UpdateTimeNumber = _SignalSignalJs.UpdateTimeNumber;
@@ -1666,6 +2963,12 @@ System.register("chunks:///Model/PlayModel.js", ["../_virtual/_rollupPluginBabel
       GameThemeInit = _SignalSignalJs.GameThemeInit;
     }, function (_AdFlyCnicornAdJs) {
       FlyCnicornAd = _AdFlyCnicornAdJs.FlyCnicornAd;
+    }, function (_GamePlayGameRuleJs) {
+      GetFreePauseCount = _GamePlayGameRuleJs.GetFreePauseCount;
+      GetScoreByType = _GamePlayGameRuleJs.GetScoreByType;
+      ScoreType = _GamePlayGameRuleJs.ScoreType;
+      Theme = _GamePlayGameRuleJs.Theme;
+      GetTotalTime = _GamePlayGameRuleJs.GetTotalTime;
     }, function (_GamePlayModelLevelJs) {
       Level = _GamePlayModelLevelJs.Level;
     }, function (_ManagerGameStateControllerJs) {
@@ -1925,12 +3228,10 @@ System.register("chunks:///Model/PlayModel.js", ["../_virtual/_rollupPluginBabel
   };
 });
 
-System.register("chunks:///Manager/GameStateController.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Signal/Signal.js", "../Model/PlayModel.js"], function (_export, _context) {
+System.register("chunks:///GameLoad/StartupCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Command/SimpleCommand.js", "../Model/PlayModel.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createForOfIteratorHelper, cclegacy, SingleTon, GameOverSignal, GamePauseSignal, PlayModel, RoundEndType, GameStateController;
-
-  _export("RoundEndType", void 0);
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, SimpleCommand, PlayModel, StartupCommand;
 
   return {
     setters: [function (_virtual_rollupPluginBabelHelpersJs) {
@@ -1939,378 +3240,157 @@ System.register("chunks:///Manager/GameStateController.js", ["../_virtual/_rollu
       _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
       _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
       _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
     }, function (_cc) {
       cclegacy = _cc.cclegacy;
-    }, function (_CommonToSingleTonJs) {
-      SingleTon = _CommonToSingleTonJs.SingleTon;
-    }, function (_SignalSignalJs) {
-      GameOverSignal = _SignalSignalJs.GameOverSignal;
-      GamePauseSignal = _SignalSignalJs.GamePauseSignal;
+    }, function (_CommandSimpleCommandJs) {
+      SimpleCommand = _CommandSimpleCommandJs.SimpleCommand;
     }, function (_ModelPlayModelJs) {
       PlayModel = _ModelPlayModelJs.PlayModel;
     }],
     execute: function () {
-      cclegacy._RF.push({}, "c5f7dc2VdRPBLcN+cZI4lsB", "GameStateController", undefined);
+      cclegacy._RF.push({}, "c41f6JIhipB8r8BSDDzyAGd", "StartupCommand", undefined);
 
-      (function (RoundEndType) {
-        RoundEndType[RoundEndType["Complete"] = 0] = "Complete";
-        RoundEndType[RoundEndType["Over"] = 1] = "Over";
-        RoundEndType[RoundEndType["TimeUp"] = 2] = "TimeUp";
-        RoundEndType[RoundEndType["OutOfMove"] = 3] = "OutOfMove";
-      })(RoundEndType || _export("RoundEndType", RoundEndType = {}));
+      _export("StartupCommand", StartupCommand = /*#__PURE__*/function (_SimpleCommand) {
+        _inherits(StartupCommand, _SimpleCommand);
 
-      _export("GameStateController", GameStateController = /*#__PURE__*/function (_SingleTon) {
-        _inherits(GameStateController, _SingleTon);
+        function StartupCommand() {
+          _classCallCheck(this, StartupCommand);
 
-        function GameStateController() {
-          var _getPrototypeOf2;
-
-          var _this;
-
-          _classCallCheck(this, GameStateController);
-
-          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-          }
-
-          _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(GameStateController)).call.apply(_getPrototypeOf2, [this].concat(args)));
-          _this.interactivePauseCount = 0;
-          _this.pauseCount = 0;
-          _this.roundstart = false;
-          _this.isReady = false;
-          _this.isOver = false;
-          _this.currentRound = 0;
-          _this.onResumeCallbacks = [];
-          return _this;
+          return _possibleConstructorReturn(this, _getPrototypeOf(StartupCommand).apply(this, arguments));
         }
 
-        _createClass(GameStateController, [{
-          key: "start",
-          value: function start() {
-            this.pauseCount = 0;
-            this.interactivePauseCount = 0;
-          }
-        }, {
-          key: "canStart",
-          value: function canStart() {
-            return this.isReady;
-          }
-        }, {
-          key: "roundStart",
-          value: function roundStart() {
-            if (this.isOver) return;
-            console.log(" round start:", ++this.currentRound);
-            this.roundstart = true;
-          }
-        }, {
-          key: "roundEnd",
-          value: function roundEnd(type) {
-            console.log("round end :", RoundEndType[type]);
-            this.roundstart = false;
-            this.isOver = true;
-            GameOverSignal.inst.dispatch(type);
-          }
-        }, {
-          key: "isRoundStart",
-          value: function isRoundStart() {
-            return this.roundstart;
-          }
-        }, {
-          key: "pauseInteractive",
-          value: function pauseInteractive() {
-            this.interactivePauseCount++;
-          }
-        }, {
-          key: "pause",
-          value: function pause() {
-            var isFree = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-            if (this.isPause() == false) {
-              this.onResumeCallbacks.length = 0;
-              GamePauseSignal.inst.dispatch();
-
-              if (!isFree) {
-                this.onResumeCallbacks.push(function () {
-                  PlayModel.inst.addPauseCount();
-                });
-              }
-            }
-
-            this.pauseCount++;
-          }
-        }, {
-          key: "testEndComplete",
-          value: function testEndComplete() {
-            this.roundEnd(RoundEndType.Complete);
-          }
-        }, {
-          key: "testEndTimeUp",
-          value: function testEndTimeUp() {
-            PlayModel.inst.addGameTime(-1000000000000);
-          }
-        }, {
-          key: "clearResumeCallback",
-          value: function clearResumeCallback() {
-            this.onResumeCallbacks.length = 0;
-          }
-        }, {
-          key: "resume",
-          value: function resume() {
-            this.pauseCount--;
-            console.assert(this.pauseCount >= 0, " pause count smaller than 0!!!");
-            this.pauseCount = Math.max(this.pauseCount, 0);
-
-            if (this.pauseCount <= 0) {
-              var _iterator = _createForOfIteratorHelper(this.onResumeCallbacks),
-                  _step;
-
-              try {
-                for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                  var callback = _step.value;
-                  callback();
-                }
-              } catch (err) {
-                _iterator.e(err);
-              } finally {
-                _iterator.f();
-              }
-
-              this.onResumeCallbacks.length = 0;
-            }
-          }
-        }, {
-          key: "resumeInteractive",
-          value: function resumeInteractive() {
-            this.interactivePauseCount--;
-            console.assert(this.interactivePauseCount >= 0, " pause count smaller than 0!!!");
-            this.interactivePauseCount = Math.max(this.interactivePauseCount, 0);
-          }
-        }, {
-          key: "isPause",
-          value: function isPause() {
-            return this.pauseCount > 0;
-          }
-        }, {
-          key: "isInteractivePause",
-          value: function isInteractivePause() {
-            return this.interactivePauseCount > 0;
-          }
-        }, {
-          key: "addResumeCallback",
-          value: function addResumeCallback(callback) {
-            if (!this.onResumeCallbacks) this.onResumeCallbacks = [];
-            this.onResumeCallbacks.push(callback);
-          }
-        }, {
-          key: "isGameOver",
-          value: function isGameOver() {
-            return this.isOver;
-          }
-          /** 是否可以交互 */
-
-        }, {
-          key: "canInteractive",
-          value: function canInteractive() {
-            return !(GameStateController.inst.isPause() || GameStateController.inst.isGameOver() || !GameStateController.inst.isRoundStart() || GameStateController.inst.isInteractivePause());
+        _createClass(StartupCommand, [{
+          key: "excute",
+          value: function excute() {
+            console.log("start up.");
+            PlayModel.inst.init();
           }
         }]);
 
-        return GameStateController;
-      }(SingleTon()));
-
-      !CELER_X && (window["GameState"] = GameStateController.inst);
+        return StartupCommand;
+      }(SimpleCommand));
 
       cclegacy._RF.pop();
     }
   };
 });
 
-System.register("chunks:///TableManager.js", ["./_virtual/_rollupPluginBabelHelpers.js", "cc"], function (_export, _context) {
+System.register("chunks:///GameLoad/InitialFacade.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Command/Notification.js", "../Manager/StepManager.js", "./InitialCommand.js", "./StartupCommand.js", "../Common/SDK/CelerSDK.js"], function (_export, _context) {
   "use strict";
 
-  var _createClass, _classCallCheck, _createForOfIteratorHelper, cclegacy, loader, TableManager;
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, SingleTon, Notification, StepManager, InitialCommand, StartupCommand, CelerSDK, STEP, InitialFacade;
+
+  _export("STEP", void 0);
 
   return {
     setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
       _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
       _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
     }, function (_cc) {
       cclegacy = _cc.cclegacy;
-      loader = _cc.loader;
+    }, function (_CommonToSingleTonJs) {
+      SingleTon = _CommonToSingleTonJs.SingleTon;
+    }, function (_CommandNotificationJs) {
+      Notification = _CommandNotificationJs.Notification;
+    }, function (_ManagerStepManagerJs) {
+      StepManager = _ManagerStepManagerJs.StepManager;
+    }, function (_InitialCommandJs) {
+      InitialCommand = _InitialCommandJs.InitialCommand;
+    }, function (_StartupCommandJs) {
+      StartupCommand = _StartupCommandJs.StartupCommand;
+    }, function (_CommonSDKCelerSDKJs) {
+      CelerSDK = _CommonSDKCelerSDKJs.CelerSDK;
     }],
     execute: function () {
-      cclegacy._RF.push({}, "3152d8IVxNJ0bZnGxcI+7M6", "TableManager", undefined);
+      cclegacy._RF.push({}, "1e8bcsxRDVMVZUnFxHWDXZu", "InitialFacade", undefined);
 
-      _export("TableManager", TableManager = /*#__PURE__*/function () {
-        _createClass(TableManager, null, [{
-          key: "inst",
-          get: function get() {
-            return this.ins ? this.ins : this.ins = new TableManager();
+      (function (STEP) {
+        STEP["Audio"] = "Audio";
+        STEP["Prefab"] = "Prefab";
+        STEP["Json"] = "Json";
+        STEP["Material"] = "Material";
+      })(STEP || _export("STEP", STEP = {}));
+
+      _export("InitialFacade", InitialFacade = /*#__PURE__*/function (_SingleTon) {
+        _inherits(InitialFacade, _SingleTon);
+
+        function InitialFacade() {
+          var _getPrototypeOf2;
+
+          var _this;
+
+          _classCallCheck(this, InitialFacade);
+
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
           }
-        }]);
 
-        function TableManager() {
-          _classCallCheck(this, TableManager);
-
-          this.load = TableManager.JSON_URL && TableManager.JSON_URL != "" ? loader.load.bind(loader) : loader.loadRes.bind(loader);
-          this.fileFormat = TableManager.JSON_URL && TableManager.JSON_URL != "" ? ".json?time=" + Date.now() : "";
-          this.total = 0;
-          this.complete = 0;
-          this.Balls = {};
-          this.En = {};
-          this.Level = {};
-          this.Physical = {};
+          _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(InitialFacade)).call.apply(_getPrototypeOf2, [this].concat(args)));
+          _this.stepManager = new StepManager();
+          _this.notification = new Notification();
+          return _this;
         }
 
-        _createClass(TableManager, [{
-          key: "startLoad",
-
-          /** 
-          *
-          * @param url json 路径
-          * @param complete
-          * @param progress
-          */
-          value: function startLoad(url, complete, progress) {
-            this.completeCallback = complete;
-            this.progressCallback = progress;
-            var self = this;
-            console.log("Base URL:", TableManager.JSON_URL);
-            this.load(TableManager.JSON_URL + url.trim().split('/').join('') + '/file_list' + this.fileFormat, function (err, JsonAsset) {
-              if (err) {
-                console.error(err.errorMessage);
-              } else {
-                var jsonArray = JsonAsset.constructor["name"] == "Array" ? JsonAsset : JsonAsset.json;
-                this.total = jsonArray.length;
-
-                var _iterator = _createForOfIteratorHelper(jsonArray),
-                    _step;
-
-                try {
-                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                    var jsonFile = _step.value;
-                    self.loadJson(url.trim().split('/').join('') + '/' + jsonFile.replace('.json', ''));
-                  }
-                } catch (err) {
-                  _iterator.e(err);
-                } finally {
-                  _iterator.f();
-                }
-              }
-            }.bind(this));
+        _createClass(InitialFacade, [{
+          key: "startStep",
+          value: function startStep(step) {
+            this.stepManager.start(step);
           }
         }, {
-          key: "loadJson",
-          value: function loadJson(url) {
-            console.log('start load:' + url);
-            var self = this;
-            var tableName = url.split("/")[1];
-            tableName = tableName.charAt(0).toUpperCase() + tableName.slice(1, tableName.length);
-            this.load(TableManager.JSON_URL + url + this.fileFormat, function (err, JsonAsset) {
-              if (err) {
-                console.error(err.errorMessage);
-              } else {
-                var jsonArray = JsonAsset.constructor["name"] == "Array" ? JsonAsset : JsonAsset.json;
+          key: "register",
+          value: function register() {
+            var _this2 = this;
 
-                var _iterator2 = _createForOfIteratorHelper(jsonArray),
-                    _step2;
+            this.notification.register(InitialFacade.INIT, InitialCommand);
+            this.notification.register(InitialFacade.START, StartupCommand);
 
-                try {
-                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                    var json = _step2.value;
-                    self[tableName][json['ID']] = json;
-                  }
-                } catch (err) {
-                  _iterator2.e(err);
-                } finally {
-                  _iterator2.f();
-                }
-
-                self.completeLoad();
-              }
-            }.bind(this));
-          }
-        }, {
-          key: "completeLoad",
-          value: function completeLoad() {
-            this.complete++;
-
-            if (this.progressCallback) {
-              this.progressCallback(this.complete / this.total);
-            }
-
-            if (this.complete >= this.total) {
-              if (this.completeCallback) this.completeCallback();
-            }
-          }
-        }, {
-          key: "getBalls",
-          value: function getBalls(key) {
-            if (this.Balls[key]) {
-              return this.Balls[key];
+            if (InitialFacade.CelerFirst) {
+              /** 先celer ready 后再加载游戏内资源 */
+              CelerSDK.inst.init(function () {
+                _this2.notification.sendNotification(InitialFacade.INIT, _this2);
+              });
+              this.stepManager.register(function () {
+                _this2.notification.sendNotification(InitialFacade.START, _this2);
+              }, InitialFacade.TOTAL_STEPS);
             } else {
-              console.error('Balls 不存key：' + key);
-              return null;
+              /** 先加载所有资源后再调用celer ready */
+              CelerSDK.inst.init(function () {
+                _this2.notification.sendNotification(InitialFacade.START, _this2);
+              });
+              this.stepManager.register(function () {
+                CelerSDK.inst.celerXReady();
+              }, InitialFacade.TOTAL_STEPS);
             }
           }
         }, {
-          key: "getAll_Balls_Data",
-          value: function getAll_Balls_Data() {
-            return this.Balls;
-          }
-        }, {
-          key: "getEn",
-          value: function getEn(key) {
-            if (this.En[key]) {
-              return this.En[key];
+          key: "start",
+          value: function start() {
+            this.register();
+
+            if (InitialFacade.CelerFirst) {
+              CelerSDK.inst.celerXReady();
             } else {
-              console.error('En 不存key：' + key);
-              return null;
+              this.notification.sendNotification(InitialFacade.INIT, this);
             }
           }
         }, {
-          key: "getAll_En_Data",
-          value: function getAll_En_Data() {
-            return this.En;
-          }
-        }, {
-          key: "getLevel",
-          value: function getLevel(key) {
-            if (this.Level[key]) {
-              return this.Level[key];
-            } else {
-              console.error('Level 不存key：' + key);
-              return null;
-            }
-          }
-        }, {
-          key: "getAll_Level_Data",
-          value: function getAll_Level_Data() {
-            return this.Level;
-          }
-        }, {
-          key: "getPhysical",
-          value: function getPhysical(key) {
-            if (this.Physical[key]) {
-              return this.Physical[key];
-            } else {
-              console.error('Physical 不存key：' + key);
-              return null;
-            }
-          }
-        }, {
-          key: "getAll_Physical_Data",
-          value: function getAll_Physical_Data() {
-            return this.Physical;
+          key: "step",
+          value: function step(commandName) {
+            console.log(" initialization step:", commandName);
+            this.stepManager.nextStep(commandName);
           }
         }]);
 
-        return TableManager;
-      }());
+        return InitialFacade;
+      }(SingleTon()));
 
-      TableManager.JSON_URL = "";
+      InitialFacade.INIT = "Initialization";
+      InitialFacade.START = "StartUp";
+      InitialFacade.CelerFirst = true;
+      InitialFacade.TOTAL_STEPS = [STEP.Audio, STEP.Json, STEP.Material, STEP.Prefab];
 
       cclegacy._RF.pop();
     }
@@ -2630,10 +3710,10 @@ System.register("chunks:///Common/SDK/LogHandler.js", ["../../_virtual/_rollupPl
   };
 });
 
-System.register("chunks:///Common/SDK/CelerSDK.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../ToSingleTon.js", "../Random.js", "../../GamePlay/GameRule.js", "../../Signal/Signal.js", "../../Model/PlayModel.js", "../../Manager/GameStateController.js", "../../TableManager.js", "./LogHandler.js"], function (_export, _context) {
+System.register("chunks:///Common/SDK/CelerSDK.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../ToSingleTon.js", "../Random.js", "../../TableManager.js", "../../Signal/Signal.js", "../../GamePlay/GameRule.js", "../../Manager/GameStateController.js", "../../Model/PlayModel.js", "../../GameLoad/InitialFacade.js", "./LogHandler.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, game, Game, sys, SingleTon, Random, GetTotalTime, HideWildAdButtonSignal, RemoveFlyCnicornSignal, ShowPauseLayerSignal, PlayModel, GameStateController, TableManager, LogHandler, CelerSDK;
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, game, Game, sys, SingleTon, Random, TableManager, HideWildAdButtonSignal, RemoveFlyCnicornSignal, ShowPauseLayerSignal, GetTotalTime, GameStateController, PlayModel, InitialFacade, LogHandler, CelerSDK;
 
   return {
     setters: [function (_virtual_rollupPluginBabelHelpersJs) {
@@ -2651,18 +3731,20 @@ System.register("chunks:///Common/SDK/CelerSDK.js", ["../../_virtual/_rollupPlug
       SingleTon = _ToSingleTonJs.SingleTon;
     }, function (_RandomJs) {
       Random = _RandomJs.Random;
-    }, function (_GamePlayGameRuleJs) {
-      GetTotalTime = _GamePlayGameRuleJs.GetTotalTime;
+    }, function (_TableManagerJs) {
+      TableManager = _TableManagerJs.TableManager;
     }, function (_SignalSignalJs) {
       HideWildAdButtonSignal = _SignalSignalJs.HideWildAdButtonSignal;
       RemoveFlyCnicornSignal = _SignalSignalJs.RemoveFlyCnicornSignal;
       ShowPauseLayerSignal = _SignalSignalJs.ShowPauseLayerSignal;
-    }, function (_ModelPlayModelJs) {
-      PlayModel = _ModelPlayModelJs.PlayModel;
+    }, function (_GamePlayGameRuleJs) {
+      GetTotalTime = _GamePlayGameRuleJs.GetTotalTime;
     }, function (_ManagerGameStateControllerJs) {
       GameStateController = _ManagerGameStateControllerJs.GameStateController;
-    }, function (_TableManagerJs) {
-      TableManager = _TableManagerJs.TableManager;
+    }, function (_ModelPlayModelJs) {
+      PlayModel = _ModelPlayModelJs.PlayModel;
+    }, function (_GameLoadInitialFacadeJs) {
+      InitialFacade = _GameLoadInitialFacadeJs.InitialFacade;
     }, function (_LogHandlerJs) {
       LogHandler = _LogHandlerJs.LogHandler;
     }],
@@ -2756,6 +3838,10 @@ System.register("chunks:///Common/SDK/CelerSDK.js", ["../../_virtual/_rollupPlug
 
             HideWildAdButtonSignal.inst.dispatch();
             RemoveFlyCnicornSignal.inst.dispatch();
+
+            if (InitialFacade.CelerFirst == false) {
+              this.defineLan();
+            }
 
             if (this.celerStartCallback) {
               this.celerStartCallback();
@@ -2938,9 +4024,10 @@ System.register("chunks:///table.js", ["cc"], function (_export, _context) {
       (function (En_ID) {
         En_ID[En_ID["MianFeiZanTing"] = 1] = "MianFeiZanTing";
         En_ID[En_ID["ZanTingKouFen"] = 2] = "ZanTingKouFen";
-        En_ID[En_ID["BangZhuYeMian1"] = 3] = "BangZhuYeMian1";
         En_ID[En_ID["DeFen"] = 4] = "DeFen";
         En_ID[En_ID["JiQiuDianXuanQu"] = 5] = "JiQiuDianXuanQu";
+        En_ID[En_ID["BangZhuYeMian1"] = 100] = "BangZhuYeMian1";
+        En_ID[En_ID["BangZhuYeMian2"] = 101] = "BangZhuYeMian2";
       })(En_ID || _export("En_ID", En_ID = {}));
       /** en的界面*/
 
@@ -2984,308 +4071,6 @@ System.register("chunks:///table.js", ["cc"], function (_export, _context) {
         Physical_ID[Physical_ID["ZhuoBian"] = 103] = "ZhuoBian";
         Physical_ID[Physical_ID["FangZhiTiaoQiuDangBan"] = 104] = "FangZhiTiaoQiuDangBan";
       })(Physical_ID || _export("Physical_ID", Physical_ID = {}));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///Factory/PrefabFactory.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Common/HashMap.js"], function (_export, _context) {
-  "use strict";
-
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createForOfIteratorHelper, cclegacy, loader, Prefab, instantiate, Component, SingleTon, HashMap, ObjPool, PrefabFactory;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-      loader = _cc.loader;
-      Prefab = _cc.Prefab;
-      instantiate = _cc.instantiate;
-      Component = _cc.Component;
-    }, function (_CommonToSingleTonJs) {
-      SingleTon = _CommonToSingleTonJs.SingleTon;
-    }, function (_CommonHashMapJs) {
-      HashMap = _CommonHashMapJs.HashMap;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "8271774ET9NtLUyI6ZWf4eK", "PrefabFactory", undefined);
-
-      ObjPool = /*#__PURE__*/function () {
-        function ObjPool(template, initSize, completeHandle) {
-          _classCallCheck(this, ObjPool);
-
-          this._pool = [];
-          this.totalSize = 0;
-          this.initTime = [];
-          this.completeHandler = completeHandle;
-          this.template = template;
-          this.totalSize = initSize;
-          this.hashKey = "ObjPool:" + this.template.name + " - " + this.totalSize;
-          this.initPool(initSize);
-        }
-
-        _createClass(ObjPool, [{
-          key: "initPool",
-          value: function initPool(size) {
-            var _this = this;
-
-            var immediately = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-            if (immediately) {
-              for (var i = 0; i < size; ++i) {
-                this.initTime.push(Date.now());
-                var newNode = instantiate(this.template);
-                this.put(newNode);
-              }
-            } else {
-              for (var _i = 0; _i < size; ++_i) {
-                this.initTime.push(Date.now());
-                setTimeout(function () {
-                  var newNode = instantiate(_this.template);
-
-                  _this.put(newNode);
-                }, _i);
-              }
-            }
-          }
-        }, {
-          key: "size",
-          value: function size() {
-            return this._pool.length;
-          }
-        }, {
-          key: "clear",
-          value: function clear() {
-            var count = this._pool.length;
-
-            for (var i = 0; i < count; ++i) {
-              this._pool[i].destroy && this._pool[i].destroy();
-            }
-
-            this._pool.length = 0;
-          }
-        }, {
-          key: "put",
-          value: function put(obj) {
-            if (obj && this._pool.indexOf(obj) === -1) {
-              // Remove from parent, but don't cleanup
-              obj.removeFromParent(false); //obj.setParent(null);
-              // Invoke pool handler
-
-              var handlers = obj.getComponents(Component);
-
-              var _iterator = _createForOfIteratorHelper(handlers),
-                  _step;
-
-              try {
-                for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                  var handler = _step.value;
-
-                  if (handler && handler.unuse) {
-                    handler.unuse.apply(handler);
-                  }
-                }
-              } catch (err) {
-                _iterator.e(err);
-              } finally {
-                _iterator.f();
-              }
-
-              this._pool.push(obj);
-
-              if (this.completeHandler) {
-                // if (!CELER_X) {
-                //   console.log(
-                //     " pool:",
-                //     this.template.name,
-                //     ", now:",
-                //     this._pool.length,
-                //     ", total:",
-                //     this.totalSize,
-                //     ", cost:",
-                //     (Date.now() - this.initTime[this._pool.length - 1]).toFixed(2) +
-                //       "ms"
-                //   );
-                // }
-                if (this.totalSize <= this._pool.length) {
-                  this.completeHandler();
-                  this.completeHandler = null;
-                }
-              }
-            }
-          }
-        }, {
-          key: "get",
-          value: function get() {
-            for (var _len = arguments.length, _ = new Array(_len), _key = 0; _key < _len; _key++) {
-              _[_key] = arguments[_key];
-            }
-
-            var last = this._pool.length - 1;
-
-            if (last < 0) {
-              this.initPool(1, true);
-            }
-
-            last = this._pool.length - 1; // Pop the last object in pool
-
-            var obj = this._pool[last];
-            this._pool.length = last; // Invoke pool handler
-
-            var handlers = obj.getComponents(Component);
-
-            var _iterator2 = _createForOfIteratorHelper(handlers),
-                _step2;
-
-            try {
-              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                var handler = _step2.value;
-
-                if (handler && handler.reuse) {
-                  handler.reuse.apply(handler, arguments);
-                }
-              }
-            } catch (err) {
-              _iterator2.e(err);
-            } finally {
-              _iterator2.f();
-            }
-
-            return obj;
-          }
-        }]);
-
-        return ObjPool;
-      }();
-
-      _export("PrefabFactory", PrefabFactory = /*#__PURE__*/function (_SingleTon) {
-        _inherits(PrefabFactory, _SingleTon);
-
-        function PrefabFactory() {
-          var _getPrototypeOf2;
-
-          var _this2;
-
-          _classCallCheck(this, PrefabFactory);
-
-          for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-            args[_key2] = arguments[_key2];
-          }
-
-          _this2 = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PrefabFactory)).call.apply(_getPrototypeOf2, [this].concat(args)));
-          _this2.count = 0;
-          _this2.totalCount = 0;
-          _this2.objPool = new HashMap();
-          _this2.startTime = 0;
-          return _this2;
-        }
-
-        _createClass(PrefabFactory, [{
-          key: "init",
-          value: function init(callback, progress) {
-            var _this3 = this;
-
-            this.doneCallback = callback;
-            this.progressCallback = progress;
-            this.startTime = Date.now();
-            loader.loadResDir("prefabs/", Prefab, function (err, res, urls) {
-              if (err) {
-                console.error(" Game Factory init failed:", err);
-              } else {
-                _this3.totalCount = res.length;
-
-                var _loop = function _loop(i) {
-                  var prefab = res[i];
-                  var nameSplit = prefab.data.name.split(".");
-                  var name = nameSplit[0];
-                  var count = nameSplit[1] ? parseInt(nameSplit[1]) : 30;
-                  console.log(" init pool:", name, ", count:", count);
-                  setTimeout(function () {
-                    var objPool = new ObjPool(prefab, count, _this3.addCount.bind(_this3));
-
-                    _this3.objPool.add(name, objPool);
-                  }, i * 5);
-                };
-
-                for (var i = 0; i < res.length; i++) {
-                  _loop(i);
-                }
-              }
-            });
-          }
-        }, {
-          key: "addObject",
-          value: function addObject(name, url, count) {
-            var _this4 = this;
-
-            return new Promise(function (solve, reject) {
-              loader.loadRes(url, Prefab, function (err, prefab) {
-                if (err) {
-                  reject(err);
-                } else {
-                  var objPool = new ObjPool(prefab, count, function () {
-                    solve(name);
-                  });
-
-                  _this4.objPool.add(name, objPool);
-                }
-              });
-            });
-          }
-        }, {
-          key: "addCount",
-          value: function addCount() {
-            this.count++;
-
-            if (this.progressCallback) {
-              this.progressCallback(this.count / this.totalCount);
-            }
-
-            if (this.count >= this.totalCount) {
-              console.log(" factory cost time:", (Date.now() - this.startTime).toFixed(2) + "ms");
-
-              if (this.doneCallback) {
-                this.doneCallback();
-                this.doneCallback = null;
-              }
-            }
-          }
-        }, {
-          key: "getObj",
-          value: function getObj(name) {
-            if (this.objPool.has(name)) {
-              var _this$objPool$get;
-
-              for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
-                args[_key3 - 1] = arguments[_key3];
-              }
-
-              return (_this$objPool$get = this.objPool.get(name)).get.apply(_this$objPool$get, args);
-            } else {
-              console.error(" objPool dosen't exists this obj:", name);
-              return null;
-            }
-          }
-        }, {
-          key: "putObj",
-          value: function putObj(name, node) {
-            if (this.objPool.has(name)) {
-              return this.objPool.get(name).put(node);
-            } else {
-              console.error(" objPool dosen't exists this obj:", name);
-            }
-          }
-        }]);
-
-        return PrefabFactory;
-      }(SingleTon()));
 
       cclegacy._RF.pop();
     }
@@ -3503,7 +4288,10 @@ System.register("chunks:///Common/View/BaseView.js", ["../../_virtual/_rollupPlu
               scale: Vec3.ZERO
             }), tween(this.node).call(function () {
               _this.node.active = false;
-              callback && callback();
+
+              if (callback && typeof callback == "function") {
+                callback();
+              }
             })).start();
           }
         }, {
@@ -3643,7 +4431,7 @@ System.register("chunks:///GamePlay/UI/PointTouchView.js", ["../../_virtual/_rol
 System.register("chunks:///GamePlay/UI/HitPointLayer.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/Signal.js", "../../Signal/Signal.js", "../../Manager/GameStateController.js", "../../table.js", "../../Common/View/BaseView.js", "./PointTouchView.js", "../GameObject/Pole.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, _decorator, Node, UITransform, v3, math, Vec3, RichText, BaseSignal, GameReadySignal, GameStateController, En_View, En_ID, BaseView, PointTouchSignal, Pole, _dec, _class, ccclass, property, UpdateShotCenterSignal, HitPointLayer;
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, _decorator, Node, UITransform, v3, math, Vec3, RichText, BaseSignal, GameReadySignal, GameOverSignal, GameStateController, En_View, En_ID, BaseView, PointTouchSignal, Pole, _dec, _class, ccclass, property, UpdateShotCenterSignal, HitPointLayer;
 
   _export({
     _dec: void 0,
@@ -3670,6 +4458,7 @@ System.register("chunks:///GamePlay/UI/HitPointLayer.js", ["../../_virtual/_roll
       BaseSignal = _CommonSignalJs.BaseSignal;
     }, function (_SignalSignalJs) {
       GameReadySignal = _SignalSignalJs.GameReadySignal;
+      GameOverSignal = _SignalSignalJs.GameOverSignal;
     }, function (_ManagerGameStateControllerJs) {
       GameStateController = _ManagerGameStateControllerJs.GameStateController;
     }, function (_tableJs) {
@@ -3725,6 +4514,7 @@ System.register("chunks:///GamePlay/UI/HitPointLayer.js", ["../../_virtual/_roll
               _this.Content.string = lan.t(En_View.JiQiuDianJieMian, En_ID.JiQiuDianXuanQu);
             }, this);
             this.Point.on(Node.EventType.TOUCH_MOVE, this.onAdjustPoint, this);
+            GameOverSignal.inst.addListener(this.Hide, this);
             PointTouchSignal.inst.addListener(function () {
               _this.Show();
 
@@ -4281,10 +5071,10 @@ System.register("chunks:///GamePlay/GameObject/Pole.js", ["../../_virtual/_rollu
   };
 });
 
-System.register("chunks:///GamePlay/GameObject/BallRoot.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/HashMap.js", "../../Signal/Signal.js", "../../Factory/PrefabFactory.js", "../Model/BallModel.js", "./Pole.js"], function (_export, _context) {
+System.register("chunks:///GamePlay/GameObject/BallRoot.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/HashMap.js", "../../Factory/PrefabFactory.js", "../../Signal/Signal.js", "../Model/BallModel.js", "./Pole.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createClass, cclegacy, _decorator, v3, Component, HashMap, GamePrepareSignal, PrefabFactory, BallCreatedSignal, BallRemoveSignal, InitPolePositionSignal, _dec, _class, _class2, _temp, ccclass, property, BallRoot;
+  var _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createClass, cclegacy, _decorator, v3, Component, HashMap, PrefabFactory, GamePrepareSignal, BallCreatedSignal, BallRemoveSignal, InitPolePositionSignal, _dec, _class, _class2, _temp, ccclass, property, BallRoot;
 
   _export({
     _dec: void 0,
@@ -4307,10 +5097,10 @@ System.register("chunks:///GamePlay/GameObject/BallRoot.js", ["../../_virtual/_r
       Component = _cc.Component;
     }, function (_CommonHashMapJs) {
       HashMap = _CommonHashMapJs.HashMap;
-    }, function (_SignalSignalJs) {
-      GamePrepareSignal = _SignalSignalJs.GamePrepareSignal;
     }, function (_FactoryPrefabFactoryJs) {
       PrefabFactory = _FactoryPrefabFactoryJs.PrefabFactory;
+    }, function (_SignalSignalJs) {
+      GamePrepareSignal = _SignalSignalJs.GamePrepareSignal;
     }, function (_ModelBallModelJs) {
       BallCreatedSignal = _ModelBallModelJs.BallCreatedSignal;
       BallRemoveSignal = _ModelBallModelJs.BallRemoveSignal;
@@ -4387,10 +5177,10 @@ System.register("chunks:///GamePlay/GameObject/BallRoot.js", ["../../_virtual/_r
   };
 });
 
-System.register("chunks:///GamePlay/Physics/BorderCollider.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/Signal.js", "../../Signal/Signal.js", "../../TableManager.js", "../../table.js"], function (_export, _context) {
+System.register("chunks:///GamePlay/Physics/BorderCollider.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/Signal.js", "../../TableManager.js", "../../Signal/Signal.js", "../../table.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _applyDecoratedDescriptor, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, cclegacy, _decorator, Enum, MeshRenderer, PhysicsSystem, BoxCollider, Component, BaseSignal, GameReadySignal, TableManager, Physical_ID, _dec, _dec2, _class, _class2, _descriptor, _temp, ccclass, property, BorderType, HoleName, HitBorderSignal, BorderCollider;
+  var _inherits, _applyDecoratedDescriptor, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, cclegacy, _decorator, Enum, MeshRenderer, PhysicsSystem, BoxCollider, Component, BaseSignal, TableManager, GameReadySignal, Physical_ID, _dec, _dec2, _class, _class2, _descriptor, _temp, ccclass, property, BorderType, HoleName, HitBorderSignal, BorderCollider;
 
   _export({
     _dec: void 0,
@@ -4423,10 +5213,10 @@ System.register("chunks:///GamePlay/Physics/BorderCollider.js", ["../../_virtual
       Component = _cc.Component;
     }, function (_CommonSignalJs) {
       BaseSignal = _CommonSignalJs.BaseSignal;
-    }, function (_SignalSignalJs) {
-      GameReadySignal = _SignalSignalJs.GameReadySignal;
     }, function (_TableManagerJs) {
       TableManager = _TableManagerJs.TableManager;
+    }, function (_SignalSignalJs) {
+      GameReadySignal = _SignalSignalJs.GameReadySignal;
     }, function (_tableJs) {
       Physical_ID = _tableJs.Physical_ID;
     }],
@@ -4743,7 +5533,7 @@ System.register("chunks:///Manager/ResourceController.js", ["../_virtual/_rollup
         }, {
           key: "getSoundDisabled",
           value: function getSoundDisabled() {
-            return this.PauseAtlas.getSpriteFrame("btn_no sound");
+            return this.PauseAtlas.getSpriteFrame("btn_nosound");
           }
         }, {
           key: "getSoundEnable",
@@ -5513,10 +6303,10 @@ System.register("chunks:///GamePlay/UI/ScoreScaleRoot.js", ["../../_virtual/_rol
   };
 });
 
-System.register("chunks:///GamePlay/GameLogic.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Common/HashMap.js", "../Common/Signal.js", "../Common/Random.js", "../Common/Cocos.js", "./GameRule.js", "../Signal/Signal.js", "../Model/PlayModel.js", "../Manager/GameStateController.js", "../TableManager.js", "../Common/SDK/CelerSDK.js", "../table.js", "./Model/BallModel.js", "./GameObject/BallRoot.js", "./Physics/BorderCollider.js", "./UI/ScoreScaleRoot.js"], function (_export, _context) {
+System.register("chunks:///GamePlay/GameLogic.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Common/HashMap.js", "../Common/Signal.js", "../Common/Random.js", "../Common/Cocos.js", "../TableManager.js", "../Signal/Signal.js", "./GameRule.js", "../Manager/GameStateController.js", "../Model/PlayModel.js", "../Common/SDK/CelerSDK.js", "../table.js", "./Model/BallModel.js", "./GameObject/BallRoot.js", "./Physics/BorderCollider.js", "./UI/ScoreScaleRoot.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _assertThisInitialized, cclegacy, v3, math, Vec3, SphereCollider, SingleTon, HashMap, BaseSignal, Random, disOrderArray, GetScoreByType, ScoreType, HoleBonus, GetTotalHeartCount, StreakBonusLimit, ShotSignal, GameOverSignal, GameReadySignal, PlayModel, GameStateController, RoundEndType, TableManager, CelerSDK, Level_IsRandom, Balls_ID, BallModel, BallRoot, HoleName, ScoreScaleRoot, NextRountSignal, ReadyNextRoundSignal, PoleRotationInitSignal, WhiteBallReposSignal, BallDropSignal, HoleBonusInitSignal, UpdateHeartCountSignal, DropPocketSignal, RefreshHeartBonusSignal, PocketScoredSignal, ShotType, GameLogic;
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _assertThisInitialized, cclegacy, v3, math, Vec3, SphereCollider, SingleTon, HashMap, BaseSignal, Random, disOrderArray, TableManager, ShotSignal, GameOverSignal, GameReadySignal, GetScoreByType, ScoreType, HoleBonus, GetTotalHeartCount, StreakBonusLimit, GameStateController, RoundEndType, PlayModel, CelerSDK, Level_IsRandom, Balls_ID, BallModel, BallRoot, HoleName, ScoreScaleRoot, NextRountSignal, ReadyNextRoundSignal, PoleRotationInitSignal, WhiteBallReposSignal, BallDropSignal, HoleBonusInitSignal, UpdateHeartCountSignal, DropPocketSignal, RefreshHeartBonusSignal, PocketScoredSignal, ShotType, GameLogic;
 
   _export("ShotType", void 0);
 
@@ -5544,23 +6334,23 @@ System.register("chunks:///GamePlay/GameLogic.js", ["../_virtual/_rollupPluginBa
       Random = _CommonRandomJs.Random;
     }, function (_CommonCocosJs) {
       disOrderArray = _CommonCocosJs.disOrderArray;
+    }, function (_TableManagerJs) {
+      TableManager = _TableManagerJs.TableManager;
+    }, function (_SignalSignalJs) {
+      ShotSignal = _SignalSignalJs.ShotSignal;
+      GameOverSignal = _SignalSignalJs.GameOverSignal;
+      GameReadySignal = _SignalSignalJs.GameReadySignal;
     }, function (_GameRuleJs) {
       GetScoreByType = _GameRuleJs.GetScoreByType;
       ScoreType = _GameRuleJs.ScoreType;
       HoleBonus = _GameRuleJs.HoleBonus;
       GetTotalHeartCount = _GameRuleJs.GetTotalHeartCount;
       StreakBonusLimit = _GameRuleJs.StreakBonusLimit;
-    }, function (_SignalSignalJs) {
-      ShotSignal = _SignalSignalJs.ShotSignal;
-      GameOverSignal = _SignalSignalJs.GameOverSignal;
-      GameReadySignal = _SignalSignalJs.GameReadySignal;
-    }, function (_ModelPlayModelJs) {
-      PlayModel = _ModelPlayModelJs.PlayModel;
     }, function (_ManagerGameStateControllerJs) {
       GameStateController = _ManagerGameStateControllerJs.GameStateController;
       RoundEndType = _ManagerGameStateControllerJs.RoundEndType;
-    }, function (_TableManagerJs) {
-      TableManager = _TableManagerJs.TableManager;
+    }, function (_ModelPlayModelJs) {
+      PlayModel = _ModelPlayModelJs.PlayModel;
     }, function (_CommonSDKCelerSDKJs) {
       CelerSDK = _CommonSDKCelerSDKJs.CelerSDK;
     }, function (_tableJs) {
@@ -5799,53 +6589,55 @@ System.register("chunks:///GamePlay/GameLogic.js", ["../_virtual/_rollupPluginBa
             RefreshHeartBonusSignal.inst.dispatch(this.holeBonus[heartBonus.index].posStr);
           }
         }, {
-          key: "ballDrop",
-          value: function ballDrop(model, pocket) {
+          key: "resetWhiteBall",
+          value: function resetWhiteBall() {
             var _this2 = this;
 
+            var canPos = false;
+            var position = this.whiteBallPosition.clone();
+
+            var _loop = function _loop() {
+              var collideCount = 0;
+
+              _this2.balls.forEach(function (ID, model) {
+                if (model.isWhiteBall == false && collideCount <= 0) {
+                  var ballNode = BallRoot.Balls.get(model.ID);
+
+                  if (ballNode) {
+                    var radius = ballNode.getComponent(SphereCollider).radius;
+
+                    if (Vec3.distance(ballNode.position, position) <= radius * 2) {
+                      collideCount++;
+
+                      if (position.z - radius <= -6.9) {
+                        position.add(v3(0, 0, radius));
+                      } else if (position.z + radius >= 6.9) {
+                        position.add(v3(0, 0, -radius));
+                      } else {
+                        position.add(v3(0, 0, -radius));
+                      }
+                    }
+                  }
+                }
+              });
+
+              canPos = collideCount <= 0;
+            };
+
+            while (canPos == false) {
+              _loop();
+            }
+
+            WhiteBallReposSignal.inst.dispatch(position);
+          }
+        }, {
+          key: "ballDrop",
+          value: function ballDrop(model, pocket) {
             console.log("球：", model.Point, " 入袋:", pocket, HoleName[pocket], ", bonus:", this.holeBonus[pocket].bonusStr, ",是否加心：", this.holeBonus[pocket].isHeart);
 
             if (model.isWhiteBall) {
-              (function () {
-                var canPos = false;
-
-                var position = _this2.whiteBallPosition.clone();
-
-                var _loop = function _loop() {
-                  var collideCount = 0;
-
-                  _this2.balls.forEach(function (ID, model) {
-                    if (model.isWhiteBall == false && collideCount <= 0) {
-                      var ballNode = BallRoot.Balls.get(model.ID);
-
-                      if (ballNode) {
-                        var radius = ballNode.getComponent(SphereCollider).radius;
-
-                        if (Vec3.distance(ballNode.position, position) <= radius * 2) {
-                          collideCount++;
-
-                          if (position.z - radius <= -6.9) {
-                            position.add(v3(0, 0, radius));
-                          } else if (position.z + radius >= 6.9) {
-                            position.add(v3(0, 0, -radius));
-                          } else {
-                            position.add(v3(0, 0, -radius));
-                          }
-                        }
-                      }
-                    }
-                  });
-
-                  canPos = collideCount <= 0;
-                };
-
-                while (canPos == false) {
-                  _loop();
-                }
-
-                WhiteBallReposSignal.inst.dispatch(position);
-                _this2.HeartCount--;
-              })();
+              this.resetWhiteBall();
+              this.HeartCount--;
             } else {
               this.ballCombo++;
               var node = ScoreScaleRoot.Node.getChildByName(HoleName[pocket]);
@@ -5927,7 +6719,7 @@ System.register("chunks:///GamePlay/GameLogic.js", ["../_virtual/_rollupPluginBa
 
             var loopCount = this.scoreType == ShotType.NoScore && this.shotCount > 1 ? 0 : 1;
 
-            if (this.balls.length <= 3 || this.scoreType == ShotType.TrickShot) {
+            if ((this.balls.length <= 3 || this.scoreType == ShotType.TrickShot) && this.scoreType != ShotType.NoScore) {
               loopCount = 3;
             }
 
@@ -6139,83 +6931,6 @@ System.register("chunks:///GamePlay/GameLogic.js", ["../_virtual/_rollupPluginBa
   };
 });
 
-System.register("chunks:///Factory/MaterialFactory.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Common/HashMap.js"], function (_export, _context) {
-  "use strict";
-
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, loader, Material, SingleTon, HashMap, MaterialFactory;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-      loader = _cc.loader;
-      Material = _cc.Material;
-    }, function (_CommonToSingleTonJs) {
-      SingleTon = _CommonToSingleTonJs.SingleTon;
-    }, function (_CommonHashMapJs) {
-      HashMap = _CommonHashMapJs.HashMap;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "8f81bDlvIFAo79lBq3LDIyI", "MaterialFactory", undefined);
-
-      _export("MaterialFactory", MaterialFactory = /*#__PURE__*/function (_SingleTon) {
-        _inherits(MaterialFactory, _SingleTon);
-
-        function MaterialFactory() {
-          var _getPrototypeOf2;
-
-          var _this;
-
-          _classCallCheck(this, MaterialFactory);
-
-          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-          }
-
-          _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(MaterialFactory)).call.apply(_getPrototypeOf2, [this].concat(args)));
-          _this.materials = new HashMap();
-          return _this;
-        }
-
-        _createClass(MaterialFactory, [{
-          key: "init",
-          value: function init(callback) {
-            var _this2 = this;
-
-            loader.loadResDir("/materials/ball/", Material, function (err, materials, urls) {
-              if (err) {
-                console.error("load material failed:", err);
-              } else {
-                for (var i = 0; i < materials.length; i++) {
-                  var strArr = urls[i].split("/");
-
-                  _this2.materials.add(strArr[strArr.length - 1], materials[i]);
-                }
-
-                callback();
-              }
-            });
-          }
-        }, {
-          key: "getMaterial",
-          value: function getMaterial(name) {
-            return this.materials.get(name);
-          }
-        }]);
-
-        return MaterialFactory;
-      }(SingleTon()));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
 System.register("chunks:///GamePlay/GameObject/PrefabView.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc"], function (_export, _context) {
   "use strict";
 
@@ -6300,10 +7015,10 @@ System.register("chunks:///GamePlay/GameObject/PrefabView.js", ["../../_virtual/
   };
 });
 
-System.register("chunks:///GamePlay/GameObject/BallObject.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/Signal.js", "../../Common/Cocos.js", "../GameRule.js", "../../Signal/Signal.js", "../../TableManager.js", "../../table.js", "./Pole.js", "../Physics/BorderCollider.js", "../GameLogic.js", "../../Factory/MaterialFactory.js", "./PrefabView.js"], function (_export, _context) {
+System.register("chunks:///GamePlay/GameObject/BallObject.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/Signal.js", "../../Common/Cocos.js", "../../TableManager.js", "../../Factory/MaterialFactory.js", "../../Signal/Signal.js", "../GameRule.js", "../../table.js", "./Pole.js", "../Physics/BorderCollider.js", "../GameLogic.js", "./PrefabView.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createClass, cclegacy, _decorator, MeshRenderer, PhysicsSystem, Tween, math, tween, v3, SphereCollider, BoxCollider, RigidBody, BaseSignal, Clamp, EasyMode, ShotSignal, TableManager, Physical_ID, Pole, BorderCollider, BorderType, HitBorderSignal, GameLogic, WhiteBallReposSignal, NextRountSignal, MaterialFactory, PrefabView, _dec, _class, _temp, ccclass, property, BallHitSignal, BallObject;
+  var _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createClass, cclegacy, _decorator, MeshRenderer, PhysicsSystem, Tween, math, tween, v3, SphereCollider, BoxCollider, Vec3, RigidBody, BaseSignal, Clamp, TableManager, MaterialFactory, ShotSignal, EasyMode, Physical_ID, Pole, BorderCollider, BorderType, HitBorderSignal, GameLogic, WhiteBallReposSignal, NextRountSignal, PrefabView, _dec, _class, _temp, ccclass, property, BallHitSignal, BallObject;
 
   _export({
     _dec: void 0,
@@ -6329,17 +7044,20 @@ System.register("chunks:///GamePlay/GameObject/BallObject.js", ["../../_virtual/
       v3 = _cc.v3;
       SphereCollider = _cc.SphereCollider;
       BoxCollider = _cc.BoxCollider;
+      Vec3 = _cc.Vec3;
       RigidBody = _cc.RigidBody;
     }, function (_CommonSignalJs) {
       BaseSignal = _CommonSignalJs.BaseSignal;
     }, function (_CommonCocosJs) {
       Clamp = _CommonCocosJs.Clamp;
-    }, function (_GameRuleJs) {
-      EasyMode = _GameRuleJs.EasyMode;
-    }, function (_SignalSignalJs) {
-      ShotSignal = _SignalSignalJs.ShotSignal;
     }, function (_TableManagerJs) {
       TableManager = _TableManagerJs.TableManager;
+    }, function (_FactoryMaterialFactoryJs) {
+      MaterialFactory = _FactoryMaterialFactoryJs.MaterialFactory;
+    }, function (_SignalSignalJs) {
+      ShotSignal = _SignalSignalJs.ShotSignal;
+    }, function (_GameRuleJs) {
+      EasyMode = _GameRuleJs.EasyMode;
     }, function (_tableJs) {
       Physical_ID = _tableJs.Physical_ID;
     }, function (_PoleJs) {
@@ -6352,8 +7070,6 @@ System.register("chunks:///GamePlay/GameObject/BallObject.js", ["../../_virtual/
       GameLogic = _GameLogicJs.GameLogic;
       WhiteBallReposSignal = _GameLogicJs.WhiteBallReposSignal;
       NextRountSignal = _GameLogicJs.NextRountSignal;
-    }, function (_FactoryMaterialFactoryJs) {
-      MaterialFactory = _FactoryMaterialFactoryJs.MaterialFactory;
     }, function (_PrefabViewJs) {
       PrefabView = _PrefabViewJs.PrefabView;
     }],
@@ -6492,7 +7208,9 @@ System.register("chunks:///GamePlay/GameObject/BallObject.js", ["../../_virtual/
                 otherBallObj.RigidBody.applyImpulse(impulse);
                 var negativeImpulse = Pole.HitNormal.clone().negative().normalize().multiplyScalar(ballOtherPhysic.Damping * ballPhysicWhite.Damping * impulse.clone().length());
                 negativeImpulse.y = 0;
-                this.RigidBody.applyImpulse(negativeImpulse);
+                /** 施加反作用力 */
+                //this.RigidBody.applyImpulse(negativeImpulse);
+
                 CC_DEBUG && console.log("shot impulse:", this.shotImpulse, " orther impulse:", impulse, ",velocity:", velocity, this.shotVelocity, ", ratio:", velocity.length() / this.shotVelocity.length(), ", hitNormal:", Pole.HitNormal, ",negativeImpulse:", negativeImpulse);
                 Pole.HitNormal = null;
                 this.shotVelocity = null;
@@ -6553,7 +7271,13 @@ System.register("chunks:///GamePlay/GameObject/BallObject.js", ["../../_virtual/
              */
 
             var torque = powerData.BaseTorque + powerData.ExtraTorque * power;
-            var applyTorque = v3(Pole.HitPoint.clone().normalize().y * torque, Pole.HitPoint.clone().normalize().x * torque, 0);
+            var torqueRadian = Vec3.angle(forward, v3(0, 0, -1));
+
+            if (forward.x < 0) {
+              torqueRadian = -torqueRadian;
+            }
+
+            var applyTorque = v3(-Pole.HitPoint.clone().normalize().y * torque * Math.cos(torqueRadian), Pole.HitPoint.clone().normalize().x * torque, -Pole.HitPoint.clone().normalize().y * torque * Math.sin(torqueRadian));
 
             if (!math.approx(applyTorque.length(), 0, 0.001)) {
               this.RigidBody.applyTorque(applyTorque);
@@ -6565,7 +7289,7 @@ System.register("chunks:///GamePlay/GameObject/BallObject.js", ["../../_virtual/
             var velocity = v3();
             this.RigidBody.getLinearVelocity(velocity);
             this.shotVelocity = v3(velocity.x, 0, velocity.z);
-            console.log("shot power:", power, ",impulse:", impulse, ",linerVelocity:", this.shotVelocity, ",torque:", v3(Pole.HitPoint.clone().normalize().y * torque, Pole.HitPoint.clone().normalize().x * torque, 0));
+            console.log("shot power:", power, ",impulse:", impulse, ",linerVelocity:", this.shotVelocity, ",torque:", applyTorque, ",forward:", forward, ",torqueDegree:", math.toDegree(torqueRadian));
           }
         }, {
           key: "onUnuse",
@@ -7883,705 +8607,10 @@ System.register("chunks:///Ad/WildAdButton.js", ["../_virtual/_rollupPluginBabel
   };
 });
 
-System.register("chunks:///Command/Notification.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc"], function (_export, _context) {
+System.register("chunks:///App/App.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Model/PlayModel.js", "../GameLoad/InitialFacade.js", "../Manager/ResourceController.js"], function (_export, _context) {
   "use strict";
 
-  var _createClass, _classCallCheck, cclegacy, Notification;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "f5488zT53NDy7p1Vf9k8sT8", "Notification", undefined);
-
-      _export("Notification", Notification = /*#__PURE__*/function () {
-        function Notification() {
-          _classCallCheck(this, Notification);
-
-          this.notification = {};
-        }
-
-        _createClass(Notification, [{
-          key: "register",
-          value: function register(notificationName, command) {
-            if (this.notification[notificationName]) {
-              console.error(notificationName, " is already exist.");
-            }
-
-            this.notification[notificationName] = new command();
-          }
-        }, {
-          key: "sendNotification",
-          value: function sendNotification(notificationName, body) {
-            if (this.notification[notificationName]) {
-              this.notification[notificationName].excute(body);
-              this.notification[notificationName] = null;
-            }
-          }
-        }]);
-
-        return Notification;
-      }());
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///Manager/StepManager.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc"], function (_export, _context) {
-  "use strict";
-
-  var _createClass, _classCallCheck, _createForOfIteratorHelper, cclegacy, StepManager;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "40cb5NQZgtIJI0r/H26O+5G", "StepManager", undefined);
-
-      _export("StepManager", StepManager = /*#__PURE__*/function () {
-        function StepManager() {
-          _classCallCheck(this, StepManager);
-
-          this.totalStep = [];
-          this.curStep = [];
-          this.loadTime = {};
-        }
-
-        _createClass(StepManager, [{
-          key: "register",
-          value: function register(complete, totalSteps) {
-            this.completeCallback = complete;
-            this.totalStep = totalSteps;
-
-            var _iterator = _createForOfIteratorHelper(totalSteps),
-                _step;
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                var key = _step.value;
-                this.loadTime[key] = Date.now();
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-          }
-        }, {
-          key: "start",
-          value: function start(step) {
-            this.loadTime[step] = Date.now();
-          }
-        }, {
-          key: "nextStep",
-          value: function nextStep(step) {
-            if (this.totalStep.indexOf(step) < 0) {
-              console.error(" 没有这一步：", step);
-              return;
-            }
-
-            if (this.curStep.indexOf(step) >= 0) {
-              console.warn(" 步骤已完成：", step);
-              return;
-            }
-
-            this.curStep.push(step);
-            this.curStep.sort(function (a, b) {
-              return a > b ? -1 : 1;
-            });
-            this.totalStep.sort(function (a, b) {
-              return a > b ? -1 : 1;
-            });
-            var now = this.curStep.join("-");
-            var total = this.totalStep.join("-");
-            var costTime = Date.now() - this.loadTime[step];
-            console.log(" cur step:", step, ", cost time:", costTime, " ms");
-
-            if (now == total) {
-              console.log(" step done");
-              this.totalStep.length = 0;
-              this.completeCallback();
-              this.completeCallback = null;
-            }
-          }
-        }]);
-
-        return StepManager;
-      }());
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///Command/SimpleCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc"], function (_export, _context) {
-  "use strict";
-
-  var _createClass, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, BaseCommand, SimpleCommand;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "583e4ZqIPZIP4QkHW8PKIta", "SimpleCommand", undefined);
-
-      _export("BaseCommand", BaseCommand = /*#__PURE__*/function () {
-        function BaseCommand() {
-          _classCallCheck(this, BaseCommand);
-        }
-
-        _createClass(BaseCommand, [{
-          key: "excute",
-          value: function excute(body) {}
-        }]);
-
-        return BaseCommand;
-      }());
-
-      _export("SimpleCommand", SimpleCommand = /*#__PURE__*/function (_BaseCommand) {
-        _inherits(SimpleCommand, _BaseCommand);
-
-        function SimpleCommand() {
-          _classCallCheck(this, SimpleCommand);
-
-          return _possibleConstructorReturn(this, _getPrototypeOf(SimpleCommand).apply(this, arguments));
-        }
-
-        return SimpleCommand;
-      }(BaseCommand));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///Command/MacroCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "./SimpleCommand.js"], function (_export, _context) {
-  "use strict";
-
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createForOfIteratorHelper, cclegacy, BaseCommand, MacroCommand;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }, function (_SimpleCommandJs) {
-      BaseCommand = _SimpleCommandJs.BaseCommand;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "a464cRqnHZJFqe/UY6Xh9WQ", "MacroCommand", undefined);
-
-      _export("MacroCommand", MacroCommand = /*#__PURE__*/function (_BaseCommand) {
-        _inherits(MacroCommand, _BaseCommand);
-
-        function MacroCommand() {
-          var _this;
-
-          _classCallCheck(this, MacroCommand);
-
-          _this = _possibleConstructorReturn(this, _getPrototypeOf(MacroCommand).call(this));
-          _this.commands = [];
-
-          _this.initializeMacroCommand();
-
-          return _this;
-        }
-
-        _createClass(MacroCommand, [{
-          key: "initializeMacroCommand",
-          value: function initializeMacroCommand() {}
-        }, {
-          key: "addSubCommond",
-          value: function addSubCommond(command) {
-            this.commands.push(new command());
-          }
-        }, {
-          key: "excute",
-          value: function excute(body) {
-            var _iterator = _createForOfIteratorHelper(this.commands),
-                _step;
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                var subCommand = _step.value;
-                subCommand.excute(body);
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-
-            this.commands.length = 0;
-          }
-        }]);
-
-        return MacroCommand;
-      }(BaseCommand));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///GameLoad/LoadAudioCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Manager/AudioManager.js", "../Command/SimpleCommand.js", "./InitialFacade.js"], function (_export, _context) {
-  "use strict";
-
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, AudioController, SimpleCommand, InitialFacade, STEP, LoadAudioCommand;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }, function (_ManagerAudioManagerJs) {
-      AudioController = _ManagerAudioManagerJs.AudioController;
-    }, function (_CommandSimpleCommandJs) {
-      SimpleCommand = _CommandSimpleCommandJs.SimpleCommand;
-    }, function (_InitialFacadeJs) {
-      InitialFacade = _InitialFacadeJs.InitialFacade;
-      STEP = _InitialFacadeJs.STEP;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "06a548MnE5Dz4dpDON+EArR", "LoadAudioCommand", undefined);
-
-      _export("LoadAudioCommand", LoadAudioCommand = /*#__PURE__*/function (_SimpleCommand) {
-        _inherits(LoadAudioCommand, _SimpleCommand);
-
-        function LoadAudioCommand() {
-          _classCallCheck(this, LoadAudioCommand);
-
-          return _possibleConstructorReturn(this, _getPrototypeOf(LoadAudioCommand).apply(this, arguments));
-        }
-
-        _createClass(LoadAudioCommand, [{
-          key: "excute",
-          value: function excute() {
-            InitialFacade.inst.startStep(STEP.Audio);
-            AudioController.inst.init(function () {
-              InitialFacade.inst.step(STEP.Audio);
-            });
-          }
-        }]);
-
-        return LoadAudioCommand;
-      }(SimpleCommand));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///GameLoad/LoadJsonCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../TableManager.js", "../Command/SimpleCommand.js", "./InitialFacade.js"], function (_export, _context) {
-  "use strict";
-
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, TableManager, SimpleCommand, InitialFacade, STEP, LoadJsonCommand;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }, function (_TableManagerJs) {
-      TableManager = _TableManagerJs.TableManager;
-    }, function (_CommandSimpleCommandJs) {
-      SimpleCommand = _CommandSimpleCommandJs.SimpleCommand;
-    }, function (_InitialFacadeJs) {
-      InitialFacade = _InitialFacadeJs.InitialFacade;
-      STEP = _InitialFacadeJs.STEP;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "7be3eOvZ9dEQKofxmmp4yPe", "LoadJsonCommand", undefined);
-
-      _export("LoadJsonCommand", LoadJsonCommand = /*#__PURE__*/function (_SimpleCommand) {
-        _inherits(LoadJsonCommand, _SimpleCommand);
-
-        function LoadJsonCommand() {
-          _classCallCheck(this, LoadJsonCommand);
-
-          return _possibleConstructorReturn(this, _getPrototypeOf(LoadJsonCommand).apply(this, arguments));
-        }
-
-        _createClass(LoadJsonCommand, [{
-          key: "excute",
-          value: function excute() {
-            InitialFacade.inst.startStep(STEP.Json);
-            TableManager.inst.startLoad("/json", function () {
-              InitialFacade.inst.step(STEP.Json);
-            });
-          }
-        }]);
-
-        return LoadJsonCommand;
-      }(SimpleCommand));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///GameLoad/LoadMaterialCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Factory/MaterialFactory.js", "../Command/SimpleCommand.js", "./InitialFacade.js"], function (_export, _context) {
-  "use strict";
-
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, MaterialFactory, SimpleCommand, InitialFacade, STEP, LoadMaterialCommand;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }, function (_FactoryMaterialFactoryJs) {
-      MaterialFactory = _FactoryMaterialFactoryJs.MaterialFactory;
-    }, function (_CommandSimpleCommandJs) {
-      SimpleCommand = _CommandSimpleCommandJs.SimpleCommand;
-    }, function (_InitialFacadeJs) {
-      InitialFacade = _InitialFacadeJs.InitialFacade;
-      STEP = _InitialFacadeJs.STEP;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "9472fLnHtNPYoICW4TEWwMA", "LoadMaterialCommand", undefined);
-
-      _export("LoadMaterialCommand", LoadMaterialCommand = /*#__PURE__*/function (_SimpleCommand) {
-        _inherits(LoadMaterialCommand, _SimpleCommand);
-
-        function LoadMaterialCommand() {
-          _classCallCheck(this, LoadMaterialCommand);
-
-          return _possibleConstructorReturn(this, _getPrototypeOf(LoadMaterialCommand).apply(this, arguments));
-        }
-
-        _createClass(LoadMaterialCommand, [{
-          key: "excute",
-          value: function excute() {
-            InitialFacade.inst.startStep(STEP.Material);
-            MaterialFactory.inst.init(function () {
-              InitialFacade.inst.step(STEP.Material);
-            });
-          }
-        }]);
-
-        return LoadMaterialCommand;
-      }(SimpleCommand));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///GameLoad/LoadPrefabCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Factory/PrefabFactory.js", "../Command/SimpleCommand.js", "./InitialFacade.js"], function (_export, _context) {
-  "use strict";
-
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, PrefabFactory, SimpleCommand, InitialFacade, STEP, LoadPrefabCommand;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }, function (_FactoryPrefabFactoryJs) {
-      PrefabFactory = _FactoryPrefabFactoryJs.PrefabFactory;
-    }, function (_CommandSimpleCommandJs) {
-      SimpleCommand = _CommandSimpleCommandJs.SimpleCommand;
-    }, function (_InitialFacadeJs) {
-      InitialFacade = _InitialFacadeJs.InitialFacade;
-      STEP = _InitialFacadeJs.STEP;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "613ecCCWNlL6bPxnJN/UPo6", "LoadPrefabCommand", undefined);
-
-      _export("LoadPrefabCommand", LoadPrefabCommand = /*#__PURE__*/function (_SimpleCommand) {
-        _inherits(LoadPrefabCommand, _SimpleCommand);
-
-        function LoadPrefabCommand() {
-          _classCallCheck(this, LoadPrefabCommand);
-
-          return _possibleConstructorReturn(this, _getPrototypeOf(LoadPrefabCommand).apply(this, arguments));
-        }
-
-        _createClass(LoadPrefabCommand, [{
-          key: "excute",
-          value: function excute() {
-            InitialFacade.inst.startStep(STEP.Prefab);
-            PrefabFactory.inst.init(function () {
-              InitialFacade.inst.step(STEP.Prefab);
-            });
-          }
-        }]);
-
-        return LoadPrefabCommand;
-      }(SimpleCommand));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///GameLoad/InitialCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Command/MacroCommand.js", "./LoadAudioCommand.js", "./LoadJsonCommand.js", "./LoadMaterialCommand.js", "./LoadPrefabCommand.js"], function (_export, _context) {
-  "use strict";
-
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, MacroCommand, LoadAudioCommand, LoadJsonCommand, LoadMaterialCommand, LoadPrefabCommand, InitialCommand;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }, function (_CommandMacroCommandJs) {
-      MacroCommand = _CommandMacroCommandJs.MacroCommand;
-    }, function (_LoadAudioCommandJs) {
-      LoadAudioCommand = _LoadAudioCommandJs.LoadAudioCommand;
-    }, function (_LoadJsonCommandJs) {
-      LoadJsonCommand = _LoadJsonCommandJs.LoadJsonCommand;
-    }, function (_LoadMaterialCommandJs) {
-      LoadMaterialCommand = _LoadMaterialCommandJs.LoadMaterialCommand;
-    }, function (_LoadPrefabCommandJs) {
-      LoadPrefabCommand = _LoadPrefabCommandJs.LoadPrefabCommand;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "6a508zSDOVLS6ttpTnMOX/h", "InitialCommand", undefined);
-
-      _export("InitialCommand", InitialCommand = /*#__PURE__*/function (_MacroCommand) {
-        _inherits(InitialCommand, _MacroCommand);
-
-        function InitialCommand() {
-          _classCallCheck(this, InitialCommand);
-
-          return _possibleConstructorReturn(this, _getPrototypeOf(InitialCommand).apply(this, arguments));
-        }
-
-        _createClass(InitialCommand, [{
-          key: "initializeMacroCommand",
-          value: function initializeMacroCommand() {
-            this.addSubCommond(LoadJsonCommand);
-            this.addSubCommond(LoadAudioCommand);
-            this.addSubCommond(LoadPrefabCommand);
-            this.addSubCommond(LoadMaterialCommand);
-          }
-        }]);
-
-        return InitialCommand;
-      }(MacroCommand));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///GameLoad/StartupCommand.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Model/PlayModel.js", "../Command/SimpleCommand.js"], function (_export, _context) {
-  "use strict";
-
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, PlayModel, SimpleCommand, StartupCommand;
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }, function (_ModelPlayModelJs) {
-      PlayModel = _ModelPlayModelJs.PlayModel;
-    }, function (_CommandSimpleCommandJs) {
-      SimpleCommand = _CommandSimpleCommandJs.SimpleCommand;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "c41f6JIhipB8r8BSDDzyAGd", "StartupCommand", undefined);
-
-      _export("StartupCommand", StartupCommand = /*#__PURE__*/function (_SimpleCommand) {
-        _inherits(StartupCommand, _SimpleCommand);
-
-        function StartupCommand() {
-          _classCallCheck(this, StartupCommand);
-
-          return _possibleConstructorReturn(this, _getPrototypeOf(StartupCommand).apply(this, arguments));
-        }
-
-        _createClass(StartupCommand, [{
-          key: "excute",
-          value: function excute() {
-            console.log("start up.");
-            PlayModel.inst.init();
-          }
-        }]);
-
-        return StartupCommand;
-      }(SimpleCommand));
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///GameLoad/InitialFacade.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Common/ToSingleTon.js", "../Common/SDK/CelerSDK.js", "../Command/Notification.js", "../Manager/StepManager.js", "./InitialCommand.js", "./StartupCommand.js"], function (_export, _context) {
-  "use strict";
-
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, SingleTon, CelerSDK, Notification, StepManager, InitialCommand, StartupCommand, STEP, InitialFacade;
-
-  _export("STEP", void 0);
-
-  return {
-    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
-      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
-      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
-      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
-      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
-    }, function (_cc) {
-      cclegacy = _cc.cclegacy;
-    }, function (_CommonToSingleTonJs) {
-      SingleTon = _CommonToSingleTonJs.SingleTon;
-    }, function (_CommonSDKCelerSDKJs) {
-      CelerSDK = _CommonSDKCelerSDKJs.CelerSDK;
-    }, function (_CommandNotificationJs) {
-      Notification = _CommandNotificationJs.Notification;
-    }, function (_ManagerStepManagerJs) {
-      StepManager = _ManagerStepManagerJs.StepManager;
-    }, function (_InitialCommandJs) {
-      InitialCommand = _InitialCommandJs.InitialCommand;
-    }, function (_StartupCommandJs) {
-      StartupCommand = _StartupCommandJs.StartupCommand;
-    }],
-    execute: function () {
-      cclegacy._RF.push({}, "1e8bcsxRDVMVZUnFxHWDXZu", "InitialFacade", undefined);
-
-      (function (STEP) {
-        STEP["Audio"] = "Audio";
-        STEP["Prefab"] = "Prefab";
-        STEP["Json"] = "Json";
-        STEP["Material"] = "Material";
-      })(STEP || _export("STEP", STEP = {}));
-
-      _export("InitialFacade", InitialFacade = /*#__PURE__*/function (_SingleTon) {
-        _inherits(InitialFacade, _SingleTon);
-
-        function InitialFacade() {
-          var _getPrototypeOf2;
-
-          var _this;
-
-          _classCallCheck(this, InitialFacade);
-
-          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-          }
-
-          _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(InitialFacade)).call.apply(_getPrototypeOf2, [this].concat(args)));
-          _this.stepManager = new StepManager();
-          _this.notification = new Notification();
-          return _this;
-        }
-
-        _createClass(InitialFacade, [{
-          key: "startStep",
-          value: function startStep(step) {
-            this.stepManager.start(step);
-          }
-        }, {
-          key: "register",
-          value: function register() {
-            var _this2 = this;
-
-            this.notification.register(InitialFacade.INIT, InitialCommand);
-            this.notification.register(InitialFacade.START, StartupCommand);
-
-            if (InitialFacade.CelerFirst) {
-              /** 先celer ready 后再加载游戏内资源 */
-              CelerSDK.inst.init(function () {
-                _this2.notification.sendNotification(InitialFacade.INIT, _this2);
-              });
-              this.stepManager.register(function () {
-                _this2.notification.sendNotification(InitialFacade.START, _this2);
-              }, InitialFacade.TOTAL_STEPS);
-            } else {
-              /** 先加载所有资源后再调用celer ready */
-              CelerSDK.inst.init(function () {
-                _this2.notification.sendNotification(InitialFacade.START, _this2);
-              });
-              this.stepManager.register(function () {
-                CelerSDK.inst.celerXReady();
-              }, InitialFacade.TOTAL_STEPS);
-            }
-          }
-        }, {
-          key: "start",
-          value: function start() {
-            this.register();
-
-            if (InitialFacade.CelerFirst) {
-              CelerSDK.inst.celerXReady();
-            } else {
-              this.notification.sendNotification(InitialFacade.INIT, this);
-            }
-          }
-        }, {
-          key: "step",
-          value: function step(commandName) {
-            console.log(" initialization step:", commandName);
-            this.stepManager.nextStep(commandName);
-          }
-        }]);
-
-        return InitialFacade;
-      }(SingleTon()));
-
-      InitialFacade.INIT = "Initialization";
-      InitialFacade.START = "StartUp";
-      InitialFacade.CelerFirst = true;
-      InitialFacade.TOTAL_STEPS = [STEP.Audio, STEP.Json, STEP.Material, STEP.Prefab];
-
-      cclegacy._RF.pop();
-    }
-  };
-});
-
-System.register("chunks:///App/App.js", ["../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Model/PlayModel.js", "../Manager/ResourceController.js", "../GameLoad/InitialFacade.js"], function (_export, _context) {
-  "use strict";
-
-  var _applyDecoratedDescriptor, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, cclegacy, _decorator, Material, SpriteAtlas, PhysicsSystem, Component, PlayModel, ResourceController, InitialFacade, _dec, _dec2, _dec3, _class, _class2, _descriptor, _descriptor2, _class3, _temp, ccclass, property, App;
+  var _applyDecoratedDescriptor, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, cclegacy, _decorator, Material, SpriteAtlas, PhysicsSystem, Component, PlayModel, InitialFacade, ResourceController, _dec, _dec2, _dec3, _class, _class2, _descriptor, _descriptor2, _class3, _temp, ccclass, property, App;
 
   _export({
     _dec: void 0,
@@ -8614,10 +8643,10 @@ System.register("chunks:///App/App.js", ["../_virtual/_rollupPluginBabelHelpers.
       Component = _cc.Component;
     }, function (_ModelPlayModelJs) {
       PlayModel = _ModelPlayModelJs.PlayModel;
-    }, function (_ManagerResourceControllerJs) {
-      ResourceController = _ManagerResourceControllerJs.ResourceController;
     }, function (_GameLoadInitialFacadeJs) {
       InitialFacade = _GameLoadInitialFacadeJs.InitialFacade;
+    }, function (_ManagerResourceControllerJs) {
+      ResourceController = _ManagerResourceControllerJs.ResourceController;
     }],
     execute: function () {
       cclegacy._RF.push({}, "95f2biD1FxLxYns3Xsv3c7f", "App", undefined);
@@ -8655,9 +8684,10 @@ System.register("chunks:///App/App.js", ["../_virtual/_rollupPluginBabelHelpers.
             InitialFacade.inst.start();
             PhysicsSystem.instance.enable = true;
             PhysicsSystem.instance.allowSleep = true;
-            PhysicsSystem.instance.maxSubSteps = 1;
-            PhysicsSystem.instance.fixedTimeStep = 1 / 60;
+            PhysicsSystem.instance.maxSubSteps = 0.01;
+            PhysicsSystem.instance.fixedTimeStep = 1 / 180;
             ResourceController.inst.setAtlas(this.UI);
+            ResourceController.inst.setPauseAtlas(this.UI);
           }
         }, {
           key: "update",
@@ -10184,10 +10214,10 @@ System.register("chunks:///Common/View/UI/HelpLayerMediator.js", ["../../../_vir
   };
 });
 
-System.register("chunks:///Common/View/UI/HelpLayerView.js", ["../../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../../GamePlay/GameRule.js", "../../../Signal/Signal.js", "../../../Model/PlayModel.js", "../BaseView.js", "./HelpLayerMediator.js"], function (_export, _context) {
+System.register("chunks:///Common/View/UI/HelpLayerView.js", ["../../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../../Signal/Signal.js", "../BaseView.js", "./HelpLayerMediator.js"], function (_export, _context) {
   "use strict";
 
-  var _applyDecoratedDescriptor, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, _createForOfIteratorHelper, cclegacy, _decorator, Node, PageView, Label, v3, Tween, Vec3, tween, Theme, ButtonClickSignal, HideHelpLayerSignal, PlayModel, BaseView, HelpLayerMediator, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _temp, ccclass, property, State, HelpLayerView;
+  var _applyDecoratedDescriptor, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, cclegacy, _decorator, Node, PageView, Label, v3, Tween, Vec3, tween, GameOverSignal, ButtonClickSignal, HideHelpLayerSignal, BaseView, HelpLayerMediator, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _temp, ccclass, property, State, HelpLayerView;
 
   _export({
     _dec: void 0,
@@ -10217,7 +10247,6 @@ System.register("chunks:///Common/View/UI/HelpLayerView.js", ["../../../_virtual
       _initializerDefineProperty = _virtual_rollupPluginBabelHelpersJs.initializerDefineProperty;
       _assertThisInitialized = _virtual_rollupPluginBabelHelpersJs.assertThisInitialized;
       _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
-      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
     }, function (_cc) {
       cclegacy = _cc.cclegacy;
       _decorator = _cc._decorator;
@@ -10228,13 +10257,10 @@ System.register("chunks:///Common/View/UI/HelpLayerView.js", ["../../../_virtual
       Tween = _cc.Tween;
       Vec3 = _cc.Vec3;
       tween = _cc.tween;
-    }, function (_GamePlayGameRuleJs) {
-      Theme = _GamePlayGameRuleJs.Theme;
     }, function (_SignalSignalJs) {
+      GameOverSignal = _SignalSignalJs.GameOverSignal;
       ButtonClickSignal = _SignalSignalJs.ButtonClickSignal;
       HideHelpLayerSignal = _SignalSignalJs.HideHelpLayerSignal;
-    }, function (_ModelPlayModelJs) {
-      PlayModel = _ModelPlayModelJs.PlayModel;
     }, function (_BaseViewJs) {
       BaseView = _BaseViewJs.BaseView;
     }, function (_HelpLayerMediatorJs) {
@@ -10288,9 +10314,10 @@ System.register("chunks:///Common/View/UI/HelpLayerView.js", ["../../../_virtual
             this.state = State.Hide;
             this.node.scale = v3(1, 1, 1);
             this.node.active = false;
-            this.GuidePage.node.on("page-turning", this.onPageChanged, this);
+            this.GuidePage.node.on("scroll-ended", this.onPageChanged, this);
             this.Close.on(Node.EventType.TOUCH_END, this.close, this);
             this.Next.on(Node.EventType.TOUCH_END, this.next, this);
+            GameOverSignal.inst.addListener(this.close, this);
           }
         }, {
           key: "start",
@@ -10320,11 +10347,11 @@ System.register("chunks:///Common/View/UI/HelpLayerView.js", ["../../../_virtual
             }
 
             if (this.GuidePage.getCurrentPageIndex() >= this.GuidePage.content.children.length - 1) {
-              this.Next.active = false;
-              this.Close.active = true;
+              this.Next.parent.active = false;
+              this.Close.parent.active = true;
             } else {
-              this.Next.active = true;
-              this.Close.active = false;
+              this.Next.parent.active = true;
+              this.Close.parent.active = false;
             }
           }
         }, {
@@ -10339,38 +10366,14 @@ System.register("chunks:///Common/View/UI/HelpLayerView.js", ["../../../_virtual
             this.state = State.Show;
             this.node.active = true;
             Tween.stopAllByTarget(this.node);
-            var count = 0;
-
-            var _iterator = _createForOfIteratorHelper(this.Background.children),
-                _step;
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                var child = _step.value;
-                child.active = child.name == Theme[PlayModel.inst.Theme];
-
-                if (child.active) {
-                  count++;
-                }
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-
-            if (count <= 0) {
-              this.Background.children[0].active = true;
-            }
-
             this.node.scale = Vec3.ZERO;
             tween(this.node).sequence(tween(this.node).to(0.1, {
               scale: v3(1, 1, 1)
             }), tween(this.node).call(function () {
               callback && callback();
             })).start();
-            this.Next.active = true;
-            this.Close.active = false;
+            this.Next.parent.active = true;
+            this.Close.parent.active = false;
             this.GuidePage.scrollToPage(0, 0);
             this.onPageChanged();
           }
@@ -10391,11 +10394,6 @@ System.register("chunks:///Common/View/UI/HelpLayerView.js", ["../../../_virtual
             })).start();
           } // update (dt) {}
 
-        }, {
-          key: "Background",
-          get: function get() {
-            return this.node.getChildByName("Background");
-          }
         }]);
 
         return HelpLayerView;
@@ -11076,10 +11074,10 @@ System.register("chunks:///Common/View/UI/SliderView.js", ["../../../_virtual/_r
   };
 });
 
-System.register("chunks:///Common/View/UI/ThemeView.js", ["../../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../../GamePlay/GameRule.js", "../../../Signal/Signal.js"], function (_export, _context) {
+System.register("chunks:///Common/View/UI/ThemeView.js", ["../../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../../Signal/Signal.js", "../../../GamePlay/GameRule.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, _decorator, Component, Theme, GameThemeInit, _dec, _class, ccclass, property, ThemeView;
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, _decorator, Component, GameThemeInit, Theme, _dec, _class, ccclass, property, ThemeView;
 
   _export({
     _dec: void 0,
@@ -11097,10 +11095,10 @@ System.register("chunks:///Common/View/UI/ThemeView.js", ["../../../_virtual/_ro
       cclegacy = _cc.cclegacy;
       _decorator = _cc._decorator;
       Component = _cc.Component;
-    }, function (_GamePlayGameRuleJs) {
-      Theme = _GamePlayGameRuleJs.Theme;
     }, function (_SignalSignalJs) {
       GameThemeInit = _SignalSignalJs.GameThemeInit;
+    }, function (_GamePlayGameRuleJs) {
+      Theme = _GamePlayGameRuleJs.Theme;
     }],
     execute: function () {
       cclegacy._RF.push({}, "7ab7fGvUlxM4JJv4dbVsF8P", "ThemeView", undefined);
@@ -11194,7 +11192,7 @@ System.register("chunks:///Common/View/UI/TimeEffectAnimation.js", ["../../../_v
           value: function onPlayStateChanged(isPlay) {
             if (isPlay) {
               if (this.isPlaying == false) {
-                this.play();
+                this.playOnLoop();
               }
             } else {
               this.stop();
@@ -11204,11 +11202,11 @@ System.register("chunks:///Common/View/UI/TimeEffectAnimation.js", ["../../../_v
           key: "start",
           value: function start() {}
         }, {
-          key: "play",
-          value: function play() {
+          key: "playOnLoop",
+          value: function playOnLoop() {
             this.Sprite.color.a = 255;
 
-            _get(_getPrototypeOf(TimeEffectAnimation.prototype), "play", this).call(this);
+            _get(_getPrototypeOf(TimeEffectAnimation.prototype), "playOnLoop", this).call(this);
           }
         }, {
           key: "stop",
@@ -11295,6 +11293,70 @@ System.register("chunks:///GamePlay/Animation/AddHeartAnimation.js", ["../../_vi
         }]);
 
         return AddHeartAnimation;
+      }(SpriteUIAnimation)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///GamePlay/Animation/DropPocketAnimation.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/View/SpriteUIAnimation.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, _decorator, SpriteUIAnimation, _dec, _class, ccclass, property, DropPocketAnimation;
+
+  _export({
+    _dec: void 0,
+    _class: void 0
+  });
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+      _decorator = _cc._decorator;
+    }, function (_CommonViewSpriteUIAnimationJs) {
+      SpriteUIAnimation = _CommonViewSpriteUIAnimationJs.SpriteUIAnimation;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "ce2d6DVdbdLua5RPzzkLuSL", "DropPocketAnimation", undefined);
+
+      ccclass = _decorator.ccclass;
+      property = _decorator.property;
+
+      _export("DropPocketAnimation", DropPocketAnimation = (_dec = ccclass("DropPocketAnimation"), _dec(_class = /*#__PURE__*/function (_SpriteUIAnimation) {
+        _inherits(DropPocketAnimation, _SpriteUIAnimation);
+
+        function DropPocketAnimation() {
+          _classCallCheck(this, DropPocketAnimation);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(DropPocketAnimation).apply(this, arguments));
+        }
+
+        _createClass(DropPocketAnimation, [{
+          key: "start",
+
+          /* class member could be defined like this */
+          // dummy = '';
+
+          /* use `property` decorator if your want the member to be serializable */
+          // @property
+          // serializableDummy = 0;
+          value: function start() {
+            // Your initialization goes here.
+            this.Interval = 0.08;
+          } // update (deltaTime: number) {
+          //     // Your update function goes here.
+          // }
+
+        }]);
+
+        return DropPocketAnimation;
       }(SpriteUIAnimation)) || _class));
 
       cclegacy._RF.pop();
@@ -11829,10 +11891,10 @@ System.register("chunks:///GamePlay/GameObject/ColliderRoot.js", ["../../_virtua
   };
 });
 
-System.register("chunks:///GamePlay/GameObject/TablePlane.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../GameRule.js", "../../Signal/Signal.js"], function (_export, _context) {
+System.register("chunks:///GamePlay/GameObject/TablePlane.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Signal/Signal.js", "../GameRule.js"], function (_export, _context) {
   "use strict";
 
-  var _applyDecoratedDescriptor, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, cclegacy, _decorator, Material, MeshRenderer, Component, Theme, GameThemeInit, _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _temp, ccclass, property, TablePlane;
+  var _applyDecoratedDescriptor, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, cclegacy, _decorator, Material, MeshRenderer, Component, GameThemeInit, Theme, _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _temp, ccclass, property, TablePlane;
 
   _export({
     _dec: void 0,
@@ -11865,10 +11927,10 @@ System.register("chunks:///GamePlay/GameObject/TablePlane.js", ["../../_virtual/
       Material = _cc.Material;
       MeshRenderer = _cc.MeshRenderer;
       Component = _cc.Component;
-    }, function (_GameRuleJs) {
-      Theme = _GameRuleJs.Theme;
     }, function (_SignalSignalJs) {
       GameThemeInit = _SignalSignalJs.GameThemeInit;
+    }, function (_GameRuleJs) {
+      Theme = _GameRuleJs.Theme;
     }],
     execute: function () {
       cclegacy._RF.push({}, "5606e1TlwlCJZGtzTPX5oL7", "TablePlane", undefined);
@@ -12568,6 +12630,179 @@ System.register("chunks:///GamePlay/UI/HelpButtonView.js", ["../../_virtual/_rol
   };
 });
 
+System.register("chunks:///GamePlay/Animation/WhiteDropAnimation.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/View/SpriteUIAnimation.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, cclegacy, _decorator, SpriteUIAnimation, _dec, _class, ccclass, property, WhiteDropAnimation;
+
+  _export({
+    _dec: void 0,
+    _class: void 0
+  });
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+      _decorator = _cc._decorator;
+    }, function (_CommonViewSpriteUIAnimationJs) {
+      SpriteUIAnimation = _CommonViewSpriteUIAnimationJs.SpriteUIAnimation;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "0227cNe965A4Y/BbLei6G7o", "WhiteDropAnimation", undefined);
+
+      ccclass = _decorator.ccclass;
+      property = _decorator.property;
+
+      _export("WhiteDropAnimation", WhiteDropAnimation = (_dec = ccclass("WhiteDropAnimation"), _dec(_class = /*#__PURE__*/function (_SpriteUIAnimation) {
+        _inherits(WhiteDropAnimation, _SpriteUIAnimation);
+
+        function WhiteDropAnimation() {
+          _classCallCheck(this, WhiteDropAnimation);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(WhiteDropAnimation).apply(this, arguments));
+        }
+
+        _createClass(WhiteDropAnimation, [{
+          key: "start",
+
+          /* class member could be defined like this */
+          // dummy = '';
+
+          /* use `property` decorator if your want the member to be serializable */
+          // @property
+          // serializableDummy = 0;
+          value: function start() {
+            // Your initialization goes here.
+            this.Interval = 0.08;
+          } // update (deltaTime: number) {
+          //     // Your update function goes here.
+          // }
+
+        }]);
+
+        return WhiteDropAnimation;
+      }(SpriteUIAnimation)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///GamePlay/UI/HoleEffectRoot.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../Physics/BorderCollider.js", "../GameLogic.js", "../Animation/DropPocketAnimation.js", "../Animation/WhiteDropAnimation.js"], function (_export, _context) {
+  "use strict";
+
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createForOfIteratorHelper, cclegacy, _decorator, Component, HoleName, PocketScoredSignal, BallDropSignal, DropPocketAnimation, WhiteDropAnimation, _dec, _class, ccclass, property, HoleEffectRoot;
+
+  _export({
+    _dec: void 0,
+    _class: void 0
+  });
+
+  return {
+    setters: [function (_virtual_rollupPluginBabelHelpersJs) {
+      _inherits = _virtual_rollupPluginBabelHelpersJs.inherits;
+      _createClass = _virtual_rollupPluginBabelHelpersJs.createClass;
+      _classCallCheck = _virtual_rollupPluginBabelHelpersJs.classCallCheck;
+      _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
+      _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
+      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
+    }, function (_cc) {
+      cclegacy = _cc.cclegacy;
+      _decorator = _cc._decorator;
+      Component = _cc.Component;
+    }, function (_PhysicsBorderColliderJs) {
+      HoleName = _PhysicsBorderColliderJs.HoleName;
+    }, function (_GameLogicJs) {
+      PocketScoredSignal = _GameLogicJs.PocketScoredSignal;
+      BallDropSignal = _GameLogicJs.BallDropSignal;
+    }, function (_AnimationDropPocketAnimationJs) {
+      DropPocketAnimation = _AnimationDropPocketAnimationJs.DropPocketAnimation;
+    }, function (_AnimationWhiteDropAnimationJs) {
+      WhiteDropAnimation = _AnimationWhiteDropAnimationJs.WhiteDropAnimation;
+    }],
+    execute: function () {
+      cclegacy._RF.push({}, "08306qfvqxBYrKKslgxIzZQ", "HoleEffectRoot", undefined);
+
+      ccclass = _decorator.ccclass;
+      property = _decorator.property;
+
+      _export("HoleEffectRoot", HoleEffectRoot = (_dec = ccclass("HoleEffectRoot"), _dec(_class = /*#__PURE__*/function (_Component) {
+        _inherits(HoleEffectRoot, _Component);
+
+        function HoleEffectRoot() {
+          _classCallCheck(this, HoleEffectRoot);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(HoleEffectRoot).apply(this, arguments));
+        }
+
+        _createClass(HoleEffectRoot, [{
+          key: "start",
+
+          /* class member could be defined like this */
+          // dummy = '';
+
+          /* use `property` decorator if your want the member to be serializable */
+          // @property
+          // serializableDummy = 0;
+          value: function start() {
+            var _this = this; // Your initialization goes here.
+
+
+            var _iterator = _createForOfIteratorHelper(this.node.children),
+                _step;
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var child = _step.value;
+                child.active = false;
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+
+            PocketScoredSignal.inst.addListener(this.onPocketScored, this);
+            BallDropSignal.inst.addListener(function (model, pocket) {
+              if (model.isWhiteBall) {
+                var child = _this.node.getChildByName(HoleName[pocket]);
+
+                if (child) {
+                  child.active = true;
+                  child.getComponent(WhiteDropAnimation).play();
+                }
+              }
+            }, this);
+          }
+        }, {
+          key: "onPocketScored",
+          value: function onPocketScored(type, name) {
+            var child = this.node.getChildByName(name);
+
+            if (child) {
+              child.active = true;
+              child.getComponent(DropPocketAnimation).play();
+            }
+          } // update (deltaTime: number) {
+          //     // Your update function goes here.
+          // }
+
+        }]);
+
+        return HoleEffectRoot;
+      }(Component)) || _class));
+
+      cclegacy._RF.pop();
+    }
+  };
+});
+
 System.register("chunks:///GamePlay/UI/LineScaleView.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Manager/GameStateController.js", "./MainUI.js"], function (_export, _context) {
   "use strict";
 
@@ -12761,10 +12996,10 @@ System.register("chunks:///GamePlay/UI/MenuButtonView.js", ["../../_virtual/_rol
   };
 });
 
-System.register("chunks:///GamePlay/UI/MenuLayerView.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../GameRule.js", "../../Signal/Signal.js", "../../Model/PlayModel.js", "../../Manager/GameStateController.js", "../../table.js", "../../Common/View/BaseView.js"], function (_export, _context) {
+System.register("chunks:///GamePlay/UI/MenuLayerView.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Signal/Signal.js", "../GameRule.js", "../../Manager/GameStateController.js", "../../Model/PlayModel.js", "../../table.js", "../../Common/View/BaseView.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _get, _createForOfIteratorHelper, cclegacy, _decorator, Node, RichText, Theme, GetScoreByType, ScoreType, MenuButtonClickSignal, ShowPauseLayerSignal, ButtonClickSignal, EndNowSignal, PlayModel, GameStateController, En_View, En_ID, BaseView, _dec, _class, ccclass, property, MenuLayerView;
+  var _inherits, _createClass, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _get, cclegacy, _decorator, Node, RichText, MenuButtonClickSignal, ShowPauseLayerSignal, ButtonClickSignal, GameOverSignal, EndNowSignal, GetScoreByType, ScoreType, GameStateController, PlayModel, En_View, En_ID, BaseView, _dec, _class, ccclass, property, MenuLayerView;
 
   _export({
     _dec: void 0,
@@ -12779,25 +13014,24 @@ System.register("chunks:///GamePlay/UI/MenuLayerView.js", ["../../_virtual/_roll
       _possibleConstructorReturn = _virtual_rollupPluginBabelHelpersJs.possibleConstructorReturn;
       _getPrototypeOf = _virtual_rollupPluginBabelHelpersJs.getPrototypeOf;
       _get = _virtual_rollupPluginBabelHelpersJs.get;
-      _createForOfIteratorHelper = _virtual_rollupPluginBabelHelpersJs.createForOfIteratorHelper;
     }, function (_cc) {
       cclegacy = _cc.cclegacy;
       _decorator = _cc._decorator;
       Node = _cc.Node;
       RichText = _cc.RichText;
-    }, function (_GameRuleJs) {
-      Theme = _GameRuleJs.Theme;
-      GetScoreByType = _GameRuleJs.GetScoreByType;
-      ScoreType = _GameRuleJs.ScoreType;
     }, function (_SignalSignalJs) {
       MenuButtonClickSignal = _SignalSignalJs.MenuButtonClickSignal;
       ShowPauseLayerSignal = _SignalSignalJs.ShowPauseLayerSignal;
       ButtonClickSignal = _SignalSignalJs.ButtonClickSignal;
+      GameOverSignal = _SignalSignalJs.GameOverSignal;
       EndNowSignal = _SignalSignalJs.EndNowSignal;
-    }, function (_ModelPlayModelJs) {
-      PlayModel = _ModelPlayModelJs.PlayModel;
+    }, function (_GameRuleJs) {
+      GetScoreByType = _GameRuleJs.GetScoreByType;
+      ScoreType = _GameRuleJs.ScoreType;
     }, function (_ManagerGameStateControllerJs) {
       GameStateController = _ManagerGameStateControllerJs.GameStateController;
+    }, function (_ModelPlayModelJs) {
+      PlayModel = _ModelPlayModelJs.PlayModel;
     }, function (_tableJs) {
       En_View = _tableJs.En_View;
       En_ID = _tableJs.En_ID;
@@ -12834,6 +13068,7 @@ System.register("chunks:///GamePlay/UI/MenuLayerView.js", ["../../_virtual/_roll
 
               _this.Hide();
             }, this);
+            GameOverSignal.inst.addListener(this.Hide, this);
             this.EndNow.on(Node.EventType.TOUCH_END, function () {
               _this.Hide();
 
@@ -12849,29 +13084,6 @@ System.register("chunks:///GamePlay/UI/MenuLayerView.js", ["../../_virtual/_roll
           key: "onShow",
           value: function onShow() {
             if (this.node.active) return;
-            var count = 0;
-
-            var _iterator = _createForOfIteratorHelper(this.Background.children),
-                _step;
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                var child = _step.value;
-                child.active = child.name == Theme[PlayModel.inst.Theme];
-
-                if (child.active) {
-                  count++;
-                }
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-
-            if (count <= 0) {
-              this.Background.children[0].active = true;
-            }
 
             if (PlayModel.inst.FreePauseCount <= 0) {
               this.Content.string = lan.t(En_View.ZanTingJieMian, En_ID.ZanTingKouFen, ["" + GetScoreByType(ScoreType.PauseCost)]);
@@ -12890,17 +13102,12 @@ System.register("chunks:///GamePlay/UI/MenuLayerView.js", ["../../_virtual/_roll
           key: "Resume",
           // LIFE-CYCLE CALLBACKS:
           get: function get() {
-            return this.node.getChildByName("ResumeButton");
+            return this.node.getChildByName("Resume").getChildByName("btn_resume");
           }
         }, {
           key: "EndNow",
           get: function get() {
-            return this.node.getChildByName("EndNow");
-          }
-        }, {
-          key: "Background",
-          get: function get() {
-            return this.node.getChildByName("Background");
+            return this.node.getChildByName("EndNow").getChildByName("btn_end");
           }
         }, {
           key: "Content",
@@ -13110,10 +13317,10 @@ System.register("chunks:///GamePlay/UI/PointBallButtonView.js", ["../../_virtual
   };
 });
 
-System.register("chunks:///GamePlay/UI/ResultLayerView.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Signal/Signal.js", "../../Model/PlayModel.js", "../../Manager/GameStateController.js", "../../Common/SDK/CelerSDK.js", "../../table.js", "../../Common/View/BaseView.js", "../../Manager/ResourceController.js", "../../Common/View/UI/NumberChangedView.js", "../Animation/ResultAnimation.js"], function (_export, _context) {
+System.register("chunks:///GamePlay/UI/ResultLayerView.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Signal/Signal.js", "../../Manager/GameStateController.js", "../../Model/PlayModel.js", "../../Common/SDK/CelerSDK.js", "../../table.js", "../../Common/View/BaseView.js", "../../Manager/ResourceController.js", "../../Common/View/UI/NumberChangedView.js", "../Animation/ResultAnimation.js"], function (_export, _context) {
   "use strict";
 
-  var _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createClass, cclegacy, _decorator, v3, tween, Sprite, RichText, Node, OpenResultLayerSignal, ShowSubmitSignal, ScoreCountingSignal, PlayModel, RoundEndType, CelerSDK, En_View, En_ID, BaseView, ResourceController, Title, NumberChangedView, ResultAnimation, _dec, _class, _temp, ccclass, property, ResultLayerView;
+  var _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _createClass, cclegacy, _decorator, v3, tween, Sprite, RichText, Node, OpenResultLayerSignal, ShowSubmitSignal, ScoreCountingSignal, RoundEndType, PlayModel, CelerSDK, En_View, En_ID, BaseView, ResourceController, Title, NumberChangedView, ResultAnimation, _dec, _class, _temp, ccclass, property, ResultLayerView;
 
   _export({
     _dec: void 0,
@@ -13140,10 +13347,10 @@ System.register("chunks:///GamePlay/UI/ResultLayerView.js", ["../../_virtual/_ro
       OpenResultLayerSignal = _SignalSignalJs.OpenResultLayerSignal;
       ShowSubmitSignal = _SignalSignalJs.ShowSubmitSignal;
       ScoreCountingSignal = _SignalSignalJs.ScoreCountingSignal;
-    }, function (_ModelPlayModelJs) {
-      PlayModel = _ModelPlayModelJs.PlayModel;
     }, function (_ManagerGameStateControllerJs) {
       RoundEndType = _ManagerGameStateControllerJs.RoundEndType;
+    }, function (_ModelPlayModelJs) {
+      PlayModel = _ModelPlayModelJs.PlayModel;
     }, function (_CommonSDKCelerSDKJs) {
       CelerSDK = _CommonSDKCelerSDKJs.CelerSDK;
     }, function (_tableJs) {
@@ -13352,10 +13559,10 @@ System.register("chunks:///GamePlay/UI/ResultLayerView.js", ["../../_virtual/_ro
   };
 });
 
-System.register("chunks:///GamePlay/UI/ScoreLabelView.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/Cocos.js", "../../Signal/Signal.js", "../../Model/PlayModel.js", "../../Factory/PrefabFactory.js", "../../Common/View/UI/NumberChangedView.js"], function (_export, _context) {
+System.register("chunks:///GamePlay/UI/ScoreLabelView.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Common/Cocos.js", "../../Factory/PrefabFactory.js", "../../Signal/Signal.js", "../../Model/PlayModel.js", "../../Common/View/UI/NumberChangedView.js"], function (_export, _context) {
   "use strict";
 
-  var _applyDecoratedDescriptor, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, cclegacy, _decorator, Node, Label, v3, tween, ConvertToNodeSpaceAR, Distance, PlayerScoreChanged, PLayerScoreInitSignal, PlayModel, PrefabFactory, NumberChangedView, _dec, _dec2, _class, _class2, _descriptor, _temp, ccclass, property, ScoreLabelView;
+  var _applyDecoratedDescriptor, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, cclegacy, _decorator, Node, Label, v3, tween, ConvertToNodeSpaceAR, Distance, PrefabFactory, PlayerScoreChanged, PLayerScoreInitSignal, PlayModel, NumberChangedView, _dec, _dec2, _class, _class2, _descriptor, _temp, ccclass, property, ScoreLabelView;
 
   _export({
     _dec: void 0,
@@ -13386,13 +13593,13 @@ System.register("chunks:///GamePlay/UI/ScoreLabelView.js", ["../../_virtual/_rol
     }, function (_CommonCocosJs) {
       ConvertToNodeSpaceAR = _CommonCocosJs.ConvertToNodeSpaceAR;
       Distance = _CommonCocosJs.Distance;
+    }, function (_FactoryPrefabFactoryJs) {
+      PrefabFactory = _FactoryPrefabFactoryJs.PrefabFactory;
     }, function (_SignalSignalJs) {
       PlayerScoreChanged = _SignalSignalJs.PlayerScoreChanged;
       PLayerScoreInitSignal = _SignalSignalJs.PLayerScoreInitSignal;
     }, function (_ModelPlayModelJs) {
       PlayModel = _ModelPlayModelJs.PlayModel;
-    }, function (_FactoryPrefabFactoryJs) {
-      PrefabFactory = _FactoryPrefabFactoryJs.PrefabFactory;
     }, function (_CommonViewUINumberChangedViewJs) {
       NumberChangedView = _CommonViewUINumberChangedViewJs.default;
     }],
@@ -13693,10 +13900,10 @@ System.register("chunks:///GamePlay/UI/TimeLabelView.js", ["../../_virtual/_roll
   };
 });
 
-System.register("chunks:///GamePlay/UI/WhiteShotLine.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../Signal/Signal.js", "../../TableManager.js", "../../Factory/PrefabFactory.js", "../GameObject/Pole.js", "../GameObject/BallRoot.js", "../../Manager/ResourceController.js", "../GameObject/BallObject.js"], function (_export, _context) {
+System.register("chunks:///GamePlay/UI/WhiteShotLine.js", ["../../_virtual/_rollupPluginBabelHelpers.js", "cc", "../../TableManager.js", "../../Factory/PrefabFactory.js", "../../Signal/Signal.js", "../GameObject/Pole.js", "../GameObject/BallRoot.js", "../../Manager/ResourceController.js", "../GameObject/BallObject.js"], function (_export, _context) {
   "use strict";
 
-  var _applyDecoratedDescriptor, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, _createForOfIteratorHelper, cclegacy, geometry, _decorator, Node, v3, Camera, SphereCollider, math, PhysicsSystem, UITransform, Vec3, Sprite, Component, ShotSignal, TableManager, PrefabFactory, UpdateShotLineSignal, Pole, BallRoot, ResourceController, BallObject, _dec, _dec2, _dec3, _class, _class2, _descriptor, _descriptor2, _temp, ray, ccclass, property, WhiteShotLine;
+  var _applyDecoratedDescriptor, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, _createForOfIteratorHelper, cclegacy, geometry, _decorator, Node, v3, Camera, SphereCollider, math, PhysicsSystem, UITransform, Vec3, Sprite, Component, TableManager, PrefabFactory, ShotSignal, UpdateShotLineSignal, Pole, BallRoot, ResourceController, BallObject, _dec, _dec2, _dec3, _class, _class2, _descriptor, _descriptor2, _temp, ray, ccclass, property, WhiteShotLine;
 
   _export({
     _dec: void 0,
@@ -13734,12 +13941,12 @@ System.register("chunks:///GamePlay/UI/WhiteShotLine.js", ["../../_virtual/_roll
       Vec3 = _cc.Vec3;
       Sprite = _cc.Sprite;
       Component = _cc.Component;
-    }, function (_SignalSignalJs) {
-      ShotSignal = _SignalSignalJs.ShotSignal;
     }, function (_TableManagerJs) {
       TableManager = _TableManagerJs.TableManager;
     }, function (_FactoryPrefabFactoryJs) {
       PrefabFactory = _FactoryPrefabFactoryJs.PrefabFactory;
+    }, function (_SignalSignalJs) {
+      ShotSignal = _SignalSignalJs.ShotSignal;
     }, function (_GameObjectPoleJs) {
       UpdateShotLineSignal = _GameObjectPoleJs.UpdateShotLineSignal;
       Pole = _GameObjectPoleJs.Pole;
@@ -13822,10 +14029,10 @@ System.register("chunks:///GamePlay/UI/WhiteShotLine.js", ["../../_virtual/_roll
             var ballWorld = v3(0, 0, 0);
             var radius = BallRoot.WhiteBall.getComponent(SphereCollider).radius;
             BallRoot.WhiteBall.getWorldPosition(ballWorld);
-            ballWorld = ballWorld.add(Pole.PoleForward.multiplyScalar(radius / 1.8));
+            ballWorld = ballWorld.add(Pole.PoleForward.multiplyScalar(radius / 1.6));
             var hitTest = "";
             var radian = math.toRadian(rotation.y);
-            radius -= 0.15;
+            radius -= 0.17;
             var leftStart = v3(ballWorld.x - Math.cos(radian) * radius, ballWorld.y, ballWorld.z + Math.sin(radian) * radius);
             var localLeftStart = v3();
             camera.convertToUINode(leftStart, this.node, localLeftStart);
@@ -14309,11 +14516,11 @@ System.register("chunks:///Test/TestView.js", ["../_virtual/_rollupPluginBabelHe
   };
 });
 
-System.register("chunks:///_virtual/prerequisite-imports:main", ["../Common/ToSingleTon.js", "../Common/HashMap.js", "../Common/Signal.js", "../Common/Random.js", "../Common/Cocos.js", "../GamePlay/GameRule.js", "../Signal/Signal.js", "../Ad/FlyCnicornAd.js", "../GamePlay/Model/Level.js", "../Model/PlayModel.js", "../Manager/GameStateController.js", "../TableManager.js", "../Common/SDK/LogHandler.js", "../Common/SDK/CelerSDK.js", "../table.js", "../Factory/PrefabFactory.js", "../GamePlay/Model/BallModel.js", "../Common/View/BaseView.js", "../GamePlay/UI/PointTouchView.js", "../GamePlay/UI/HitPointLayer.js", "../GamePlay/UI/MainUI.js", "../GamePlay/UI/PoleTouchView.js", "../GamePlay/GameObject/Pole.js", "../GamePlay/GameObject/BallRoot.js", "../GamePlay/Physics/BorderCollider.js", "../Manager/ResourceController.js", "../Common/View/SpriteUIAnimation.js", "../GamePlay/Animation/HeartBonusAnimation.js", "../GamePlay/UI/ScoreScaleRoot.js", "../GamePlay/GameLogic.js", "../Factory/MaterialFactory.js", "../GamePlay/GameObject/PrefabView.js", "../GamePlay/GameObject/BallObject.js", "../Manager/AudioManager.js", "../Manager/AdController.js", "../Ad/AdLayer.js", "../Ad/FlyAdCnicornAnimation.js", "../Ad/WildAdAnimation.js", "../Ad/WildAdButton.js", "../Command/Notification.js", "../Manager/StepManager.js", "../Command/SimpleCommand.js", "../Command/MacroCommand.js", "../GameLoad/LoadAudioCommand.js", "../GameLoad/LoadJsonCommand.js", "../GameLoad/LoadMaterialCommand.js", "../GameLoad/LoadPrefabCommand.js", "../GameLoad/InitialCommand.js", "../GameLoad/StartupCommand.js", "../GameLoad/InitialFacade.js", "../App/App.js", "../App/VersionLabel.js", "../Common/Camera/CameraAdaption.js", "../Common/Time.js", "../Common/View/BaseMediator.js", "../Common/View/SingleTouchMediator.js", "../Common/View/GlobalSingleTouch/GlobalSingleTouchMediator.js", "../Common/View/GlobalSingleTouch/GlobalSingleTouchView.js", "../Common/View/SingleTouchView.js", "../Common/View/Transform/EaseBaseView.js", "../Common/View/Transform/PositionView.js", "../Common/View/Transform/RotationView.js", "../Common/View/UI/AdaptationWigetView.js", "../Common/View/UI/HelpLayerMediator.js", "../Common/View/UI/HelpLayerView.js", "../Common/View/UI/HelpTextView.js", "../Common/View/UI/LoadingAnimation.js", "../Common/View/UI/LoadingViewMediator.js", "../Common/View/UI/LoadingView.js", "../Common/View/UI/NumberChangedView.js", "../Common/View/UI/SliderView.js", "../Common/View/UI/ThemeView.js", "../Common/View/UI/TimeEffectAnimation.js", "../GamePlay/Animation/AddHeartAnimation.js", "../GamePlay/Animation/FireWorkAnimation.js", "../GamePlay/Animation/HeartBlingAnimation.js", "../GamePlay/Animation/HeartBrokenAnimation.js", "../GamePlay/Animation/HeartIdleAnimation.js", "../GamePlay/Animation/ResultAnimation.js", "../GamePlay/Animation/TrickShotLightAnimation.js", "../GamePlay/GameObject/3DRootAdaption.js", "../GamePlay/GameObject/ColliderRoot.js", "../GamePlay/GameObject/TablePlane.js", "../GamePlay/GameObject/WhiteBall.js", "../GamePlay/Model/GridUtil.js", "../GamePlay/Signal.js", "../GamePlay/UI/CompleteView.js", "../GamePlay/UI/HeartCountLabel.js", "../GamePlay/UI/HelpButtonView.js", "../GamePlay/UI/LineScaleView.js", "../GamePlay/UI/MenuButtonView.js", "../GamePlay/UI/MenuLayerView.js", "../GamePlay/UI/PocketEffectRoot.js", "../GamePlay/UI/PointBallButtonView.js", "../GamePlay/UI/ResultLayerView.js", "../GamePlay/UI/ScoreLabelView.js", "../GamePlay/UI/SoundButtonView.js", "../GamePlay/UI/TimeLabelView.js", "../GamePlay/UI/WhiteShotLine.js", "../Test/TestLabelView.js", "../Test/TestSprite.js", "../Test/TestView.js"], function (_export, _context) {
+System.register("chunks:///_virtual/prerequisite-imports:main", ["../Common/ToSingleTon.js", "../Common/HashMap.js", "../Common/Signal.js", "../Common/Random.js", "../Common/Cocos.js", "../Command/Notification.js", "../Manager/StepManager.js", "../Command/SimpleCommand.js", "../Command/MacroCommand.js", "../GameLoad/LoadAudioCommand.js", "../TableManager.js", "../GameLoad/LoadJsonCommand.js", "../Factory/MaterialFactory.js", "../GameLoad/LoadMaterialCommand.js", "../Factory/PrefabFactory.js", "../GameLoad/LoadPrefabCommand.js", "../GameLoad/InitialCommand.js", "../Signal/Signal.js", "../Ad/FlyCnicornAd.js", "../GamePlay/GameRule.js", "../GamePlay/Model/Level.js", "../Manager/GameStateController.js", "../Model/PlayModel.js", "../GameLoad/StartupCommand.js", "../GameLoad/InitialFacade.js", "../Common/SDK/LogHandler.js", "../Common/SDK/CelerSDK.js", "../table.js", "../GamePlay/Model/BallModel.js", "../Common/View/BaseView.js", "../GamePlay/UI/PointTouchView.js", "../GamePlay/UI/HitPointLayer.js", "../GamePlay/UI/MainUI.js", "../GamePlay/UI/PoleTouchView.js", "../GamePlay/GameObject/Pole.js", "../GamePlay/GameObject/BallRoot.js", "../GamePlay/Physics/BorderCollider.js", "../Manager/ResourceController.js", "../Common/View/SpriteUIAnimation.js", "../GamePlay/Animation/HeartBonusAnimation.js", "../GamePlay/UI/ScoreScaleRoot.js", "../GamePlay/GameLogic.js", "../GamePlay/GameObject/PrefabView.js", "../GamePlay/GameObject/BallObject.js", "../Manager/AudioManager.js", "../Manager/AdController.js", "../Ad/AdLayer.js", "../Ad/FlyAdCnicornAnimation.js", "../Ad/WildAdAnimation.js", "../Ad/WildAdButton.js", "../App/App.js", "../App/VersionLabel.js", "../Common/Camera/CameraAdaption.js", "../Common/Time.js", "../Common/View/BaseMediator.js", "../Common/View/SingleTouchMediator.js", "../Common/View/GlobalSingleTouch/GlobalSingleTouchMediator.js", "../Common/View/GlobalSingleTouch/GlobalSingleTouchView.js", "../Common/View/SingleTouchView.js", "../Common/View/Transform/EaseBaseView.js", "../Common/View/Transform/PositionView.js", "../Common/View/Transform/RotationView.js", "../Common/View/UI/AdaptationWigetView.js", "../Common/View/UI/HelpLayerMediator.js", "../Common/View/UI/HelpLayerView.js", "../Common/View/UI/HelpTextView.js", "../Common/View/UI/LoadingAnimation.js", "../Common/View/UI/LoadingViewMediator.js", "../Common/View/UI/LoadingView.js", "../Common/View/UI/NumberChangedView.js", "../Common/View/UI/SliderView.js", "../Common/View/UI/ThemeView.js", "../Common/View/UI/TimeEffectAnimation.js", "../GamePlay/Animation/AddHeartAnimation.js", "../GamePlay/Animation/DropPocketAnimation.js", "../GamePlay/Animation/FireWorkAnimation.js", "../GamePlay/Animation/HeartBlingAnimation.js", "../GamePlay/Animation/HeartBrokenAnimation.js", "../GamePlay/Animation/HeartIdleAnimation.js", "../GamePlay/Animation/ResultAnimation.js", "../GamePlay/Animation/TrickShotLightAnimation.js", "../GamePlay/GameObject/3DRootAdaption.js", "../GamePlay/GameObject/ColliderRoot.js", "../GamePlay/GameObject/TablePlane.js", "../GamePlay/GameObject/WhiteBall.js", "../GamePlay/Model/GridUtil.js", "../GamePlay/Signal.js", "../GamePlay/UI/CompleteView.js", "../GamePlay/UI/HeartCountLabel.js", "../GamePlay/UI/HelpButtonView.js", "../GamePlay/Animation/WhiteDropAnimation.js", "../GamePlay/UI/HoleEffectRoot.js", "../GamePlay/UI/LineScaleView.js", "../GamePlay/UI/MenuButtonView.js", "../GamePlay/UI/MenuLayerView.js", "../GamePlay/UI/PocketEffectRoot.js", "../GamePlay/UI/PointBallButtonView.js", "../GamePlay/UI/ResultLayerView.js", "../GamePlay/UI/ScoreLabelView.js", "../GamePlay/UI/SoundButtonView.js", "../GamePlay/UI/TimeLabelView.js", "../GamePlay/UI/WhiteShotLine.js", "../Test/TestLabelView.js", "../Test/TestSprite.js", "../Test/TestView.js"], function (_export, _context) {
   "use strict";
 
   return {
-    setters: [function (_CommonToSingleTonJs) {}, function (_CommonHashMapJs) {}, function (_CommonSignalJs) {}, function (_CommonRandomJs) {}, function (_CommonCocosJs) {}, function (_GamePlayGameRuleJs) {}, function (_SignalSignalJs) {}, function (_AdFlyCnicornAdJs) {}, function (_GamePlayModelLevelJs) {}, function (_ModelPlayModelJs) {}, function (_ManagerGameStateControllerJs) {}, function (_TableManagerJs) {}, function (_CommonSDKLogHandlerJs) {}, function (_CommonSDKCelerSDKJs) {}, function (_tableJs) {}, function (_FactoryPrefabFactoryJs) {}, function (_GamePlayModelBallModelJs) {}, function (_CommonViewBaseViewJs) {}, function (_GamePlayUIPointTouchViewJs) {}, function (_GamePlayUIHitPointLayerJs) {}, function (_GamePlayUIMainUIJs) {}, function (_GamePlayUIPoleTouchViewJs) {}, function (_GamePlayGameObjectPoleJs) {}, function (_GamePlayGameObjectBallRootJs) {}, function (_GamePlayPhysicsBorderColliderJs) {}, function (_ManagerResourceControllerJs) {}, function (_CommonViewSpriteUIAnimationJs) {}, function (_GamePlayAnimationHeartBonusAnimationJs) {}, function (_GamePlayUIScoreScaleRootJs) {}, function (_GamePlayGameLogicJs) {}, function (_FactoryMaterialFactoryJs) {}, function (_GamePlayGameObjectPrefabViewJs) {}, function (_GamePlayGameObjectBallObjectJs) {}, function (_ManagerAudioManagerJs) {}, function (_ManagerAdControllerJs) {}, function (_AdAdLayerJs) {}, function (_AdFlyAdCnicornAnimationJs) {}, function (_AdWildAdAnimationJs) {}, function (_AdWildAdButtonJs) {}, function (_CommandNotificationJs) {}, function (_ManagerStepManagerJs) {}, function (_CommandSimpleCommandJs) {}, function (_CommandMacroCommandJs) {}, function (_GameLoadLoadAudioCommandJs) {}, function (_GameLoadLoadJsonCommandJs) {}, function (_GameLoadLoadMaterialCommandJs) {}, function (_GameLoadLoadPrefabCommandJs) {}, function (_GameLoadInitialCommandJs) {}, function (_GameLoadStartupCommandJs) {}, function (_GameLoadInitialFacadeJs) {}, function (_AppAppJs) {}, function (_AppVersionLabelJs) {}, function (_CommonCameraCameraAdaptionJs) {}, function (_CommonTimeJs) {}, function (_CommonViewBaseMediatorJs) {}, function (_CommonViewSingleTouchMediatorJs) {}, function (_CommonViewGlobalSingleTouchGlobalSingleTouchMediatorJs) {}, function (_CommonViewGlobalSingleTouchGlobalSingleTouchViewJs) {}, function (_CommonViewSingleTouchViewJs) {}, function (_CommonViewTransformEaseBaseViewJs) {}, function (_CommonViewTransformPositionViewJs) {}, function (_CommonViewTransformRotationViewJs) {}, function (_CommonViewUIAdaptationWigetViewJs) {}, function (_CommonViewUIHelpLayerMediatorJs) {}, function (_CommonViewUIHelpLayerViewJs) {}, function (_CommonViewUIHelpTextViewJs) {}, function (_CommonViewUILoadingAnimationJs) {}, function (_CommonViewUILoadingViewMediatorJs) {}, function (_CommonViewUILoadingViewJs) {}, function (_CommonViewUINumberChangedViewJs) {}, function (_CommonViewUISliderViewJs) {}, function (_CommonViewUIThemeViewJs) {}, function (_CommonViewUITimeEffectAnimationJs) {}, function (_GamePlayAnimationAddHeartAnimationJs) {}, function (_GamePlayAnimationFireWorkAnimationJs) {}, function (_GamePlayAnimationHeartBlingAnimationJs) {}, function (_GamePlayAnimationHeartBrokenAnimationJs) {}, function (_GamePlayAnimationHeartIdleAnimationJs) {}, function (_GamePlayAnimationResultAnimationJs) {}, function (_GamePlayAnimationTrickShotLightAnimationJs) {}, function (_GamePlayGameObject3DRootAdaptionJs) {}, function (_GamePlayGameObjectColliderRootJs) {}, function (_GamePlayGameObjectTablePlaneJs) {}, function (_GamePlayGameObjectWhiteBallJs) {}, function (_GamePlayModelGridUtilJs) {}, function (_GamePlaySignalJs) {}, function (_GamePlayUICompleteViewJs) {}, function (_GamePlayUIHeartCountLabelJs) {}, function (_GamePlayUIHelpButtonViewJs) {}, function (_GamePlayUILineScaleViewJs) {}, function (_GamePlayUIMenuButtonViewJs) {}, function (_GamePlayUIMenuLayerViewJs) {}, function (_GamePlayUIPocketEffectRootJs) {}, function (_GamePlayUIPointBallButtonViewJs) {}, function (_GamePlayUIResultLayerViewJs) {}, function (_GamePlayUIScoreLabelViewJs) {}, function (_GamePlayUISoundButtonViewJs) {}, function (_GamePlayUITimeLabelViewJs) {}, function (_GamePlayUIWhiteShotLineJs) {}, function (_TestTestLabelViewJs) {}, function (_TestTestSpriteJs) {}, function (_TestTestViewJs) {}],
+    setters: [function (_CommonToSingleTonJs) {}, function (_CommonHashMapJs) {}, function (_CommonSignalJs) {}, function (_CommonRandomJs) {}, function (_CommonCocosJs) {}, function (_CommandNotificationJs) {}, function (_ManagerStepManagerJs) {}, function (_CommandSimpleCommandJs) {}, function (_CommandMacroCommandJs) {}, function (_GameLoadLoadAudioCommandJs) {}, function (_TableManagerJs) {}, function (_GameLoadLoadJsonCommandJs) {}, function (_FactoryMaterialFactoryJs) {}, function (_GameLoadLoadMaterialCommandJs) {}, function (_FactoryPrefabFactoryJs) {}, function (_GameLoadLoadPrefabCommandJs) {}, function (_GameLoadInitialCommandJs) {}, function (_SignalSignalJs) {}, function (_AdFlyCnicornAdJs) {}, function (_GamePlayGameRuleJs) {}, function (_GamePlayModelLevelJs) {}, function (_ManagerGameStateControllerJs) {}, function (_ModelPlayModelJs) {}, function (_GameLoadStartupCommandJs) {}, function (_GameLoadInitialFacadeJs) {}, function (_CommonSDKLogHandlerJs) {}, function (_CommonSDKCelerSDKJs) {}, function (_tableJs) {}, function (_GamePlayModelBallModelJs) {}, function (_CommonViewBaseViewJs) {}, function (_GamePlayUIPointTouchViewJs) {}, function (_GamePlayUIHitPointLayerJs) {}, function (_GamePlayUIMainUIJs) {}, function (_GamePlayUIPoleTouchViewJs) {}, function (_GamePlayGameObjectPoleJs) {}, function (_GamePlayGameObjectBallRootJs) {}, function (_GamePlayPhysicsBorderColliderJs) {}, function (_ManagerResourceControllerJs) {}, function (_CommonViewSpriteUIAnimationJs) {}, function (_GamePlayAnimationHeartBonusAnimationJs) {}, function (_GamePlayUIScoreScaleRootJs) {}, function (_GamePlayGameLogicJs) {}, function (_GamePlayGameObjectPrefabViewJs) {}, function (_GamePlayGameObjectBallObjectJs) {}, function (_ManagerAudioManagerJs) {}, function (_ManagerAdControllerJs) {}, function (_AdAdLayerJs) {}, function (_AdFlyAdCnicornAnimationJs) {}, function (_AdWildAdAnimationJs) {}, function (_AdWildAdButtonJs) {}, function (_AppAppJs) {}, function (_AppVersionLabelJs) {}, function (_CommonCameraCameraAdaptionJs) {}, function (_CommonTimeJs) {}, function (_CommonViewBaseMediatorJs) {}, function (_CommonViewSingleTouchMediatorJs) {}, function (_CommonViewGlobalSingleTouchGlobalSingleTouchMediatorJs) {}, function (_CommonViewGlobalSingleTouchGlobalSingleTouchViewJs) {}, function (_CommonViewSingleTouchViewJs) {}, function (_CommonViewTransformEaseBaseViewJs) {}, function (_CommonViewTransformPositionViewJs) {}, function (_CommonViewTransformRotationViewJs) {}, function (_CommonViewUIAdaptationWigetViewJs) {}, function (_CommonViewUIHelpLayerMediatorJs) {}, function (_CommonViewUIHelpLayerViewJs) {}, function (_CommonViewUIHelpTextViewJs) {}, function (_CommonViewUILoadingAnimationJs) {}, function (_CommonViewUILoadingViewMediatorJs) {}, function (_CommonViewUILoadingViewJs) {}, function (_CommonViewUINumberChangedViewJs) {}, function (_CommonViewUISliderViewJs) {}, function (_CommonViewUIThemeViewJs) {}, function (_CommonViewUITimeEffectAnimationJs) {}, function (_GamePlayAnimationAddHeartAnimationJs) {}, function (_GamePlayAnimationDropPocketAnimationJs) {}, function (_GamePlayAnimationFireWorkAnimationJs) {}, function (_GamePlayAnimationHeartBlingAnimationJs) {}, function (_GamePlayAnimationHeartBrokenAnimationJs) {}, function (_GamePlayAnimationHeartIdleAnimationJs) {}, function (_GamePlayAnimationResultAnimationJs) {}, function (_GamePlayAnimationTrickShotLightAnimationJs) {}, function (_GamePlayGameObject3DRootAdaptionJs) {}, function (_GamePlayGameObjectColliderRootJs) {}, function (_GamePlayGameObjectTablePlaneJs) {}, function (_GamePlayGameObjectWhiteBallJs) {}, function (_GamePlayModelGridUtilJs) {}, function (_GamePlaySignalJs) {}, function (_GamePlayUICompleteViewJs) {}, function (_GamePlayUIHeartCountLabelJs) {}, function (_GamePlayUIHelpButtonViewJs) {}, function (_GamePlayAnimationWhiteDropAnimationJs) {}, function (_GamePlayUIHoleEffectRootJs) {}, function (_GamePlayUILineScaleViewJs) {}, function (_GamePlayUIMenuButtonViewJs) {}, function (_GamePlayUIMenuLayerViewJs) {}, function (_GamePlayUIPocketEffectRootJs) {}, function (_GamePlayUIPointBallButtonViewJs) {}, function (_GamePlayUIResultLayerViewJs) {}, function (_GamePlayUIScoreLabelViewJs) {}, function (_GamePlayUISoundButtonViewJs) {}, function (_GamePlayUITimeLabelViewJs) {}, function (_GamePlayUIWhiteShotLineJs) {}, function (_TestTestLabelViewJs) {}, function (_TestTestSpriteJs) {}, function (_TestTestViewJs) {}],
     execute: function () {}
   };
 });
@@ -14324,17 +14531,29 @@ System.register("chunks:///_virtual/prerequisite-imports:main", ["../Common/ToSi
   r('project:///assets/Scripts/Common/Signal.js', 'chunks:///Common/Signal.js');
   r('project:///assets/Scripts/Common/Random.js', 'chunks:///Common/Random.js');
   r('project:///assets/Scripts/Common/Cocos.js', 'chunks:///Common/Cocos.js');
-  r('project:///assets/Scripts/GamePlay/GameRule.js', 'chunks:///GamePlay/GameRule.js');
+  r('project:///assets/Scripts/Command/Notification.js', 'chunks:///Command/Notification.js');
+  r('project:///assets/Scripts/Manager/StepManager.js', 'chunks:///Manager/StepManager.js');
+  r('project:///assets/Scripts/Command/SimpleCommand.js', 'chunks:///Command/SimpleCommand.js');
+  r('project:///assets/Scripts/Command/MacroCommand.js', 'chunks:///Command/MacroCommand.js');
+  r('project:///assets/Scripts/GameLoad/LoadAudioCommand.js', 'chunks:///GameLoad/LoadAudioCommand.js');
+  r('project:///assets/Scripts/TableManager.js', 'chunks:///TableManager.js');
+  r('project:///assets/Scripts/GameLoad/LoadJsonCommand.js', 'chunks:///GameLoad/LoadJsonCommand.js');
+  r('project:///assets/Scripts/Factory/MaterialFactory.js', 'chunks:///Factory/MaterialFactory.js');
+  r('project:///assets/Scripts/GameLoad/LoadMaterialCommand.js', 'chunks:///GameLoad/LoadMaterialCommand.js');
+  r('project:///assets/Scripts/Factory/PrefabFactory.js', 'chunks:///Factory/PrefabFactory.js');
+  r('project:///assets/Scripts/GameLoad/LoadPrefabCommand.js', 'chunks:///GameLoad/LoadPrefabCommand.js');
+  r('project:///assets/Scripts/GameLoad/InitialCommand.js', 'chunks:///GameLoad/InitialCommand.js');
   r('project:///assets/Scripts/Signal/Signal.js', 'chunks:///Signal/Signal.js');
   r('project:///assets/Scripts/Ad/FlyCnicornAd.js', 'chunks:///Ad/FlyCnicornAd.js');
+  r('project:///assets/Scripts/GamePlay/GameRule.js', 'chunks:///GamePlay/GameRule.js');
   r('project:///assets/Scripts/GamePlay/Model/Level.js', 'chunks:///GamePlay/Model/Level.js');
-  r('project:///assets/Scripts/Model/PlayModel.js', 'chunks:///Model/PlayModel.js');
   r('project:///assets/Scripts/Manager/GameStateController.js', 'chunks:///Manager/GameStateController.js');
-  r('project:///assets/Scripts/TableManager.js', 'chunks:///TableManager.js');
+  r('project:///assets/Scripts/Model/PlayModel.js', 'chunks:///Model/PlayModel.js');
+  r('project:///assets/Scripts/GameLoad/StartupCommand.js', 'chunks:///GameLoad/StartupCommand.js');
+  r('project:///assets/Scripts/GameLoad/InitialFacade.js', 'chunks:///GameLoad/InitialFacade.js');
   r('project:///assets/Scripts/Common/SDK/LogHandler.js', 'chunks:///Common/SDK/LogHandler.js');
   r('project:///assets/Scripts/Common/SDK/CelerSDK.js', 'chunks:///Common/SDK/CelerSDK.js');
   r('project:///assets/Scripts/table.js', 'chunks:///table.js');
-  r('project:///assets/Scripts/Factory/PrefabFactory.js', 'chunks:///Factory/PrefabFactory.js');
   r('project:///assets/Scripts/GamePlay/Model/BallModel.js', 'chunks:///GamePlay/Model/BallModel.js');
   r('project:///assets/Scripts/Common/View/BaseView.js', 'chunks:///Common/View/BaseView.js');
   r('project:///assets/Scripts/GamePlay/UI/PointTouchView.js', 'chunks:///GamePlay/UI/PointTouchView.js');
@@ -14349,7 +14568,6 @@ System.register("chunks:///_virtual/prerequisite-imports:main", ["../Common/ToSi
   r('project:///assets/Scripts/GamePlay/Animation/HeartBonusAnimation.js', 'chunks:///GamePlay/Animation/HeartBonusAnimation.js');
   r('project:///assets/Scripts/GamePlay/UI/ScoreScaleRoot.js', 'chunks:///GamePlay/UI/ScoreScaleRoot.js');
   r('project:///assets/Scripts/GamePlay/GameLogic.js', 'chunks:///GamePlay/GameLogic.js');
-  r('project:///assets/Scripts/Factory/MaterialFactory.js', 'chunks:///Factory/MaterialFactory.js');
   r('project:///assets/Scripts/GamePlay/GameObject/PrefabView.js', 'chunks:///GamePlay/GameObject/PrefabView.js');
   r('project:///assets/Scripts/GamePlay/GameObject/BallObject.js', 'chunks:///GamePlay/GameObject/BallObject.js');
   r('project:///assets/Scripts/Manager/AudioManager.js', 'chunks:///Manager/AudioManager.js');
@@ -14358,17 +14576,6 @@ System.register("chunks:///_virtual/prerequisite-imports:main", ["../Common/ToSi
   r('project:///assets/Scripts/Ad/FlyAdCnicornAnimation.js', 'chunks:///Ad/FlyAdCnicornAnimation.js');
   r('project:///assets/Scripts/Ad/WildAdAnimation.js', 'chunks:///Ad/WildAdAnimation.js');
   r('project:///assets/Scripts/Ad/WildAdButton.js', 'chunks:///Ad/WildAdButton.js');
-  r('project:///assets/Scripts/Command/Notification.js', 'chunks:///Command/Notification.js');
-  r('project:///assets/Scripts/Manager/StepManager.js', 'chunks:///Manager/StepManager.js');
-  r('project:///assets/Scripts/Command/SimpleCommand.js', 'chunks:///Command/SimpleCommand.js');
-  r('project:///assets/Scripts/Command/MacroCommand.js', 'chunks:///Command/MacroCommand.js');
-  r('project:///assets/Scripts/GameLoad/LoadAudioCommand.js', 'chunks:///GameLoad/LoadAudioCommand.js');
-  r('project:///assets/Scripts/GameLoad/LoadJsonCommand.js', 'chunks:///GameLoad/LoadJsonCommand.js');
-  r('project:///assets/Scripts/GameLoad/LoadMaterialCommand.js', 'chunks:///GameLoad/LoadMaterialCommand.js');
-  r('project:///assets/Scripts/GameLoad/LoadPrefabCommand.js', 'chunks:///GameLoad/LoadPrefabCommand.js');
-  r('project:///assets/Scripts/GameLoad/InitialCommand.js', 'chunks:///GameLoad/InitialCommand.js');
-  r('project:///assets/Scripts/GameLoad/StartupCommand.js', 'chunks:///GameLoad/StartupCommand.js');
-  r('project:///assets/Scripts/GameLoad/InitialFacade.js', 'chunks:///GameLoad/InitialFacade.js');
   r('project:///assets/Scripts/App/App.js', 'chunks:///App/App.js');
   r('project:///assets/Scripts/App/VersionLabel.js', 'chunks:///App/VersionLabel.js');
   r('project:///assets/Scripts/Common/Camera/CameraAdaption.js', 'chunks:///Common/Camera/CameraAdaption.js');
@@ -14393,6 +14600,7 @@ System.register("chunks:///_virtual/prerequisite-imports:main", ["../Common/ToSi
   r('project:///assets/Scripts/Common/View/UI/ThemeView.js', 'chunks:///Common/View/UI/ThemeView.js');
   r('project:///assets/Scripts/Common/View/UI/TimeEffectAnimation.js', 'chunks:///Common/View/UI/TimeEffectAnimation.js');
   r('project:///assets/Scripts/GamePlay/Animation/AddHeartAnimation.js', 'chunks:///GamePlay/Animation/AddHeartAnimation.js');
+  r('project:///assets/Scripts/GamePlay/Animation/DropPocketAnimation.js', 'chunks:///GamePlay/Animation/DropPocketAnimation.js');
   r('project:///assets/Scripts/GamePlay/Animation/FireWorkAnimation.js', 'chunks:///GamePlay/Animation/FireWorkAnimation.js');
   r('project:///assets/Scripts/GamePlay/Animation/HeartBlingAnimation.js', 'chunks:///GamePlay/Animation/HeartBlingAnimation.js');
   r('project:///assets/Scripts/GamePlay/Animation/HeartBrokenAnimation.js', 'chunks:///GamePlay/Animation/HeartBrokenAnimation.js');
@@ -14408,6 +14616,8 @@ System.register("chunks:///_virtual/prerequisite-imports:main", ["../Common/ToSi
   r('project:///assets/Scripts/GamePlay/UI/CompleteView.js', 'chunks:///GamePlay/UI/CompleteView.js');
   r('project:///assets/Scripts/GamePlay/UI/HeartCountLabel.js', 'chunks:///GamePlay/UI/HeartCountLabel.js');
   r('project:///assets/Scripts/GamePlay/UI/HelpButtonView.js', 'chunks:///GamePlay/UI/HelpButtonView.js');
+  r('project:///assets/Scripts/GamePlay/Animation/WhiteDropAnimation.js', 'chunks:///GamePlay/Animation/WhiteDropAnimation.js');
+  r('project:///assets/Scripts/GamePlay/UI/HoleEffectRoot.js', 'chunks:///GamePlay/UI/HoleEffectRoot.js');
   r('project:///assets/Scripts/GamePlay/UI/LineScaleView.js', 'chunks:///GamePlay/UI/LineScaleView.js');
   r('project:///assets/Scripts/GamePlay/UI/MenuButtonView.js', 'chunks:///GamePlay/UI/MenuButtonView.js');
   r('project:///assets/Scripts/GamePlay/UI/MenuLayerView.js', 'chunks:///GamePlay/UI/MenuLayerView.js');

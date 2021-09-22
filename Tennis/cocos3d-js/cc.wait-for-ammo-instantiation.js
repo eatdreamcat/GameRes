@@ -1,4 +1,4 @@
-System.register(['./ammo-instantiated-912e90c0.js'], function (exports) {
+System.register(['./ammo-instantiated-f26a4f0a.js'], function (exports) {
 	'use strict';
 	return {
 		setters: [function (module) {

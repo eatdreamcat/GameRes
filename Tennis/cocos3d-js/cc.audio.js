@@ -1,4 +1,4 @@
-System.register(['./deprecated-8ebd570c.js'], function (exports) {
+System.register(['./deprecated-e6a5ad41.js'], function (exports) {
   'use strict';
   var ccclass, type, AudioClip, _applyDecoratedDescriptor, help, menu, tooltip, range, serializable, _inherits, _classCallCheck, _possibleConstructorReturn, _getPrototypeOf, _initializerDefineProperty, _assertThisInitialized, _createClass, clamp, Component, legacyCC, js;
   return {

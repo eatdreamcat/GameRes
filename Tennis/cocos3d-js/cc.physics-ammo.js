@@ -1,4 +1,4 @@
-System.register(['./deprecated-8ebd570c.js', './deprecated-a0f8be1a.js', './index-2148aab9.js', './SubContextView-456e3ed1.js', './component-event-handler-f732bf4f.js', './ammo-instantiated-912e90c0.js', './index-325bf510.js', './terrain-asset-6ae2f4c5.js', './array-collision-matrix-0d5084bc.js'], function () {
+System.register(['./deprecated-e6a5ad41.js', './deprecated-d4c45d60.js', './index-3f109dd2.js', './SubContextView-6f635b0a.js', './component-event-handler-8a55e305.js', './ammo-instantiated-f26a4f0a.js', './index-334e7e0c.js', './terrain-asset-19c87035.js', './array-collision-matrix-79febd27.js'], function () {
     'use strict';
     var Vec3, Quat, _createClass, _classCallCheck, _inherits, _possibleConstructorReturn, _getPrototypeOf, _get, absMax, warnID, warn, removeProperty, replaceProperty, GFXPrimitiveMode, TransformBit, Ammo$1, PhysicsSystem, ERigidBodyType, select, ArrayCollisionMatrix;
     return {

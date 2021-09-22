@@ -1,4 +1,4 @@
-System.register(['./deprecated-8ebd570c.js', './deprecated-a0f8be1a.js', './index-2148aab9.js', './SubContextView-456e3ed1.js', './component-event-handler-f732bf4f.js'], function (exports) {
+System.register(['./deprecated-e6a5ad41.js', './deprecated-d4c45d60.js', './index-3f109dd2.js', './SubContextView-6f635b0a.js', './component-event-handler-8a55e305.js'], function (exports) {
     'use strict';
     var _createClass, errorID, legacyCC, logID, CCObject, _classCallCheck, _inherits, _possibleConstructorReturn, _getPrototypeOf, warnID, _typeof, warn, RenderableComponent, macro, easing, director, Director, System;
     return {
