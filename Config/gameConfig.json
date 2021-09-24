@@ -6,6 +6,7 @@
   "LocalUrl": "http://192.168.10.111:2020/",
   "releaseUrl": "http://192.168.10.111:6565/",
   "normalGames": [
+    "PoolCash",
     "PickPick",
     "EliminationWin",
     "SolitaireWin-Refactor",
@@ -55,5 +56,5 @@
     "FruitPunch-ad"
   ],
   "nativeGames": ["DaubCash"],
-  "new": ["PickPick"]
+  "new": ["PoolCash"]
 }
