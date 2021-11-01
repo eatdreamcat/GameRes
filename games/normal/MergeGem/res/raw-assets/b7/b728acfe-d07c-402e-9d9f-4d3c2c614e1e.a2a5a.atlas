@@ -1,0 +1,97 @@
+
+xiuxiu.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 2, 78
+  size: 159, 170
+  orig: 233, 287
+  offset: 31, 46
+  index: -1
+dim
+  rotate: false
+  xy: 163, 165
+  size: 44, 55
+  orig: 233, 287
+  offset: 86, 45
+  index: -1
+eye1
+  rotate: true
+  xy: 163, 92
+  size: 71, 16
+  orig: 233, 287
+  offset: 63, 98
+  index: -1
+eye2
+  rotate: true
+  xy: 153, 5
+  size: 71, 6
+  orig: 233, 287
+  offset: 62, 101
+  index: -1
+eye3
+  rotate: true
+  xy: 199, 95
+  size: 68, 13
+  orig: 233, 287
+  offset: 64, 99
+  index: -1
+gem
+  rotate: false
+  xy: 2, 2
+  size: 149, 74
+  orig: 233, 287
+  offset: 38, 62
+  index: -1
+leftfoot
+  rotate: true
+  xy: 161, 2
+  size: 26, 16
+  orig: 233, 287
+  offset: 52, 47
+  index: -1
+lefthand
+  rotate: true
+  xy: 161, 30
+  size: 46, 18
+  orig: 233, 287
+  offset: 57, 62
+  index: -1
+mouth1
+  rotate: false
+  xy: 163, 222
+  size: 87, 26
+  orig: 233, 287
+  offset: 53, 84
+  index: -1
+mouth2
+  rotate: true
+  xy: 181, 97
+  size: 66, 16
+  orig: 233, 287
+  offset: 61, 79
+  index: -1
+rightfoot
+  rotate: false
+  xy: 230, 168
+  size: 24, 23
+  orig: 233, 287
+  offset: 129, 46
+  index: -1
+righthand
+  rotate: true
+  xy: 209, 170
+  size: 50, 19
+  orig: 233, 287
+  offset: 108, 62
+  index: -1
+tail
+  rotate: true
+  xy: 230, 193
+  size: 27, 24
+  orig: 233, 287
+  offset: 155, 62
+  index: -1
