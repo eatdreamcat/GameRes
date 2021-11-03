@@ -7364,7 +7364,7 @@ System.register("chunks:///_virtual/App.ts", ['./_rollupPluginModLoBabelHelpers.
           ResourceController.inst.setAtlas(this.UI);
           ResourceController.inst.setPauseAtlas(this.UI);
           ResourceController.inst.pushAnimationAtlas(AnimationType.UI, this.Effect);
-          setDisplayStats(CC_DEBUG);
+          setDisplayStats(false);
           game.setFrameRate(60);
         };
 
